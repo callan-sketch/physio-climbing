@@ -352,12 +352,13 @@
    CONFIG — replace these before going live.
    ============================================================ */
 const FIREBASE_CONFIG = {
-  apiKey: "YOUR_API_KEY_HERE",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAN9BVXDo15Mav2zketm5jhKRoBjs2yYX8",
+  authDomain: "core-coaching-login.firebaseapp.com",
+  projectId: "core-coaching-login",
+  storageBucket: "core-coaching-login.firebasestorage.app",
+  messagingSenderId: "184932860937",
+  appId: "1:184932860937:web:7023e588b1068ed2a824d8",
+  measurementId: "G-M48JWEWV0D"
 };
 
 // Base URL for your deployed Cloud Functions (2nd gen), e.g.
@@ -380,24 +381,33 @@ if (!IS_CONFIGURED) {
    placeholder.
    ============================================================ */
 let auth, db, currentUser = null;
+let FIREBASE_READY = false;
 
 if (IS_CONFIGURED) {
-  const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
-  const {
-    getAuth, GoogleAuthProvider, signInWithPopup,
-    createUserWithEmailAndPassword, signInWithEmailAndPassword
-  } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js");
-  const { getFirestore, doc, setDoc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+  try {
+    const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
+    const {
+      getAuth, GoogleAuthProvider, signInWithPopup,
+      createUserWithEmailAndPassword, signInWithEmailAndPassword
+    } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js");
+    const { getFirestore, doc, setDoc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
 
-  const app = initializeApp(FIREBASE_CONFIG);
-  auth = getAuth(app);
-  db = getFirestore(app);
+    const app = initializeApp(FIREBASE_CONFIG);
+    auth = getAuth(app);
+    db = getFirestore(app);
 
-  window._fb = {
-    GoogleAuthProvider, signInWithPopup,
-    createUserWithEmailAndPassword, signInWithEmailAndPassword,
-    doc, setDoc, getDoc
-  };
+    window._fb = {
+      GoogleAuthProvider, signInWithPopup,
+      createUserWithEmailAndPassword, signInWithEmailAndPassword,
+      doc, setDoc, getDoc
+    };
+    FIREBASE_READY = true;
+  } catch (err) {
+    console.error('Firebase failed to load:', err);
+    const banner = document.getElementById('devBanner');
+    banner.textContent = '⚠ Firebase failed to load — check your internet connection and try refreshing. If this keeps happening, the CDN URL or config may be wrong.';
+    banner.classList.add('show');
+  }
 }
 
 /* ============================================================
@@ -455,7 +465,7 @@ async function afterAuthSuccess(user){
 
   // If this user already has a profile / has already paid for this
   // course, skip ahead rather than re-onboarding or re-charging them.
-  if (IS_CONFIGURED) {
+  if (FIREBASE_READY) {
     try {
       const snap = await window._fb.getDoc(window._fb.doc(db, 'users', user.uid));
       if (snap.exists()){
@@ -476,8 +486,8 @@ async function afterAuthSuccess(user){
 
 document.getElementById('googleBtn').addEventListener('click', async () => {
   hideError('authError');
-  if (!IS_CONFIGURED){
-    showError('authError', 'Firebase isn\'t configured yet — see the banner at the top of the page.');
+  if (!FIREBASE_READY){
+    showError('authError', 'Firebase isn\'t ready yet — see the banner at the top of the page.');
     return;
   }
   try {
@@ -496,8 +506,8 @@ document.getElementById('emailForm').addEventListener('submit', async (e) => {
   const email = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value;
 
-  if (!IS_CONFIGURED){
-    showError('authError', 'Firebase isn\'t configured yet — see the banner at the top of the page.');
+  if (!FIREBASE_READY){
+    showError('authError', 'Firebase isn\'t ready yet — see the banner at the top of the page.');
     return;
   }
 
@@ -543,8 +553,8 @@ document.getElementById('onboardForm').addEventListener('submit', async (e) => {
     treatsClimbers: document.getElementById('treatsClimbers').value || null
   };
 
-  if (!IS_CONFIGURED){
-    showError('onboardError', 'Firebase isn\'t configured yet — see the banner at the top of the page.');
+  if (!FIREBASE_READY){
+    showError('onboardError', 'Firebase isn\'t ready yet — see the banner at the top of the page.');
     return;
   }
 
@@ -576,8 +586,8 @@ document.getElementById('onboardForm').addEventListener('submit', async (e) => {
 document.getElementById('payBtn').addEventListener('click', async () => {
   hideError('paymentError');
 
-  if (!IS_CONFIGURED){
-    showError('paymentError', 'Payment isn\'t configured yet — see the banner at the top of the page.');
+  if (!FIREBASE_READY){
+    showError('paymentError', 'Payment isn\'t ready yet — see the banner at the top of the page.');
     return;
   }
 
