@@ -170,6 +170,13 @@
   }
   .secure-note svg{ flex-shrink:0; margin-top:2px; color:var(--teal); }
 
+  .btn-dev-bypass{
+    width:100%; margin-top:14px; background:#fff8ea; border:1px dashed #c9922e; color:#8a6416;
+    padding:11px 16px; border-radius:8px; font-size:0.85rem; font-weight:600;
+    transition:background .2s ease;
+  }
+  .btn-dev-bypass:hover{ background:#fdf0d5; }
+
   footer{ text-align:center; padding:24px 20px; color:var(--ink-soft); font-size:0.8rem; }
 </style>
 </head>
@@ -337,6 +344,16 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3L20 6.5V11C20 16 16.5 19.7 12 21C7.5 19.7 4 16 4 11V6.5L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
           <span>You'll be redirected to Yoco's secure checkout to pay. We never see or store your card details.</span>
         </div>
+
+        <!-- ============================================================
+             TEMPORARY DEV BYPASS — remove this entire block once Yoco
+             checkout + yocoWebhook are actually wired up and tested.
+             Marks the course paid without any real payment, for build
+             and testing purposes only.
+             ============================================================ -->
+        <button class="btn-dev-bypass" id="devBypassBtn" type="button">
+          ⚠ Dev only: skip payment &amp; unlock course
+        </button>
       </div>
 
     </div>
@@ -613,6 +630,43 @@ document.getElementById('payBtn').addEventListener('click', async () => {
     console.error(err);
     showError('paymentError', 'Couldn\'t start checkout — please try again.');
     setLoading('payBtn', false);
+  }
+});
+
+/* ============================================================
+   TEMPORARY DEV BYPASS HANDLER — remove alongside the button
+   above once real payment is wired up. Writes paid:true and
+   unlocks Module 1 directly, skipping Yoco entirely.
+   ============================================================ */
+document.getElementById('devBypassBtn').addEventListener('click', async () => {
+  hideError('paymentError');
+
+  if (!FIREBASE_READY){
+    showError('paymentError', 'Firebase isn\'t ready yet — see the banner at the top of the page.');
+    return;
+  }
+  if (!currentUser){
+    showError('paymentError', 'No signed-in user found — please complete step 1 first.');
+    return;
+  }
+
+  setLoading('devBypassBtn', true);
+  try {
+    const userRef = window._fb.doc(db, 'users', currentUser.uid);
+    await window._fb.setDoc(userRef, {
+      courses: {
+        [COURSE_ID]: {
+          paid: true,
+          unlockedModules: [1],
+          moduleProgress: {}
+        }
+      }
+    }, { merge: true });
+    window.location.href = 'dashboard.html';
+  } catch (err){
+    console.error(err);
+    showError('paymentError', 'Dev bypass failed — check the console for details.');
+    setLoading('devBypassBtn', false);
   }
 });
 
