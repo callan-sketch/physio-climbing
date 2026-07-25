@@ -69,6 +69,14 @@
 
   /* MODULE HEADER */
   .module-head{ padding:52px 0 36px; }
+  .module-head-inner{ display:flex; align-items:center; gap:26px; }
+  .module-head-thumb{
+    width:110px; height:110px; border-radius:14px; flex-shrink:0;
+    background-color:var(--cream-dk); background-size:cover; background-position:center;
+  }
+  @media (max-width:600px){
+    .module-head-inner{ flex-direction:column; align-items:flex-start; gap:18px; }
+  }
   .module-eyebrow{
     font-size:0.72rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase;
     color:var(--terracotta); display:block; margin-bottom:14px;
@@ -156,9 +164,14 @@
 <main id="mainContent">
   <section class="module-head">
     <div class="wrap">
-      <span class="module-eyebrow">MODULE 4 OF 6</span>
+      <div class="module-head-inner">
+        <div class="module-head-thumb" style="background-image:url('Assets/Images/module-04.png')"></div>
+        <div>
+          <span class="module-eyebrow">MODULE 4 OF 6</span>
       <h1>Assessing & Diagnosing Common Climbing Injuries</h1>
       <p>A site-by-site framework — fingers, wrist, elbow, shoulder, knee, and ankle — with differential considerations for each presentation.</p>
+        </div>
+      </div>
     </div>
   </section>
 
