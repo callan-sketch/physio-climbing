@@ -33,37 +33,39 @@
   .eyebrow{ font-family:'Inter', sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; }
 
   /* NAV */
-  header{ position:sticky; top:0; z-index:50; background:rgba(247,245,241,0.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--cream-dk); }
+  header{ position:sticky; top:0; z-index:50; background:var(--navy); }
   nav.wrap{ display:flex; align-items:center; justify-content:space-between; height:76px; }
-  .brand{ display:flex; align-items:center; gap:12px; }
-  .brand-mark{ width:28px; height:28px; flex-shrink:0; }
-  .brand-text{ display:flex; flex-direction:column; line-height:1.15; }
-  .brand-parent{ font-size:0.68rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft); }
-  .brand-course{ font-family:'Fraunces', serif; font-weight:700; font-size:1.02rem; color:var(--navy); }
-  .nav-links{ display:flex; align-items:center; gap:32px; font-size:0.9rem; font-weight:500; }
-  .nav-links a{ color:var(--navy); opacity:0.75; transition:opacity .2s ease; }
+  .logo-word{ font-family:'Fraunces', serif; font-weight:700; font-size:1.32rem; letter-spacing:-0.01em; }
+  .logo-word .core{ color:#fff; }
+  .logo-word .learning{ color:var(--terracotta); }
+  .nav-links{ display:flex; align-items:center; gap:22px; font-size:0.92rem; font-weight:500; }
+  .nav-links a{ color:var(--cream); opacity:0.8; transition:opacity .2s ease; }
   .nav-links a:hover{ opacity:1; }
-  .nav-cta{
-    background:var(--terracotta); color:#fff !important; opacity:1 !important;
-    padding:10px 20px; border-radius:8px; font-weight:600;
+  .nav-home{
+    background:rgba(247,245,241,0.1); opacity:1 !important;
+    padding:9px 18px; border-radius:8px;
     transition:background .2s ease;
   }
-  .nav-cta:hover{ background:var(--terracotta-dk); }
+  .nav-home:hover{ background:rgba(247,245,241,0.18); }
   a:focus-visible, button:focus-visible{ outline:2px solid var(--teal); outline-offset:3px; border-radius:3px; }
 
   /* HERO */
-  .hero{ position:relative; background:var(--navy); overflow:hidden; padding:104px 0 92px; }
+  .hero{ position:relative; overflow:hidden; padding:120px 0 88px; display:flex; align-items:flex-end; min-height:520px; }
   .hero::before{
     content:""; position:absolute; inset:0;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='900' height='900' viewBox='0 0 900 900'><g fill='none' stroke='%23f7f5f1' stroke-opacity='0.07' stroke-width='1.4'><path d='M-50 620 Q 200 520 380 610 T 950 560'/><path d='M-50 680 Q 220 580 420 670 T 950 630'/><path d='M-50 740 Q 240 640 460 730 T 950 700'/><path d='M-50 120 Q 180 40 340 110 T 720 70 T 950 120'/><path d='M-50 180 Q 200 100 380 170 T 760 130 T 950 180'/></g></svg>");
-    background-repeat:no-repeat; background-position:center; background-size:cover; opacity:0.9;
+    background-image:
+      linear-gradient(100deg, rgba(19,29,40,0.93) 0%, rgba(19,29,40,0.8) 45%, rgba(19,29,40,0.45) 100%),
+      url("Assets/Images/hero.png");
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:cover;
   }
-  .hero .wrap{ position:relative; }
-  .hero-grid{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center; }
-  .hero-eyebrow{ color:var(--terracotta); display:inline-block; margin-bottom:20px; }
-  .hero h1{ color:var(--cream); font-size:clamp(2rem, 4vw, 3rem); margin-bottom:20px; }
+  .hero .wrap{ position:relative; width:100%; }
+  .hero-content{ max-width:640px; }
+  .hero-eyebrow{ color:rgba(247,245,241,0.6); display:inline-block; margin-bottom:18px; }
+  .hero h1{ color:#fff; font-size:clamp(2rem, 4.2vw, 3.1rem); margin-bottom:20px; }
   .hero h1 em{ font-style:italic; color:var(--terracotta); font-weight:500; }
-  .hero p.sub{ color:var(--cream); opacity:0.72; font-size:1.05rem; max-width:480px; margin-bottom:32px; }
+  .hero p.sub{ color:var(--cream); opacity:0.75; font-size:1.05rem; max-width:520px; margin-bottom:32px; }
   .hero-ctas{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
   .btn-primary{
     background:var(--terracotta); color:#fff; padding:14px 26px; border-radius:9px;
@@ -74,22 +76,7 @@
   .link-ghost{ color:var(--cream); opacity:0.75; font-weight:600; font-size:0.95rem; border-bottom:1px solid rgba(247,245,241,0.4); padding-bottom:2px; }
   .link-ghost:hover{ opacity:1; }
 
-  .hero-card{
-    background:var(--cream); border-radius:16px; padding:32px;
-    box-shadow:0 30px 60px -20px rgba(0,0,0,0.35);
-  }
-  .hero-card .eyebrow{ color:var(--terracotta); margin-bottom:14px; display:block; }
-  .hero-card ul{ list-style:none; margin-top:18px; }
-  .hero-card li{
-    display:flex; align-items:flex-start; gap:10px;
-    font-size:0.92rem; color:var(--ink-soft); margin-bottom:13px;
-  }
-  .hero-card li svg{ flex-shrink:0; margin-top:3px; color:var(--teal); }
-  .hero-price{ display:flex; align-items:baseline; gap:8px; margin-top:22px; padding-top:20px; border-top:1px solid var(--cream-dk); }
-  .hero-price .amount{ font-family:'Fraunces', serif; font-size:1.9rem; font-weight:600; color:var(--navy); }
-  .hero-price .note{ font-size:0.82rem; color:var(--ink-soft); }
-
-  @media (max-width:900px){ .hero-grid{ grid-template-columns:1fr; } }
+  @media (max-width:640px){ .hero{ min-height:0; padding:96px 0 64px; } }
 
   /* WHO IT'S FOR */
   .strip{ padding:64px 0; border-bottom:1px solid var(--cream-dk); }
@@ -161,52 +148,26 @@
 
 <header>
   <nav class="wrap">
-    <div class="brand">
-      <svg class="brand-mark" viewBox="0 0 30 30" fill="none">
-        <path d="M15 3 L26 24 H4 Z" stroke="#1b2a3a" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M9.5 24 L15 13 L20.5 24" stroke="#d9764a" stroke-width="2" stroke-linejoin="round"/>
-      </svg>
-      <div class="brand-text">
-        <span class="brand-parent">Core Learning</span>
-        <span class="brand-course">Climbing Injury Prevention</span>
-      </div>
-    </div>
+    <a href="index.html" class="logo-word"><span class="core">Core</span> <span class="learning">Learning</span></a>
     <div class="nav-links">
-      <a href="#curriculum">Curriculum</a>
-      <a href="#format">Pricing</a>
-      <a href="login.html">Log in</a>
-      <a href="login.html" class="nav-cta">Enroll now</a>
+      <a href="index.html" class="nav-home">Home</a>
+      <a href="login.html">Sign up / Log in</a>
     </div>
   </nav>
 </header>
 
 <section class="hero">
   <div class="wrap">
-    <div class="hero-grid">
-      <div>
-        <span class="eyebrow hero-eyebrow">FOR PHYSIOTHERAPISTS</span>
-        <h1>Treat climbers like you <em>know</em> the sport — not like you're guessing at it.</h1>
-        <p class="sub">A six-module course on climbing-specific anatomy, injury mechanisms, assessment, rehabilitation, and return to sport — built for physiotherapists who already have strong clinical skills but no climbing background.</p>
-        <div class="hero-ctas">
-          <a href="login.html" class="btn-primary">
-            Enroll now
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a href="#curriculum" class="link-ghost">See the full curriculum</a>
-        </div>
-      </div>
-      <div class="hero-card">
-        <span class="eyebrow">WHAT'S INCLUDED</span>
-        <ul>
-          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 12L13 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> 6 modules, quiz-gated and self-paced</li>
-          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 12L13 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Referenced throughout — real climbing-medicine literature, not general sports-medicine repackaged</li>
-          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 12L13 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Site-by-site assessment: fingers, wrist, elbow, shoulder, knee, ankle</li>
-          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 12L13 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Lifetime access once enrolled</li>
-        </ul>
-        <div class="hero-price">
-          <span class="amount">R2,450</span>
-          <span class="note">once-off · no climbing background required</span>
-        </div>
+    <div class="hero-content">
+      <span class="eyebrow hero-eyebrow">CORE LEARNING</span>
+      <h1>Climbing Injury Prevention &amp; Management</h1>
+      <p class="sub">A six-module course on climbing-specific anatomy, injury mechanisms, assessment, rehabilitation, and return to sport — built for physiotherapists who already have strong clinical skills but no climbing background.</p>
+      <div class="hero-ctas">
+        <a href="login.html" class="btn-primary">
+          Enroll now
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#curriculum" class="link-ghost">See the full curriculum</a>
       </div>
     </div>
   </div>
@@ -305,7 +266,7 @@
       </div>
       <div class="price-card reveal">
         <span class="eyebrow">ONE-TIME ENROLLMENT</span>
-        <div class="amount">R2,450</div>
+        <div class="amount">R800</div>
         <div class="amount-note">Once-off payment · secure checkout via Yoco</div>
         <a href="login.html" class="btn-primary">
           Enroll in the course
@@ -330,7 +291,7 @@
     </div>
     <div class="footer-meta">
       <span>&copy; <span id="year"></span> Core Learning</span>
-      <a href="mailto:hello@corelearning.co.za">hello@corelearning.co.za</a>
+      <a href="mailto:callan@wam.co.za">callan@wam.co.za</a>
     </div>
   </div>
 </footer>
