@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Climbing Injury Prevention & Management — A Course for Physiotherapists | Core Learning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1b2a3a;
+    --navy-2:#25384c;
+    --teal:#3a8a8c;
+    --terracotta:#d9764a;
+    --terracotta-dk:#bd5f37;
+    --cream:#f7f5f1;
+    --cream-dk:#e9e4da;
+    --ink:#2a2c2b;
+    --ink-soft:#5a5f5c;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--cream); color:var(--ink);
+    font-family:'Inter', sans-serif; font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{ font-family:'Fraunces', serif; color:var(--navy); font-weight:600; line-height:1.15; letter-spacing:-0.01em; }
+  a{ color:inherit; text-decoration:none; }
+  img,svg{ display:block; max-width:100%; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 32px; }
+  .eyebrow{ font-family:'Inter', sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; }
+
+  /* NAV */
+  header{ position:sticky; top:0; z-index:50; background:rgba(247,245,241,0.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--cream-dk); }
+  nav.wrap{ display:flex; align-items:center; justify-content:space-between; height:76px; }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand-mark{ width:28px; height:28px; flex-shrink:0; }
+  .brand-text{ display:flex; flex-direction:column; line-height:1.15; }
+  .brand-parent{ font-size:0.68rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft); }
+  .brand-course{ font-family:'Fraunces', serif; font-weight:700; font-size:1.02rem; color:var(--navy); }
+  .nav-links{ display:flex; align-items:center; gap:32px; font-size:0.9rem; font-weight:500; }
+  .nav-links a{ color:var(--navy); opacity:0.75; transition:opacity .2s ease; }
+  .nav-links a:hover{ opacity:1; }
+  .nav-cta{
+    background:var(--terracotta); color:#fff !important; opacity:1 !important;
+    padding:10px 20px; border-radius:8px; font-weight:600;
+    transition:background .2s ease;
+  }
+  .nav-cta:hover{ background:var(--terracotta-dk); }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--teal); outline-offset:3px; border-radius:3px; }
+
+  /* HERO */
+  .hero{ position:relative; background:var(--navy); overflow:hidden; padding:104px 0 92px; }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='900' height='900' viewBox='0 0 900 900'><g fill='none' stroke='%23f7f5f1' stroke-opacity='0.07' stroke-width='1.4'><path d='M-50 620 Q 200 520 380 610 T 950 560'/><path d='M-50 680 Q 220 580 420 670 T 950 630'/><path d='M-50 740 Q 240 640 460 730 T 950 700'/><path d='M-50 120 Q 180 40 340 110 T 720 70 T 950 120'/><path d='M-50 180 Q 200 100 380 170 T 760 130 T 950 180'/></g></svg>");
+    background-repeat:no-repeat; background-position:center; background-size:cover; opacity:0.9;
+  }
+  .hero .wrap{ position:relative; }
+  .hero-grid{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center; }
+  .hero-eyebrow{ color:var(--terracotta); display:inline-block; margin-bottom:20px; }
+  .hero h1{ color:var(--cream); font-size:clamp(2rem, 4vw, 3rem); margin-bottom:20px; }
+  .hero h1 em{ font-style:italic; color:var(--terracotta); font-weight:500; }
+  .hero p.sub{ color:var(--cream); opacity:0.72; font-size:1.05rem; max-width:480px; margin-bottom:32px; }
+  .hero-ctas{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+  .btn-primary{
+    background:var(--terracotta); color:#fff; padding:14px 26px; border-radius:9px;
+    font-weight:600; font-size:0.98rem; display:inline-flex; align-items:center; gap:9px;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .btn-primary:hover{ background:var(--terracotta-dk); transform:translateY(-2px); }
+  .link-ghost{ color:var(--cream); opacity:0.75; font-weight:600; font-size:0.95rem; border-bottom:1px solid rgba(247,245,241,0.4); padding-bottom:2px; }
+  .link-ghost:hover{ opacity:1; }
+
+  .hero-card{
+    background:var(--cream); border-radius:16px; padding:32px;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.35);
+  }
+  .hero-card .eyebrow{ color:var(--terracotta); margin-bottom:14px; display:block; }
+  .hero-card ul{ list-style:none; margin-top:18px; }
+  .hero-card li{
+    display:flex; align-items:flex-start; gap:10px;
+    font-size:0.92rem; color:var(--ink-soft); margin-bottom:13px;
+  }
+  .hero-card li svg{ flex-shrink:0; margin-top:3px; color:var(--teal); }
+  .hero-price{ display:flex; align-items:baseline; gap:8px; margin-top:22px; padding-top:20px; border-top:1px solid var(--cream-dk); }
+  .hero-price .amount{ font-family:'Fraunces', serif; font-size:1.9rem; font-weight:600; color:var(--navy); }
+  .hero-price .note{ font-size:0.82rem; color:var(--ink-soft); }
+
+  @media (max-width:900px){ .hero-grid{ grid-template-columns:1fr; } }
+
+  /* WHO IT'S FOR */
+  .strip{ padding:64px 0; border-bottom:1px solid var(--cream-dk); }
+  .strip-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:32px; }
+  .strip-item{ text-align:center; padding:0 12px; }
+  .strip-item svg{ margin:0 auto 16px; color:var(--terracotta); }
+  .strip-item h3{ font-size:1.08rem; margin-bottom:8px; }
+  .strip-item p{ color:var(--ink-soft); font-size:0.92rem; }
+  @media (max-width:760px){ .strip-grid{ grid-template-columns:1fr; gap:36px; } }
+
+  /* CURRICULUM */
+  .curriculum{ padding:100px 0 96px; }
+  .section-head{ text-align:center; max-width:600px; margin:0 auto 56px; }
+  .section-head .eyebrow{ color:var(--terracotta); margin-bottom:16px; display:block; }
+  .section-head h2{ font-size:clamp(1.7rem, 3vw, 2.2rem); margin-bottom:14px; }
+  .section-head p{ color:var(--ink-soft); }
+
+  .module-list{ display:flex; flex-direction:column; gap:18px; }
+  .module-row{
+    display:grid; grid-template-columns:74px 1fr; gap:24px;
+    background:#fff; border:1px solid var(--cream-dk); border-radius:14px;
+    padding:26px 30px; align-items:center;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .module-row:hover{ border-color:var(--terracotta); box-shadow:0 16px 30px -18px rgba(27,42,58,0.22); }
+  .module-num{
+    font-family:'Fraunces', serif; font-size:1.7rem; font-weight:600;
+    color:var(--terracotta); text-align:center;
+  }
+  .module-row h3{ font-size:1.1rem; margin-bottom:6px; }
+  .module-row p{ color:var(--ink-soft); font-size:0.9rem; }
+  @media (max-width:600px){
+    .module-row{ grid-template-columns:1fr; text-align:left; gap:8px; }
+    .module-num{ text-align:left; }
+  }
+
+  /* FORMAT / PRICING */
+  .format{ background:var(--cream-dk); padding:88px 0; }
+  .format-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
+  .format h2{ font-size:1.7rem; margin-bottom:18px; }
+  .format p{ color:var(--ink-soft); margin-bottom:16px; }
+  .format-list{ list-style:none; margin-top:20px; }
+  .format-list li{ display:flex; gap:10px; margin-bottom:12px; font-size:0.95rem; color:var(--ink-soft); }
+  .format-list li svg{ color:var(--teal); flex-shrink:0; margin-top:3px; }
+
+  .price-card{ background:#fff; border-radius:16px; padding:38px; border:1px solid rgba(27,42,58,0.08); }
+  .price-card .eyebrow{ color:var(--terracotta); margin-bottom:12px; display:block; }
+  .price-card .amount{ font-family:'Fraunces', serif; font-size:2.6rem; font-weight:600; color:var(--navy); margin-bottom:6px; }
+  .price-card .amount-note{ color:var(--ink-soft); font-size:0.88rem; margin-bottom:26px; }
+  .price-card .btn-primary{ width:100%; justify-content:center; }
+  @media (max-width:900px){ .format-grid{ grid-template-columns:1fr; } }
+
+  /* FOOTER */
+  footer{ position:relative; background:var(--navy); padding:56px 0 36px; overflow:hidden; }
+  footer .wrap{ position:relative; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; }
+  .footer-brand{ display:flex; align-items:center; gap:10px; }
+  .footer-brand-text{ line-height:1.2; }
+  .footer-parent{ font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--cream); opacity:0.45; }
+  .footer-course{ font-family:'Fraunces', serif; font-weight:600; color:var(--cream); font-size:0.98rem; }
+  .footer-meta{ color:var(--cream); opacity:0.5; font-size:0.85rem; display:flex; gap:24px; flex-wrap:wrap; }
+  .footer-meta a:hover{ opacity:0.8; }
+
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; transition:none; } html{ scroll-behavior:auto; } }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 30 30" fill="none">
+        <path d="M15 3 L26 24 H4 Z" stroke="#1b2a3a" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M9.5 24 L15 13 L20.5 24" stroke="#d9764a" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+      <div class="brand-text">
+        <span class="brand-parent">Core Learning</span>
+        <span class="brand-course">Climbing Injury Prevention</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#curriculum">Curriculum</a>
+      <a href="#format">Pricing</a>
+      <a href="login.html">Log in</a>
+      <a href="login.html" class="nav-cta">Enroll now</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow hero-eyebrow">FOR PHYSIOTHERAPISTS</span>
+        <h1>Treat climbers like you <em>know</em> the sport — not like you're guessing at it.</h1>
+        <p class="sub">A six-module course on climbing-specific anatomy, injury mechanisms, assessment, rehabilitation, and return to sport — built for physiotherapists who already have strong clinical skills but no climbing background.</p>
+        <div class="hero-ctas">
+          <a href="login.html" class="btn-primary">
+            Enroll now
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#curriculum" class="link-ghost">See the full curriculum</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <span class="eyebrow">WHAT'S INCLUDED</span>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 12L13 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> 6 modules, quiz-gated and self-paced</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 12L13 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Referenced throughout — real climbing-medicine literature, not general sports-medicine repackaged</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 12L13 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Site-by-site assessment: fingers, wrist, elbow, shoulder, knee, ankle</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 12L13 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Lifetime access once enrolled</li>
+        </ul>
+        <div class="hero-price">
+          <span class="amount">R2,450</span>
+          <span class="note">once-off · no climbing background required</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="strip">
+  <div class="wrap">
+    <div class="strip-grid">
+      <div class="strip-item reveal">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M4 21C4 16.6 7.6 14 12 14C16.4 14 20 16.6 20 21" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <h3>Built for your existing skill level</h3>
+        <p>No climbing anatomy assumed — but no re-teaching basic anatomy either. It starts exactly where a physio's training leaves off.</p>
+      </div>
+      <div class="strip-item reveal">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><path d="M12 2L14.5 8.5L21 9L16 13.5L17.5 20L12 16.5L6.5 20L8 13.5L3 9L9.5 8.5L12 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <h3>Grounded in real evidence</h3>
+        <p>Every module cites the climbing-medicine literature it draws from — Schöffl, Schweizer, and the rest of the field, not general opinion.</p>
+      </div>
+      <div class="strip-item reveal">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><path d="M4 12L10 18L20 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Immediately clinical</h3>
+        <p>Differential tables, grading systems, and assessment frameworks you can use in your very next climbing patient's session.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="curriculum" id="curriculum">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">THE CURRICULUM</span>
+      <h2>Six modules, start to finish</h2>
+      <p>Each module unlocks once you pass the quiz for the one before it — work through it at your own pace.</p>
+    </div>
+
+    <div class="module-list">
+      <div class="module-row reveal">
+        <span class="module-num">01</span>
+        <div>
+          <h3>Introduction to Climbing</h3>
+          <p>The sport itself: disciplines, competition formats (Speed, Lead, Boulder), and the vocabulary you'll need for every module after this one.</p>
+        </div>
+      </div>
+      <div class="module-row reveal">
+        <span class="module-num">02</span>
+        <div>
+          <h3>Anatomy of a Climber's Hand</h3>
+          <p>Full osteology, the flexor pulley system, grip biomechanics, and a dedicated section on growth plates and youth-specific injury.</p>
+        </div>
+      </div>
+      <div class="module-row reveal">
+        <span class="module-num">03</span>
+        <div>
+          <h3>Common Climbing Injuries &amp; Mechanics</h3>
+          <p>Injury prevalence by body region and discipline, and how acute versus overuse presentations differ mechanically.</p>
+        </div>
+      </div>
+      <div class="module-row reveal">
+        <span class="module-num">04</span>
+        <div>
+          <h3>Assessing &amp; Diagnosing Common Climbing Injuries</h3>
+          <p>A site-by-site framework — fingers, wrist, elbow, shoulder, knee, and ankle — with differential tables for every presentation.</p>
+        </div>
+      </div>
+      <div class="module-row reveal">
+        <span class="module-num">05</span>
+        <div>
+          <h3>Treating &amp; Rehabilitating Climbing Injuries</h3>
+          <p>Evidence-based loading progressions, climbing-specific exercise selection, and grip-type-aware reloading after injury.</p>
+        </div>
+      </div>
+      <div class="module-row reveal">
+        <span class="module-num">06</span>
+        <div>
+          <h3>Return to Sport</h3>
+          <p>Grading readiness by discipline, load progression, protective taping, working with coaches, and monitoring for re-injury.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="format" id="format">
+  <div class="wrap">
+    <div class="format-grid">
+      <div class="reveal">
+        <span class="eyebrow" style="color:var(--terracotta); display:block; margin-bottom:14px;">FORMAT &amp; ACCESS</span>
+        <h2>Self-paced, quiz-gated, yours for good</h2>
+        <p>Work through the six modules in order, at whatever pace suits your schedule. Passing each quiz unlocks the next module automatically.</p>
+        <ul class="format-list">
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 12L13 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> One-time payment, lifetime access</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 12L13 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Read at your own pace — no deadlines</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 12L13 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Short quiz at the end of each module</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.2 12L13 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Full reference list included in every module</li>
+        </ul>
+      </div>
+      <div class="price-card reveal">
+        <span class="eyebrow">ONE-TIME ENROLLMENT</span>
+        <div class="amount">R2,450</div>
+        <div class="amount-note">Once-off payment · secure checkout via Yoco</div>
+        <a href="login.html" class="btn-primary">
+          Enroll in the course
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-brand">
+      <svg width="24" height="24" viewBox="0 0 30 30" fill="none">
+        <path d="M15 3 L26 24 H4 Z" stroke="#f7f5f1" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M9.5 24 L15 13 L20.5 24" stroke="#d9764a" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+      <div class="footer-brand-text">
+        <div class="footer-parent">Core Learning</div>
+        <div class="footer-course">Climbing Injury Prevention &amp; Management</div>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>&copy; <span id="year"></span> Core Learning</span>
+      <a href="mailto:hello@corelearning.co.za">hello@corelearning.co.za</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
