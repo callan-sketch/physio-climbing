@@ -50,17 +50,20 @@
   .dev-banner code{ background:rgba(255,255,255,0.12); padding:1px 6px; border-radius:4px; }
 
   /* ---------- NAV ---------- */
-  header{ background:var(--cream); border-bottom:1px solid var(--cream-dk); }
+  header{ background:var(--navy); }
   nav.wrap{
     max-width:1000px; margin:0 auto; padding:0 28px;
     display:flex; align-items:center; justify-content:space-between; height:72px;
   }
-  .brand{ display:flex; align-items:center; gap:10px; }
-  .brand-text{ line-height:1.15; }
-  .brand-parent{ font-size:0.66rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft); }
-  .brand-course{ font-family:'Fraunces', serif; font-weight:700; font-size:0.98rem; color:var(--navy); }
-  .back-link{ font-size:0.88rem; font-weight:500; color:var(--ink-soft); display:flex; align-items:center; gap:6px; }
-  .back-link:hover{ color:var(--navy); }
+  .logo-word{ font-family:'Fraunces', serif; font-weight:700; font-size:1.2rem; letter-spacing:-0.01em; }
+  .logo-word .core{ color:#fff; }
+  .logo-word .learning{ color:var(--terracotta); }
+  .back-link{
+    color:var(--cream); opacity:0.85; font-weight:600; font-size:0.88rem;
+    display:flex; align-items:center; gap:6px;
+    padding:8px 14px; border-radius:8px; transition:background .2s ease;
+  }
+  .back-link:hover{ background:rgba(247,245,241,0.1); opacity:1; }
 
   /* ---------- MAIN ---------- */
   main{ flex:1; display:flex; align-items:flex-start; justify-content:center; padding:56px 20px 80px; }
@@ -224,16 +227,7 @@
 
 <header>
   <nav class="wrap">
-    <div class="brand">
-      <svg width="26" height="26" viewBox="0 0 30 30" fill="none">
-        <path d="M15 3 L26 24 H4 Z" stroke="#1b2a3a" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M9.5 24 L15 13 L20.5 24" stroke="#d9764a" stroke-width="2" stroke-linejoin="round"/>
-      </svg>
-      <div class="brand-text">
-        <div class="brand-parent">Core Learning</div>
-        <div class="brand-course">Climbing Injury Prevention</div>
-      </div>
-    </div>
+    <a href="index.html" class="logo-word"><span class="core">Core</span> <span class="learning">Learning</span></a>
     <a href="index.html" class="back-link">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Back to course info
@@ -746,7 +740,7 @@ document.getElementById('discountApplyBtn').addEventListener('click', async () =
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${idToken}`
       },
-      body: JSON.stringify({ code, courseId: COURSE_ID })
+      body: JSON.stringify({ code, plan: 'upfront', courseId: COURSE_ID })
     });
     const result = await res.json();
 
@@ -802,15 +796,23 @@ document.getElementById('payBtn').addEventListener('click', async () => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${idToken}`
       },
-      body: JSON.stringify({ courseId: COURSE_ID, discountCode: appliedDiscountCode })
+      body: JSON.stringify({
+        uid: currentUser.uid,
+        plan: 'upfront',
+        courseId: COURSE_ID,
+        siteBaseUrl: window.location.origin,
+        discountCode: appliedDiscountCode
+      })
     });
     if (!res.ok) throw new Error('Checkout creation failed');
-    const { checkoutUrl } = await res.json();
-    window.location.href = checkoutUrl;
-    // Yoco redirects back to a success URL after payment (configure this
-    // in the createYocoCheckout function itself, e.g. dashboard.html).
-    // yocoWebhook then sets courses.climbingphysio.paid = true server-side
-    // once the payment actually clears.
+    const { redirectUrl } = await res.json();
+    window.location.href = redirectUrl;
+    // Yoco redirects back to successUrl/cancelUrl/failureUrl (all built from
+    // siteBaseUrl above, so this correctly returns to physio.corelearning.co.za
+    // rather than the coaches course's domain) after payment. yocoWebhook then
+    // sets courses.climbingphysio.paid = true server-side once payment clears —
+    // or, if a discount code covers 100%, createYocoCheckout sets it directly
+    // and redirectUrl points straight at dashboard.html with no Yoco step at all.
   } catch (err){
     console.error(err);
     showError('paymentError', 'Couldn\'t start checkout — please try again.');
