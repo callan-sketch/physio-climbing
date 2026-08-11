@@ -116,6 +116,20 @@
   .lesson-btn .btn-sub{ font-size:0.78rem; color:var(--ink-soft); }
 
   /* DEV BYPASS */
+  .quiz-cta-box{
+    display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+    background:var(--cream); border:1px solid var(--cream-dk); border-radius:12px;
+    padding:22px 26px; margin-bottom:8px;
+  }
+  .quiz-cta-title{ font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem; color:var(--navy); margin-bottom:4px; }
+  .quiz-cta-sub{ font-size:0.85rem; color:var(--ink-soft); }
+  .btn-primary{
+    background:var(--terracotta); color:#fff; padding:12px 22px; border-radius:9px;
+    font-weight:600; font-size:0.94rem; display:inline-flex; align-items:center; gap:9px;
+    transition:background .2s ease, transform .2s ease; white-space:nowrap; flex-shrink:0;
+  }
+  .btn-primary:hover{ background:var(--terracotta-dk); transform:translateY(-1px); }
+
   .dev-complete-box{
     margin-top:28px; padding-top:24px; border-top:1px dashed var(--cream-dk);
   }
@@ -204,18 +218,30 @@
           </a>
         </div>
 
+        <div class="quiz-cta-box">
+          <div>
+            <div class="quiz-cta-title">Ready to test what you've learned?</div>
+            <p class="quiz-cta-sub">25 questions, 80% pass mark. Passing unlocks Module 2 automatically.</p>
+          </div>
+          <a class="btn-primary" href="https://forms.gle/EmhzJE5ZaNiuuLnK7" target="_blank" rel="noopener">
+            Take the Module 1 Quiz
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
         <!-- ============================================================
-             TEMPORARY DEV BYPASS — remove once the real Google Form
-             quiz + Apps Script + quizWebhook are built and wired up.
-             Manually marks this module complete and unlocks the next
-             one, so the course can be built/tested end-to-end before
-             the quiz infrastructure exists.
+             TEMPORARY DEV BYPASS — the real quiz above is now live and
+             wired to quizWebhook for automatic grading/unlock. This
+             button is a manual override for testing/admin use only
+             (e.g. confirming the unlock flow without submitting a real
+             quiz attempt) — remove once that flow has been verified
+             working end-to-end in production.
              ============================================================ -->
         <div class="dev-complete-box">
           <button class="btn-dev-bypass" id="devCompleteBtn">
             ⚠ Dev only: mark module complete &amp; unlock Module 2
           </button>
-          <p class="dev-note">There's no quiz here yet — this button stands in for passing it. Replace with the real Google Form + quizWebhook flow before launch.</p>
+          <p class="dev-note">Manual override for testing — the real quiz above now handles grading and unlock automatically via quizWebhook.</p>
           <div class="status-msg" id="statusMsg"></div>
         </div>
       </div>
@@ -241,6 +267,7 @@ const COURSE_ID = "climbingphysio";
 const THIS_MODULE = 1;
 const NEXT_MODULE = 2;
 const TOTAL_MODULES = 6;
+const THIS_MODULE_KEY = "module" + String(THIS_MODULE).padStart(2, "0");
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -335,7 +362,7 @@ document.getElementById('devCompleteBtn').addEventListener('click', async () => 
           unlockedModules: Array.from(newUnlocked),
           moduleProgress: {
             ...existingProgress,
-            [THIS_MODULE]: { completed: true }
+            [THIS_MODULE_KEY]: { completed: true }
           }
         }
       }
