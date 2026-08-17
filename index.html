@@ -89,6 +89,27 @@
 
   /* CURRICULUM */
   .curriculum{ padding:100px 0 96px; }
+
+  /* CREATORS */
+  .creators{ padding:0 0 100px; }
+  .creator-grid{ display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+  .creator-card{
+    background:#fff; border:1px solid var(--cream-dk); border-radius:16px;
+    padding:32px 30px;
+  }
+  .creator-top{ display:flex; align-items:center; gap:16px; margin-bottom:18px; }
+  .creator-avatar{
+    width:56px; height:56px; border-radius:50%; flex-shrink:0;
+    background:var(--terracotta); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem;
+  }
+  .creator-card:nth-child(2) .creator-avatar{ background:var(--teal); }
+  .creator-name{ font-size:1.15rem; margin-bottom:2px; }
+  .creator-credential{ font-size:0.82rem; color:var(--ink-soft); }
+  .creator-card p{ color:var(--ink-soft); font-size:0.93rem; margin-bottom:14px; }
+  .creator-card p:last-child{ margin-bottom:0; }
+  @media (max-width:820px){ .creator-grid{ grid-template-columns:1fr; } }
   .section-head{ text-align:center; max-width:600px; margin:0 auto 56px; }
   .section-head .eyebrow{ color:var(--terracotta); margin-bottom:16px; display:block; }
   .section-head h2{ font-size:clamp(1.7rem, 3vw, 2.2rem); margin-bottom:14px; }
@@ -254,6 +275,41 @@
           <h3>Return to Sport</h3>
           <p>Grading readiness by discipline, load progression, protective taping, working with coaches, and monitoring for re-injury.</p>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="creators">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">WHO BUILT THIS</span>
+      <h2>A bit about the creators</h2>
+    </div>
+
+    <div class="creator-grid">
+      <div class="creator-card reveal">
+        <div class="creator-top">
+          <div class="creator-avatar">CA</div>
+          <div>
+            <div class="creator-name" style="font-family:'Fraunces',serif; font-weight:600; color:var(--navy);">Chris Allan</div>
+            <div class="creator-credential">MPhil Sports Physiotherapy (UCT)</div>
+          </div>
+        </div>
+        <p>Chris is a sports physiotherapist with more than 25 years of clinical experience and an MPhil in Sports Physiotherapy from the University of Cape Town, awarded with distinction for his research. His clinical background spans sports and orthopaedic rehabilitation, biomechanics, running injuries, return to sport, and high-performance athletes. He has also lectured extensively to postgraduate Sports Medicine and Sports Physiotherapy students on biomechanics, knee injuries, running analysis, and return to play.</p>
+        <p>His particular expertise in climbing has developed through his work with high-performance climbers, the Western Cape Climbing High Performance Programme, and the South African Youth Climbing Team — bringing together clinical physiotherapy and the specific demands of climbing performance.</p>
+      </div>
+
+      <div class="creator-card reveal">
+        <div class="creator-top">
+          <div class="creator-avatar">JŠ</div>
+          <div>
+            <div class="creator-name" style="font-family:'Fraunces',serif; font-weight:600; color:var(--navy);">Julia Šmigelskis</div>
+            <div class="creator-credential">MSc Exercise &amp; Sport Physiotherapy (UCT)</div>
+          </div>
+        </div>
+        <p>Julia is a physiotherapist with an MSc in Exercise and Sport Physiotherapy from the University of Cape Town and a particular interest in combining clinical practice with education and evidence-based care. She has extensive university teaching experience, including convening and lecturing on the MSc Exercise and Sport Physiotherapy programme at UCT.</p>
+        <p>She currently lectures physiotherapy students on Clinical Reasoning, Biomechanics of Rock Climbing, and physiotherapy in the sporting context, including the lower limb, hand, and wrist. She also has extensive private-practice experience in sports physiotherapy and ANMS, making her ideally placed to translate the clinical and biomechanical demands of climbing into practical injury management.</p>
       </div>
     </div>
   </div>
