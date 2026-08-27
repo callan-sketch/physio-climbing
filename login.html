@@ -174,13 +174,6 @@
   }
   .secure-note svg{ flex-shrink:0; margin-top:2px; color:var(--teal); }
 
-  .btn-dev-bypass{
-    width:100%; margin-top:14px; background:#fff8ea; border:1px dashed #c9922e; color:#8a6416;
-    padding:11px 16px; border-radius:8px; font-size:0.85rem; font-weight:600;
-    transition:background .2s ease;
-  }
-  .btn-dev-bypass:hover{ background:#fdf0d5; }
-
   /* Discount code block */
   .discount-block{ margin-top:6px; }
   .discount-toggle{
@@ -400,15 +393,6 @@
           <span>You'll be redirected to Yoco's secure checkout to pay. We never see or store your card details.</span>
         </div>
 
-        <!-- ============================================================
-             TEMPORARY DEV BYPASS — remove this entire block once Yoco
-             checkout + yocoWebhook are actually wired up and tested.
-             Marks the course paid without any real payment, for build
-             and testing purposes only.
-             ============================================================ -->
-        <button class="btn-dev-bypass" id="devBypassBtn" type="button">
-          ⚠ Dev only: skip payment &amp; unlock course
-        </button>
       </div>
 
     </div>
@@ -421,7 +405,7 @@
 
 <script type="module">
 /* ============================================================
-   CONFIG — replace these before going live.
+   CONFIG
    ============================================================ */
 const FIREBASE_CONFIG = {
   apiKey: "AIzaSyAN9BVXDo15Mav2zketm5jhKRoBjs2yYX8",
@@ -433,9 +417,8 @@ const FIREBASE_CONFIG = {
   measurementId: "G-M48JWEWV0D"
 };
 
-// Base URL for your deployed Cloud Functions (2nd gen), e.g.
-// "https://us-central1-your-project.cloudfunctions.net"
-const FUNCTIONS_BASE_URL = "YOUR_FUNCTIONS_BASE_URL";
+// Real deployed Cloud Functions base URL — matches every other physio page.
+const FUNCTIONS_BASE_URL = "https://us-central1-core-coaching-login.cloudfunctions.net";
 
 // This course's id — matches the "courses.climbingphysio" namespace
 // used in Firestore and passed through to Cloud Functions.
@@ -444,8 +427,7 @@ const COURSE_ID = "climbingphysio";
 // Base price in Rands, for display/math on this page only. The real
 // source of truth for the amount actually charged is always the
 // createYocoCheckout Cloud Function — this constant must be kept in
-// sync with it manually, or better, have the Cloud Function return
-// the base price too so there's only one place to update it.
+// sync with it manually (currently 80000 cents there, matching here).
 const COURSE_PRICE_RANDS = 800;
 
 const IS_CONFIGURED = FIREBASE_CONFIG.apiKey !== "YOUR_API_KEY_HERE";
@@ -455,9 +437,7 @@ if (!IS_CONFIGURED) {
 }
 
 /* ============================================================
-   FIREBASE — only imported/initialised if configured, so this
-   file doesn't hard-error while FIREBASE_CONFIG is still a
-   placeholder.
+   FIREBASE
    ============================================================ */
 let auth, db, currentUser = null;
 let FIREBASE_READY = false;
@@ -662,21 +642,11 @@ document.getElementById('onboardForm').addEventListener('submit', async (e) => {
 /* ============================================================
    STEP 3 — DISCOUNT CODE
    ============================================================
-   Two Cloud Functions are involved here, neither built yet:
-
-   1. validateDiscountCode — called live as soon as someone clicks
-      "Apply", purely to show an accurate price preview on this page.
-      Expected request:  POST { code, courseId }
-      Expected response: { valid: true, type: "percent" | "fixed",
-                            value: number, discountRands: number,
-                            newTotalRands: number }
-                       or { valid: false, message: string }
-
-   2. createYocoCheckout — already referenced below for the real
-      payment step. It must independently re-validate whatever
-      discountCode is passed to it and calculate the final amount
-      itself — never trust the discount total this page displays,
-      since it's for preview only and the client could tamper with it.
+   validateDiscountCode's actual response shape (confirmed against
+   the real deployed function) is in CENTS, not Rands:
+     { valid: true, code, type, value, discountCents, finalAmountCents }
+   or { valid: false, message }
+   — converted to Rands below for display.
    ============================================================ */
 let appliedDiscountCode = null;
 
@@ -749,12 +719,12 @@ document.getElementById('discountApplyBtn').addEventListener('click', async () =
       return;
     }
 
+    // Backend returns cents — convert to whole Rands for display.
+    const discountRands = Math.round(result.discountCents / 100);
+    const newTotalRands = Math.round(result.finalAmountCents / 100);
+
     appliedDiscountCode = code;
-    updatePriceDisplay({
-      discountRands: result.discountRands,
-      newTotalRands: result.newTotalRands,
-      code
-    });
+    updatePriceDisplay({ discountRands, newTotalRands, code });
 
     document.getElementById('discountInputRow').style.display = 'none';
     document.getElementById('discountApplied').style.display = 'flex';
@@ -817,43 +787,6 @@ document.getElementById('payBtn').addEventListener('click', async () => {
     console.error(err);
     showError('paymentError', 'Couldn\'t start checkout — please try again.');
     setLoading('payBtn', false);
-  }
-});
-
-/* ============================================================
-   TEMPORARY DEV BYPASS HANDLER — remove alongside the button
-   above once real payment is wired up. Writes paid:true and
-   unlocks Module 1 directly, skipping Yoco entirely.
-   ============================================================ */
-document.getElementById('devBypassBtn').addEventListener('click', async () => {
-  hideError('paymentError');
-
-  if (!FIREBASE_READY){
-    showError('paymentError', 'Firebase isn\'t ready yet — see the banner at the top of the page.');
-    return;
-  }
-  if (!currentUser){
-    showError('paymentError', 'No signed-in user found — please complete step 1 first.');
-    return;
-  }
-
-  setLoading('devBypassBtn', true);
-  try {
-    const userRef = window._fb.doc(db, 'users', currentUser.uid);
-    await window._fb.setDoc(userRef, {
-      courses: {
-        [COURSE_ID]: {
-          paid: true,
-          unlockedModules: [1],
-          moduleProgress: {}
-        }
-      }
-    }, { merge: true });
-    window.location.href = 'dashboard.html';
-  } catch (err){
-    console.error(err);
-    showError('paymentError', 'Dev bypass failed — check the console for details.');
-    setLoading('devBypassBtn', false);
   }
 });
 
