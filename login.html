@@ -666,6 +666,12 @@ function updatePriceDisplay({ discountRands = 0, newTotalRands = COURSE_PRICE_RA
   } else {
     discountRow.style.display = 'none';
   }
+
+  // A 100%-discount checkout never goes near Yoco — createYocoCheckout writes
+  // paid:true directly and redirects straight to the dashboard. The button
+  // text should reflect that rather than falsely implying a payment step.
+  const payBtnText = document.querySelector('#payBtn .btn-text');
+  payBtnText.textContent = newTotalRands === 0 ? 'Complete enrollment' : 'Continue to secure payment';
 }
 
 document.getElementById('discountToggle').addEventListener('click', () => {
