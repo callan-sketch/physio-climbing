@@ -9,23 +9,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#1b2a3a;
-    --teal:#3a8a8c;
-    --teal-dk:#2e6e70;
-    --terracotta:#d9764a;
-    --terracotta-dk:#bd5f37;
-    --cream:#f7f5f1;
-    --cream-dk:#e9e4da;
-    --ink:#2a2c2b;
-    --ink-soft:#5a5f5c;
+    --navy:#1b2a3a; --teal:#3a8a8c; --teal-dk:#2e6e70;
+    --terracotta:#d9764a; --terracotta-dk:#bd5f37;
+    --cream:#f7f5f1; --cream-dk:#e9e4da; --ink:#2a2c2b; --ink-soft:#5a5f5c;
   }
   *{ box-sizing:border-box; margin:0; padding:0; }
-  body{
-    background:var(--cream); color:var(--ink);
-    font-family:'Inter', sans-serif; font-size:16px; line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    min-height:100vh;
-  }
+  body{ background:var(--cream); color:var(--ink); font-family:'Inter', sans-serif; font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased; min-height:100vh; }
   h1,h2,h3{ font-family:'Fraunces', serif; color:var(--navy); font-weight:600; line-height:1.2; letter-spacing:-0.01em; }
   a{ color:inherit; text-decoration:none; }
   img,svg{ display:block; }
@@ -33,106 +22,54 @@
   a:focus-visible, button:focus-visible{ outline:2px solid var(--teal); outline-offset:2px; border-radius:4px; }
   .wrap{ max-width:840px; margin:0 auto; padding:0 32px; }
 
-  /* NAV */
   header{ position:sticky; top:0; z-index:50; background:var(--navy); }
   nav.wrap{ display:flex; align-items:center; justify-content:space-between; height:76px; max-width:1040px; }
   .logo-word{ font-family:'Fraunces', serif; font-weight:700; font-size:1.32rem; letter-spacing:-0.01em; }
-  .logo-word .core{ color:#fff; }
-  .logo-word .learning{ color:var(--terracotta); }
+  .logo-word .core{ color:#fff; } .logo-word .learning{ color:var(--terracotta); }
   .nav-right{ display:flex; align-items:center; gap:14px; font-size:0.88rem; }
-  .nav-back{
-    color:var(--cream); opacity:0.85; font-weight:600; display:flex; align-items:center; gap:6px;
-    padding:8px 14px; border-radius:8px; transition:background .2s ease;
-  }
+  .nav-back{ color:var(--cream); opacity:0.85; font-weight:600; display:flex; align-items:center; gap:6px; padding:8px 14px; border-radius:8px; transition:background .2s ease; }
   .nav-back:hover{ background:rgba(247,245,241,0.1); }
-  .nav-logout{
-    color:var(--cream); opacity:0.85; font-weight:600;
-    background:rgba(247,245,241,0.1); padding:8px 16px; border-radius:8px;
-    transition:background .2s ease;
-  }
+  .nav-logout{ color:var(--cream); opacity:0.85; font-weight:600; background:rgba(247,245,241,0.1); padding:8px 16px; border-radius:8px; transition:background .2s ease; }
   .nav-logout:hover{ background:rgba(247,245,241,0.18); }
 
-  /* LOADING */
-  .loading-screen{
-    min-height:70vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:16px; color:var(--ink-soft); font-size:0.95rem;
-  }
-  .spinner-lg{
-    width:34px; height:34px; border-radius:50%;
-    border:3px solid var(--cream-dk); border-top-color:var(--terracotta);
-    animation:spin .8s linear infinite;
-  }
+  .loading-screen{ min-height:70vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; color:var(--ink-soft); font-size:0.95rem; }
+  .spinner-lg{ width:34px; height:34px; border-radius:50%; border:3px solid var(--cream-dk); border-top-color:var(--terracotta); animation:spin .8s linear infinite; }
   @keyframes spin{ to{ transform:rotate(360deg); } }
 
-  main{ display:none; }
-  main.ready{ display:block; }
+  main{ display:none; } main.ready{ display:block; }
 
-  /* MODULE HEADER */
   .module-head{ padding:52px 0 36px; }
   .module-head-inner{ display:flex; align-items:center; gap:26px; }
-  .module-head-thumb{
-    width:110px; height:110px; border-radius:14px; flex-shrink:0;
-    background-color:var(--cream-dk); background-size:cover; background-position:center;
-  }
-  @media (max-width:600px){
-    .module-head-inner{ flex-direction:column; align-items:flex-start; gap:18px; }
-  }
-  .module-eyebrow{
-    font-size:0.72rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase;
-    color:var(--terracotta); display:block; margin-bottom:14px;
-  }
+  .module-head-thumb{ width:110px; height:110px; border-radius:14px; flex-shrink:0; background-color:var(--cream-dk); background-size:cover; background-position:center; }
+  @media (max-width:600px){ .module-head-inner{ flex-direction:column; align-items:flex-start; gap:18px; } }
+  .module-eyebrow{ font-size:0.72rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--terracotta); display:block; margin-bottom:14px; }
   .module-head h1{ font-size:clamp(1.7rem, 3.4vw, 2.3rem); margin-bottom:14px; }
   .module-head p{ color:var(--ink-soft); font-size:1rem; max-width:600px; }
 
-  /* LESSON CARD */
   .lesson-section{ padding-bottom:80px; }
-  .lesson-card{
-    background:#fff; border:1px solid var(--cream-dk); border-radius:16px;
-    padding:36px 38px;
-  }
-  .lesson-label{
-    font-size:0.72rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
-    color:var(--ink-soft); margin-bottom:10px; display:block;
-  }
+  .lesson-card{ background:#fff; border:1px solid var(--cream-dk); border-radius:16px; padding:36px 38px; }
+  .lesson-label{ font-size:0.72rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px; display:block; }
   .lesson-card h2{ font-size:1.3rem; margin-bottom:10px; }
   .lesson-card p.lesson-desc{ color:var(--ink-soft); font-size:0.94rem; margin-bottom:28px; max-width:520px; }
 
   .lesson-actions{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:8px; }
-  .lesson-btn{
-    display:flex; align-items:center; gap:12px;
-    background:var(--cream); border:1px solid var(--cream-dk); border-radius:12px;
-    padding:16px 22px; flex:1; min-width:220px;
-    transition:border-color .2s ease, background .2s ease, transform .2s ease;
-  }
+  .lesson-btn{ display:flex; align-items:center; gap:12px; background:var(--cream); border:1px solid var(--cream-dk); border-radius:12px; padding:16px 22px; flex:1; min-width:220px; transition:border-color .2s ease, background .2s ease, transform .2s ease; }
   .lesson-btn:hover{ border-color:var(--terracotta); background:#fff; transform:translateY(-2px); }
-  .lesson-btn .icon{
-    width:42px; height:42px; border-radius:10px; flex-shrink:0;
-    display:flex; align-items:center; justify-content:center;
-    background:rgba(217,118,74,0.12); color:var(--terracotta);
-  }
+  .lesson-btn .icon{ width:42px; height:42px; border-radius:10px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:rgba(217,118,74,0.12); color:var(--terracotta); }
   .lesson-btn.podcast .icon{ background:rgba(58,138,140,0.14); color:var(--teal-dk); }
   .lesson-btn.pdf .icon{ background:rgba(27,42,58,0.08); color:var(--navy); }
   .lesson-btn .btn-text{ display:flex; flex-direction:column; }
   .lesson-btn .btn-title{ font-weight:600; font-size:0.95rem; color:var(--navy); }
   .lesson-btn .btn-sub{ font-size:0.78rem; color:var(--ink-soft); }
 
-  .quiz-cta-box{
-    display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
-    background:var(--cream); border:1px solid var(--cream-dk); border-radius:12px;
-    padding:22px 26px; margin-bottom:8px;
-  }
+  .quiz-cta-box{ display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; background:var(--cream); border:1px solid var(--cream-dk); border-radius:12px; padding:22px 26px; margin-bottom:8px; }
   .quiz-cta-title{ font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem; color:var(--navy); margin-bottom:4px; }
   .quiz-cta-sub{ font-size:0.85rem; color:var(--ink-soft); }
-  .btn-primary{
-    background:var(--terracotta); color:#fff; padding:12px 22px; border-radius:9px;
-    font-weight:600; font-size:0.94rem; display:inline-flex; align-items:center; gap:9px;
-    transition:background .2s ease, transform .2s ease; white-space:nowrap; flex-shrink:0;
-  }
+  .btn-primary{ background:var(--terracotta); color:#fff; padding:12px 22px; border-radius:9px; font-weight:600; font-size:0.94rem; display:inline-flex; align-items:center; gap:9px; transition:background .2s ease, transform .2s ease; white-space:nowrap; flex-shrink:0; }
   .btn-primary:hover{ background:var(--terracotta-dk); transform:translateY(-1px); }
 
   footer{ text-align:center; padding:28px 20px; color:var(--ink-soft); font-size:0.8rem; border-top:1px solid var(--cream-dk); }
-  .footer-word .core{ color:var(--navy); font-weight:700; }
-  .footer-word .learning{ color:var(--terracotta); font-weight:700; }
+  .footer-word .core{ color:var(--navy); font-weight:700; } .footer-word .learning{ color:var(--terracotta); font-weight:700; }
 </style>
 </head>
 <body>
@@ -183,7 +120,7 @@
             </span>
             <span class="btn-text">
               <span class="btn-title">Read the content</span>
-              <span class="btn-sub">Written guide · ~10 min</span>
+              <span class="btn-sub">Written guide</span>
             </span>
           </a>
 
@@ -213,7 +150,7 @@
             <div class="quiz-cta-title">Ready to test what you've learned?</div>
             <p class="quiz-cta-sub">25 questions, 80% pass mark. Passing unlocks Module 2 automatically.</p>
           </div>
-          <a class="btn-primary" href="https://forms.gle/p8bpQv9ztPb5bF7QA" target="_blank" rel="noopener">
+          <a class="btn-primary" href="https://forms.gle/BnaVab9deDNQXmP76" target="_blank" rel="noopener">
             Take the Module 1 Quiz
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -280,16 +217,11 @@ async function checkAccess(user){
 
   const courseData = (profile.courses && profile.courses[COURSE_ID]) || { paid: false, unlockedModules: [], moduleProgress: {} };
 
-  // Not paid at all — send back to the dashboard, which shows the
-  // "complete your enrollment" prompt.
   if (!courseData.paid){
     window.location.href = 'dashboard.html';
     return;
   }
 
-  // Paid, but this specific module isn't unlocked yet (e.g. they typed
-  // the URL directly without finishing earlier modules) — also bounce
-  // to the dashboard rather than letting them view it out of order.
   const unlockedModules = courseData.unlockedModules && courseData.unlockedModules.length
     ? courseData.unlockedModules
     : [1];
