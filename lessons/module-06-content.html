@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 6: Return to Sport | Core Learning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1b2a3a; --teal:#3a8a8c; --teal-dk:#2e6e70;
+    --terracotta:#d9764a; --terracotta-dk:#bd5f37;
+    --cream:#f7f5f1; --cream-dk:#e9e4da; --ink:#2a2c2b; --ink-soft:#5a5f5c;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ background:var(--cream); color:var(--ink); font-family:'Inter', sans-serif; font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3,h4{ font-family:'Fraunces', serif; color:var(--navy); font-weight:600; line-height:1.25; }
+  a{ color:inherit; }
+  img,svg{ display:block; max-width:100%; }
+
+  .progress-track{ position:fixed; top:0; left:0; width:100%; height:3px; background:var(--cream-dk); z-index:100; }
+  .progress-fill{ height:100%; width:0%; background:var(--terracotta); transition:width .1s linear; }
+
+  header{ position:sticky; top:3px; z-index:50; background:var(--navy); }
+  nav.wrap{ max-width:1180px; margin:0 auto; padding:0 28px; display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .logo-word{ font-family:'Fraunces', serif; font-weight:700; font-size:1.1rem; }
+  .logo-word .core{ color:#fff; } .logo-word .learning{ color:var(--terracotta); }
+  .nav-right{ display:flex; align-items:center; gap:10px; }
+  .nav-back, .nav-pdf{ color:var(--cream); opacity:0.85; font-weight:600; font-size:0.85rem; display:flex; align-items:center; gap:6px; padding:7px 13px; border-radius:8px; transition:background .2s ease; }
+  .nav-back:hover, .nav-pdf:hover{ background:rgba(247,245,241,0.1); opacity:1; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--teal); outline-offset:2px; border-radius:3px; }
+
+  .loading-screen{ min-height:70vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; color:var(--ink-soft); font-size:0.95rem; }
+  .spinner-lg{ width:34px; height:34px; border-radius:50%; border:3px solid var(--cream-dk); border-top-color:var(--terracotta); animation:spin .8s linear infinite; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .page{ display:none; }
+  .page.ready{ display:grid; }
+
+  .page{ max-width:1180px; margin:0 auto; padding:0 28px; grid-template-columns:230px minmax(0,760px); gap:64px; justify-content:center; }
+  .toc-col{ position:relative; }
+  .toc{ position:sticky; top:96px; max-height:calc(100vh - 130px); overflow-y:auto; padding-right:8px; }
+  .toc-label{ font-size:0.68rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:14px; }
+  .toc ul{ list-style:none; }
+  .toc li{ margin-bottom:2px; }
+  .toc a{ display:block; text-decoration:none; font-size:0.86rem; color:var(--ink-soft); padding:7px 0 7px 14px; border-left:2px solid var(--cream-dk); transition:color .15s ease, border-color .15s ease; }
+  .toc a:hover{ color:var(--navy); }
+  .toc a.active{ color:var(--terracotta); border-left-color:var(--terracotta); font-weight:600; }
+  @media (max-width:900px){ .page.ready{ grid-template-columns:1fr; } .toc-col{ display:none; } }
+
+  .article-head{ padding:48px 0 0; }
+  .kicker{ color:var(--terracotta); font-size:0.72rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; display:block; margin-bottom:14px; }
+  .article-head h1{ font-size:clamp(1.8rem, 3.4vw, 2.5rem); margin-bottom:14px; }
+  .article-meta{ display:flex; gap:18px; flex-wrap:wrap; color:var(--ink-soft); font-size:0.85rem; padding-top:18px; margin-top:18px; border-top:1px solid var(--cream-dk); }
+  .article-meta span{ display:flex; align-items:center; gap:6px; }
+  .article-meta svg{ opacity:0.6; }
+
+  article{ padding-bottom:100px; padding-top:40px; }
+  article h2{ font-size:1.55rem; margin:52px 0 16px; scroll-margin-top:90px; }
+  article h2:first-of-type{ margin-top:0; }
+  article h3{ font-size:1.15rem; color:var(--terracotta-dk); margin:34px 0 12px; scroll-margin-top:90px; }
+  article h4{ font-size:1rem; color:var(--navy); margin:22px 0 10px; }
+  article p{ margin-bottom:18px; color:var(--ink); max-width:70ch; }
+  article ul{ margin:0 0 20px 0; padding-left:0; list-style:none; }
+  article ul li{ position:relative; padding-left:26px; margin-bottom:12px; max-width:68ch; color:var(--ink); }
+  article ul li::before{ content:""; position:absolute; left:6px; top:11px; width:5px; height:5px; border-radius:50%; background:var(--terracotta); }
+  article strong{ color:var(--navy); font-weight:600; }
+
+  .table-wrap{ overflow-x:auto; margin:20px 0 30px; border-radius:10px; border:1px solid var(--cream-dk); }
+  table{ width:100%; border-collapse:collapse; font-size:0.86rem; background:#fff; min-width:640px; }
+  th{ background:var(--navy); color:#fff; text-align:left; font-weight:600; padding:10px 13px; font-size:0.76rem; white-space:nowrap; }
+  td{ padding:11px 13px; border-top:1px solid var(--cream-dk); vertical-align:top; color:var(--ink); }
+  tr:first-child td{ border-top:none; }
+
+  .figure-wrap{ margin:8px 0 30px; }
+  .figure-wrap img{ border-radius:10px; border:1px solid var(--cream-dk); }
+
+  .callout{ background:#fff; border-left:4px solid var(--teal); border-radius:0 10px 10px 0; padding:20px 24px; margin:28px 0; box-shadow:0 4px 14px -8px rgba(27,42,58,0.15); }
+  .callout-label{ font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--teal-dk); margin-bottom:8px; display:block; }
+  .callout p{ margin-bottom:10px; } .callout p:last-child{ margin-bottom:0; }
+
+  .refs-block{ margin-top:8px; }
+  .refs-block h3{ font-size:1rem; color:var(--navy); margin:26px 0 10px; }
+  .refs-block p{ font-size:0.86rem; color:var(--ink-soft); margin-bottom:10px; max-width:70ch; }
+
+  .quiz-cta-box{ display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; background:var(--cream); border:1px solid var(--cream-dk); border-radius:12px; padding:22px 26px; margin:32px 0 8px; }
+  .quiz-cta-title{ font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem; color:var(--navy); margin-bottom:4px; }
+  .quiz-cta-sub{ font-size:0.85rem; color:var(--ink-soft); }
+  .btn-primary{ background:var(--terracotta); color:#fff; padding:12px 22px; border-radius:9px; font-weight:600; font-size:0.94rem; display:inline-flex; align-items:center; gap:9px; transition:background .2s ease, transform .2s ease; white-space:nowrap; flex-shrink:0; text-decoration:none; }
+  .btn-primary:hover{ background:var(--terracotta-dk); transform:translateY(-1px); }
+
+  .next-module{ margin-top:32px; padding:26px 28px; border-radius:12px; background:var(--navy); display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+  .next-module-label{ color:var(--cream); opacity:0.6; font-size:0.75rem; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px; }
+  .next-module-title{ color:#fff; font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem; }
+  .next-btn{ background:var(--terracotta); color:#fff; text-decoration:none; padding:11px 20px; border-radius:9px; font-weight:600; font-size:0.9rem; display:inline-flex; align-items:center; gap:8px; white-space:nowrap; transition:background .2s ease; }
+  .next-btn:hover{ background:var(--terracotta-dk); }
+</style>
+</head>
+<body>
+
+<div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+<header>
+  <nav class="wrap">
+    <span class="logo-word"><span class="core">Core</span> <span class="learning">Learning</span></span>
+    <div class="nav-right">
+      <a href="Module_6_Return_to_Sport.pdf" class="nav-pdf" download>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 2V11M8 11L5 8M8 11L11 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 13H14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Download PDF
+      </a>
+      <a href="../module-06.html" class="nav-back">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to Module 6
+      </a>
+    </div>
+  </nav>
+</header>
+
+<div class="loading-screen" id="loadingScreen">
+  <div class="spinner-lg"></div>
+  <span>Loading lesson…</span>
+</div>
+
+<div class="page" id="pageContent">
+
+  <div class="toc-col">
+    <nav class="toc" id="toc">
+      <div class="toc-label">On this page</div>
+      <ul>
+        <li><a href="#s6-1" data-toc>6.1 Purpose of This Module</a></li>
+        <li><a href="#s6-2" data-toc>6.2 A Continuum, Not a Decision</a></li>
+        <li><a href="#s6-3" data-toc>6.3 Climbing-Specific Criteria</a></li>
+        <li><a href="#s6-4" data-toc>6.4 Grading by Discipline</a></li>
+        <li><a href="#s6-5" data-toc>6.5 Load Progression</a></li>
+        <li><a href="#s6-6" data-toc>6.6 Taping &amp; Protection</a></li>
+        <li><a href="#s6-7" data-toc>6.7 Working With Coaches</a></li>
+        <li><a href="#s6-8" data-toc>6.8 Monitoring Re-Injury Risk</a></li>
+        <li><a href="#s6-summary" data-toc>Course Summary</a></li>
+        <li><a href="#s6-refs" data-toc>References</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div>
+    <div class="article-head">
+      <span class="kicker">Module 6 of 6</span>
+      <h1>Return to Sport</h1>
+      <div class="article-meta">
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7V12L15.5 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> ~12 min read</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 3L21 8V16L12 21L3 16V8L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> Climbing Injury Prevention &amp; Management</span>
+      </div>
+    </div>
+
+    <article>
+
+      <h2 id="s6-1">6.1 Purpose of This Module</h2>
+      <p>Module 5 covered treatment and rehabilitation progressions for each climbing injury site. This final module addresses the decision that sits at the end of that process: when and how a climber returns to full training and climbing. It covers grading readiness by discipline, progressing load safely by volume, intensity, and grade, protective strategies during the return itself, working effectively with coaches, and monitoring for re-injury risk once a climber is back on the wall.</p>
+
+      <h2 id="s6-2">6.2 Return to Sport as a Continuum, Not a Single Decision</h2>
+      <p>Return to sport is best understood as a continuum — return to participation, return to sport, and return to performance — rather than a single binary clearance decision made at the end of rehabilitation. This framing, established in general sports physiotherapy consensus guidance, treats return to sport as an exercise in risk management: weighing the risk of the activity against the demonstrated readiness of the tissue, the athlete, and the context they are returning to, rather than waiting for a fixed time period or complete symptom resolution.</p>
+
+      <div class="figure-wrap">
+        <img src="Assets/Images/lesson6/return-to-sport-continuum.jpg" alt="Return to sport continuum diagram: return to participation, return to sport, and return to performance">
+      </div>
+
+      <p>A useful companion concept is the biopsychosocial model of return to sport: physical readiness (tissue tolerance, strength, range of motion), psychological readiness (confidence, fear of re-injury, motivation), and social/contextual factors (competition timing, coach and training environment, financial or personal pressure to return) all genuinely influence outcomes and are worth considering together rather than focusing on physical criteria alone.</p>
+
+      <div class="figure-wrap">
+        <img src="Assets/Images/lesson6/biopsychosocial-model.jpg" alt="Return to sport biopsychosocial model diagram: physical readiness, psychological readiness, and social/contextual factors around an optimal return to sport">
+      </div>
+
+      <h2 id="s6-3">6.3 Climbing-Specific Return-to-Sport Criteria</h2>
+      <p>It is worth being direct about a limitation in the evidence base here: current evidence and validated return-to-climbing criteria remain sparse, and where criteria are used in practice they are often not clearly anchored to a climber's pre-injury or target climbing grade. A recent scoping review protocol addressing this gap proposes combining objective markers — finger strength, endurance, and climbing grade — with subjective markers — pain, confidence, and training tolerance — to build a more holistic picture of readiness.</p>
+
+      <div class="callout">
+        <span class="callout-label">Clinical note</span>
+        <p>In the absence of well-validated, climbing-specific return-to-sport tests, use a combination of site-specific physical criteria (from Module 5's rehabilitation goals), general sports-medicine return-to-sport principles (Section 6.2), and the climber's own subjective readiness — rather than relying on any single measure or a fixed timeline alone.</p>
+      </div>
+
+      <h2 id="s6-4">6.4 Grading Readiness by Climbing Discipline</h2>
+      <p>Because the disciplines introduced in Module 1 place different demands on the body, readiness should be graded with the climber's primary discipline and grade of climbs (and any competition format) specifically in mind, rather than assuming a generic "fit to climb" threshold applies equally across contexts. And yet, returning to climbing in a different discipline or setting can prove useful for a graded return to climbing and can offer a therapeutic compromise.</p>
+
+      <div class="table-wrap">
+        <table>
+          <tr><th>Discipline</th><th>Key Physical Demands to Restore</th><th>Readiness Considerations</th></tr>
+          <tr><td><strong>Bouldering</strong></td><td>Maximal single-move strength and power; controlled falling/landing ability.</td><td>Given its association with acute injury, confirm both tissue tolerance to peak load and confidence in falling/landing technique before full return.</td></tr>
+          <tr><td><strong>Sport / Trad</strong></td><td>Sustained submaximal endurance loading over longer routes.</td><td>Confirm the injured tissue tolerates repeated, prolonged loading, not just a single peak effort — relevant to overuse presentations in particular.</td></tr>
+          <tr><td><strong>Competition (Speed/Lead/Boulder)</strong></td><td>Format-specific demands as outlined in Module 1 — explosive repetition (Speed), sustained endurance under time pressure (Lead), maximal power (Boulder).</td><td>Confirm readiness against the specific format(s) the climber competes in, since training and competition load can differ substantially between formats even within the same athlete.</td></tr>
+        </table>
+      </div>
+
+      <h2 id="s6-5">6.5 Load Progression: Volume, Intensity, and Grade</h2>
+      <p>Systematic review evidence in climbing populations has identified higher climbing grade, greater years of climbing experience, high chronic training loads, and lead climbing participation as potential risk factors for injury, alongside more recent evidence specifically implicating inadequate load management and training programming in overuse injury risk. These findings support a cautious, staged approach to reloading rather than a rapid return to pre-injury volume or grade.</p>
+      <ul>
+        <li>Progress session frequency and volume before intensity — re-establish a consistent, tolerated training pattern before reintroducing maximal effort, all with consistent monitoring of signs and symptoms.</li>
+        <li>Reintroduce climbing grade gradually rather than immediately targeting the pre-injury project grade, particularly following an overuse presentation where high grade and high chronic load were plausible contributors to the original injury.</li>
+        <li>Build in deliberate deload periods during the return phase, rather than only during illness or fatigue, to manage cumulative load across the weeks following return. Patients tend to respond well to understanding the underlying principles — spending time educating on the reasoning behind periodisation and deload intervals aids compliance.</li>
+        <li>Where load-monitoring tools such as the acute:chronic workload ratio are used, treat them as one input among several rather than a precise predictive threshold — evidence for their reliability as a standalone injury-prediction tool is mixed across sports.</li>
+      </ul>
+
+      <h2 id="s6-6">6.6 Taping &amp; Protective Strategies During Return</h2>
+      <p>The site-specific protective strategies established in Module 5 — pulley taping or ring splints during the crimp-reintroduction phase, wrist bracing for TFCC or hamate presentations, thumb spica taping for De Quervain's — should generally continue through the early return-to-climbing period rather than being withdrawn as soon as climbing resumes. Protective strategies and graded loading work together: taping does not replace the loading progression, but it reduces risk while capacity is still being rebuilt during real climbing activity, where load is less controllable than in a clinical or gym-based rehabilitation setting.</p>
+      <p>These strategies should be phased out slowly — begin by taping throughout a workout or session, then progress to taping only for the main session and warming up without taping, and finally to taping only for particularly hard moves.</p>
+
+      <h2 id="s6-7">6.7 Communicating with Coaches</h2>
+      <p>Climbers returning to structured training are typically working with a coach who controls session content, volume, and intended grade progression — making the coach an essential part of a safe return, not a bystander to it. A few practical principles support this collaboration:</p>
+      <ul>
+        <li>Share the specific physical criteria the climber needs to meet (e.g. a pain-free full crimp hang at a given load, or a given number of controlled repetitions) rather than only a return date, so the coach can plan session content around genuine readiness markers.</li>
+        <li>Be explicit about any grip types, movement patterns, or session intensities that should still be avoided or introduced gradually, since a coach without this detail may reasonably assume a discharged climber is fully unrestricted.</li>
+        <li>Establish a simple feedback loop — even brief, periodic updates — so that load progression during the return phase is a shared, monitored process rather than something that reverts entirely to the coach's judgement once formal treatment ends.</li>
+      </ul>
+
+      <h2 id="s6-8">6.8 Monitoring for Re-Injury Risk</h2>
+      <p>Previous injury is one of the more consistently identified risk factors for subsequent injury across sports medicine generally, and climbing-specific research has similarly identified prior injury as a risk factor for re-injury in climbers. This makes ongoing monitoring after discharge — rather than treating return to climbing as the endpoint of care — a genuinely worthwhile practice, particularly in the months immediately following return when load is still being rebuilt.</p>
+      <ul>
+        <li>Continue a pain-monitoring approach (Module 5) into the return-to-climbing phase, with a clear, pre-agreed threshold for when the climber should reduce load or seek review.</li>
+        <li>Schedule periodic follow-up — even brief check-ins — during the first few months back on the wall, rather than only responding if symptoms recur.</li>
+        <li>Ask specifically about training volume and grade progression at follow-up, not only about pain, since load creep is often the first sign of a developing overuse presentation before pain appears.</li>
+      </ul>
+
+      <h2 id="s6-summary">Course Summary</h2>
+      <p>Across these six modules, the course has moved from sport context (Module 1) through detailed climbing-specific anatomy and biomechanics (Module 2), the epidemiology and mechanisms of climbing injury (Module 3), site-by-site assessment (Module 4), evidence-based treatment and rehabilitation (Module 5), and finally the return-to-sport decision itself (Module 6). Together, this sequence is intended to give a physiotherapist with strong general clinical skills but no climbing background the specific knowledge needed to assess, treat, and safely return climbers to the sport — recognising, throughout, where the climbing-specific evidence base is well established and where it remains genuinely limited.</p>
+
+      <h2 id="s6-refs">References</h2>
+      <div class="refs-block">
+        <h3>Return-to-Sport Frameworks (6.2–6.3)</h3>
+        <p>Ardern CL, Glasgow P, Schneiders A, et al. 2016 Consensus Statement on Return to Sport from the First World Congress in Sports Physical Therapy, Bern. Br J Sports Med. 2016;50(14):853–864.</p>
+        <p>Ehiogu U, Wells G, Jones G, Buckthorpe M, Patterson S. Return to Climbing After Musculoskeletal Injury: A Scoping Review Protocol of Rehabilitation Content, Outcome Measures and Return to Sport Criteria in Climbers. BMJ Open Sport Exerc Med. 2026.</p>
+
+        <h3>Load Progression &amp; Risk Factors (6.5)</h3>
+        <p>Woollings KY, McKay CD, Emery CA. Risk Factors for Injury in Sport Climbing and Bouldering: A Systematic Review of the Literature. Br J Sports Med. 2015;49(17):1094–1099.</p>
+        <p>Quarmby A, Zhang M, Geisler M, et al. Risk Factors and Injury Prevention Strategies for Overuse Injuries in Adult Climbers: A Systematic Review. Front Sports Act Living. 2023;5:1269870.</p>
+
+        <h3>Re-Injury Risk (6.8)</h3>
+        <p>Jones G, Llewellyn D, Johnson MI. Previous Injury as a Risk Factor for Reinjury in Rock Climbing: A Secondary Analysis of Data from a Retrospective Cross-Sectional Cohort Survey of Active Rock Climbers. BMJ Open Sport Exerc Med. 2015;1(1).</p>
+      </div>
+
+      <div class="quiz-cta-box">
+        <div>
+          <div class="quiz-cta-title">Ready to complete the course?</div>
+          <p class="quiz-cta-sub">25 questions, 80% pass mark. Passing completes the course and issues your certificate.</p>
+        </div>
+        <a class="btn-primary" href="REPLACE_WITH_MODULE_6_QUIZ_LINK" target="_blank" rel="noopener">
+          Take the Module 6 Quiz
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="next-module">
+        <div>
+          <div class="next-module-label">Finished reading?</div>
+          <div class="next-module-title">Head back to the Module 6 hub</div>
+        </div>
+        <a href="../module-06.html" class="next-btn">
+          Back to Module 6
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+    </article>
+  </div>
+</div>
+
+<script type="module">
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyAN9BVXDo15Mav2zketm5jhKRoBjs2yYX8",
+  authDomain: "core-coaching-login.firebaseapp.com",
+  projectId: "core-coaching-login",
+  storageBucket: "core-coaching-login.firebasestorage.app",
+  messagingSenderId: "184932860937",
+  appId: "1:184932860937:web:7023e588b1068ed2a824d8",
+  measurementId: "G-M48JWEWV0D"
+};
+const COURSE_ID = "climbingphysio";
+const THIS_MODULE = 6;
+
+try {
+  const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
+  const authMod = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js");
+  const fsMod = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+
+  const app = initializeApp(FIREBASE_CONFIG);
+  const auth = authMod.getAuth(app);
+  const db = fsMod.getFirestore(app);
+
+  authMod.onAuthStateChanged(auth, async (user) => {
+    if (!user){
+      window.location.href = '../login.html';
+      return;
+    }
+
+    let profile = {};
+    try {
+      const snap = await fsMod.getDoc(fsMod.doc(db, 'users', user.uid));
+      if (snap.exists()) profile = snap.data();
+    } catch (err){
+      console.error('Error loading profile:', err);
+    }
+
+    const courseData = (profile.courses && profile.courses[COURSE_ID]) || { paid: false, unlockedModules: [] };
+    if (!courseData.paid){
+      window.location.href = '../dashboard.html';
+      return;
+    }
+    const unlockedModules = courseData.unlockedModules && courseData.unlockedModules.length ? courseData.unlockedModules : [1];
+    if (!unlockedModules.includes(THIS_MODULE)){
+      window.location.href = '../dashboard.html';
+      return;
+    }
+
+    document.getElementById('loadingScreen').style.display = 'none';
+    document.getElementById('pageContent').classList.add('ready');
+    initPageBehavior();
+  });
+} catch (err){
+  console.error('Firebase failed to load:', err);
+  document.getElementById('loadingScreen').innerHTML =
+    '<span style="color:#c0432f;">Something went wrong loading this lesson. Please refresh, or check your connection.</span>';
+}
+
+function initPageBehavior(){
+  function updateProgress(){
+    const article = document.querySelector('article');
+    const scrolled = window.scrollY;
+    const articleTop = article.offsetTop;
+    const articleHeight = article.offsetHeight;
+    const winHeight = window.innerHeight;
+    const total = articleTop + articleHeight - winHeight;
+    const pct = Math.min(100, Math.max(0, ((scrolled - (articleTop - winHeight * 0.3)) / (total - (articleTop - winHeight * 0.3))) * 100));
+    document.getElementById('progressFill').style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress);
+  updateProgress();
+
+  const tocLinks = document.querySelectorAll('[data-toc]');
+  const sections = Array.from(tocLinks).map(link => document.querySelector(link.getAttribute('href')));
+  function updateTOC(){
+    let current = sections[0];
+    for (const sec of sections){
+      if (sec && sec.getBoundingClientRect().top < 120) current = sec;
+    }
+    tocLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current.id);
+    });
+  }
+  window.addEventListener('scroll', updateTOC);
+  updateTOC();
+}
+</script>
+
+</body>
+</html>
