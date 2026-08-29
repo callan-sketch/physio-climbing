@@ -116,17 +116,11 @@
   .lesson-btn .btn-title{ font-weight:600; font-size:0.95rem; color:var(--navy); }
   .lesson-btn .btn-sub{ font-size:0.78rem; color:var(--ink-soft); }
 
-  /* Not-yet-available state — used for the PDF button until the file exists */
-  .lesson-btn.disabled{
-    cursor:default; opacity:0.55;
-  }
-  .lesson-btn.disabled:hover{ border-color:var(--cream-dk); background:var(--cream); transform:none; }
-  .lesson-btn.disabled .icon{ background:rgba(27,42,58,0.06); color:var(--ink-soft); }
-
+  /* QUIZ CTA */
   .quiz-cta-box{
     display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
     background:var(--cream); border:1px solid var(--cream-dk); border-radius:12px;
-    padding:22px 26px; margin-bottom:8px;
+    padding:22px 26px; margin-top:28px;
   }
   .quiz-cta-title{ font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem; color:var(--navy); margin-bottom:4px; }
   .quiz-cta-sub{ font-size:0.85rem; color:var(--ink-soft); }
@@ -136,6 +130,14 @@
     transition:background .2s ease, transform .2s ease; white-space:nowrap; flex-shrink:0;
   }
   .btn-primary:hover{ background:var(--terracotta-dk); transform:translateY(-1px); }
+
+  .status-msg{
+    display:none; margin-top:16px; padding:12px 16px; border-radius:8px;
+    font-size:0.88rem; font-weight:600;
+  }
+  .status-msg.show{ display:block; }
+  .status-msg.success{ background:#e9f4ee; color:var(--teal-dk); }
+  .status-msg.error{ background:#fbeae6; color:#c0432f; }
 
   footer{ text-align:center; padding:28px 20px; color:var(--ink-soft); font-size:0.8rem; border-top:1px solid var(--cream-dk); }
   .footer-word .core{ color:var(--navy); font-weight:700; }
@@ -184,25 +186,15 @@
         <p class="lesson-desc">Read the written guide and listen to the podcast summary in either order — both cover the same material.</p>
 
         <div class="lesson-actions">
-          <a class="lesson-btn content" href="https://docs.google.com/document/d/1QXtZndAckXzL22hEY4M2QoA-JOL0fCbkMPhQJGEew-g/preview" target="_blank" rel="noopener">
+          <a class="lesson-btn content" href="lessons/module-05-content.html">
             <span class="icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 3H14L19 8V19a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3V8H19" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.5 12.5H15.5M8.5 15.5H15.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
             </span>
             <span class="btn-text">
               <span class="btn-title">Read the content</span>
-              <span class="btn-sub">Written guide</span>
+              <span class="btn-sub">Written guide · ~20 min</span>
             </span>
           </a>
-
-          <div class="lesson-btn pdf disabled" aria-disabled="true">
-            <span class="icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3V15M12 15L7 10M12 15L17 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 17V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            <span class="btn-text">
-              <span class="btn-title">Download PDF</span>
-              <span class="btn-sub">Coming soon</span>
-            </span>
-          </div>
 
           <a class="lesson-btn podcast" href="https://open.spotify.com/episode/1ZqEd60fhlVkyYhwdEVIWT" target="_blank" rel="noopener">
             <span class="icon">
@@ -211,6 +203,16 @@
             <span class="btn-text">
               <span class="btn-title">Listen to the podcast</span>
               <span class="btn-sub">Audio summary · ~21 min</span>
+            </span>
+          </a>
+
+          <a class="lesson-btn pdf" href="lessons/Module_5_Treating_and_Rehabilitating_Climbing_Injuries.pdf" download>
+            <span class="icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3V15M12 15L7.5 10.5M12 15L16.5 10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 17V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="btn-text">
+              <span class="btn-title">Download the PDF</span>
+              <span class="btn-sub">Printable guide · 13 pages</span>
             </span>
           </a>
         </div>
@@ -225,13 +227,14 @@
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
+        <div class="status-msg" id="statusMsg"></div>
       </div>
     </div>
   </section>
 </main>
 
 <footer>
-  &copy; <span id="year"></span> <span class="footer-word"><span class="core">Core</span> <span class="learning">Learning</span></span> · <a href="mailto:callan@wam.co.za" style="text-decoration:underline;">callan@wam.co.za</a>
+  &copy; <span id="year"></span> <span class="footer-word"><span class="core">Core</span> <span class="learning">Learning</span></span> · <a href="mailto:info@corelearning.co.za" style="text-decoration:underline;">info@corelearning.co.za</a>
 </footer>
 
 <script type="module">
@@ -249,7 +252,7 @@ const THIS_MODULE = 5;
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
-let auth, db, doc, getDoc, currentUser = null;
+let auth, db, doc, getDoc;
 
 try {
   const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
@@ -267,7 +270,6 @@ try {
       window.location.href = 'login.html';
       return;
     }
-    currentUser = user;
     await checkAccess(user);
   });
 } catch (err){
