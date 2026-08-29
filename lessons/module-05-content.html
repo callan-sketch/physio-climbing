@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 5: Treating & Rehabilitating Climbing Injuries | Core Learning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1b2a3a; --teal:#3a8a8c; --teal-dk:#2e6e70;
+    --terracotta:#d9764a; --terracotta-dk:#bd5f37;
+    --cream:#f7f5f1; --cream-dk:#e9e4da; --ink:#2a2c2b; --ink-soft:#5a5f5c;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ background:var(--cream); color:var(--ink); font-family:'Inter', sans-serif; font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3,h4{ font-family:'Fraunces', serif; color:var(--navy); font-weight:600; line-height:1.25; }
+  a{ color:inherit; }
+  img,svg{ display:block; max-width:100%; }
+
+  .progress-track{ position:fixed; top:0; left:0; width:100%; height:3px; background:var(--cream-dk); z-index:100; }
+  .progress-fill{ height:100%; width:0%; background:var(--terracotta); transition:width .1s linear; }
+
+  header{ position:sticky; top:3px; z-index:50; background:var(--navy); }
+  nav.wrap{ max-width:1180px; margin:0 auto; padding:0 28px; display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .logo-word{ font-family:'Fraunces', serif; font-weight:700; font-size:1.1rem; }
+  .logo-word .core{ color:#fff; } .logo-word .learning{ color:var(--terracotta); }
+  .nav-right{ display:flex; align-items:center; gap:10px; }
+  .nav-back, .nav-pdf{ color:var(--cream); opacity:0.85; font-weight:600; font-size:0.85rem; display:flex; align-items:center; gap:6px; padding:7px 13px; border-radius:8px; transition:background .2s ease; }
+  .nav-back:hover, .nav-pdf:hover{ background:rgba(247,245,241,0.1); opacity:1; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--teal); outline-offset:2px; border-radius:3px; }
+
+  .loading-screen{ min-height:70vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; color:var(--ink-soft); font-size:0.95rem; }
+  .spinner-lg{ width:34px; height:34px; border-radius:50%; border:3px solid var(--cream-dk); border-top-color:var(--terracotta); animation:spin .8s linear infinite; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .page{ display:none; }
+  .page.ready{ display:grid; }
+
+  .page{ max-width:1180px; margin:0 auto; padding:0 28px; grid-template-columns:230px minmax(0,760px); gap:64px; justify-content:center; }
+  .toc-col{ position:relative; }
+  .toc{ position:sticky; top:96px; max-height:calc(100vh - 130px); overflow-y:auto; padding-right:8px; }
+  .toc-label{ font-size:0.68rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:14px; }
+  .toc ul{ list-style:none; }
+  .toc li{ margin-bottom:2px; }
+  .toc a{ display:block; text-decoration:none; font-size:0.86rem; color:var(--ink-soft); padding:7px 0 7px 14px; border-left:2px solid var(--cream-dk); transition:color .15s ease, border-color .15s ease; }
+  .toc a:hover{ color:var(--navy); }
+  .toc a.active{ color:var(--terracotta); border-left-color:var(--terracotta); font-weight:600; }
+  @media (max-width:900px){ .page.ready{ grid-template-columns:1fr; } .toc-col{ display:none; } }
+
+  .article-head{ padding:48px 0 0; }
+  .kicker{ color:var(--terracotta); font-size:0.72rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; display:block; margin-bottom:14px; }
+  .article-head h1{ font-size:clamp(1.8rem, 3.4vw, 2.5rem); margin-bottom:14px; }
+  .article-meta{ display:flex; gap:18px; flex-wrap:wrap; color:var(--ink-soft); font-size:0.85rem; padding-top:18px; margin-top:18px; border-top:1px solid var(--cream-dk); }
+  .article-meta span{ display:flex; align-items:center; gap:6px; }
+  .article-meta svg{ opacity:0.6; }
+
+  article{ padding-bottom:100px; padding-top:40px; }
+  article h2{ font-size:1.55rem; margin:52px 0 16px; scroll-margin-top:90px; }
+  article h2:first-of-type{ margin-top:0; }
+  article h3{ font-size:1.15rem; color:var(--terracotta-dk); margin:34px 0 12px; scroll-margin-top:90px; }
+  article h4{ font-size:1rem; color:var(--navy); margin:22px 0 10px; }
+  article p{ margin-bottom:18px; color:var(--ink); max-width:70ch; }
+  article ul{ margin:0 0 20px 0; padding-left:0; list-style:none; }
+  article ul li{ position:relative; padding-left:26px; margin-bottom:12px; max-width:68ch; color:var(--ink); }
+  article ul li::before{ content:""; position:absolute; left:6px; top:11px; width:5px; height:5px; border-radius:50%; background:var(--terracotta); }
+  article strong{ color:var(--navy); font-weight:600; }
+
+  .table-wrap{ overflow-x:auto; margin:20px 0 30px; border-radius:10px; border:1px solid var(--cream-dk); }
+  table{ width:100%; border-collapse:collapse; font-size:0.86rem; background:#fff; min-width:640px; }
+  th{ background:var(--navy); color:#fff; text-align:left; font-weight:600; padding:10px 13px; font-size:0.76rem; white-space:nowrap; }
+  td{ padding:11px 13px; border-top:1px solid var(--cream-dk); vertical-align:top; color:var(--ink); }
+  tr:first-child td{ border-top:none; }
+  .vid-link{ color:var(--teal-dk); text-decoration:underline; font-weight:600; white-space:nowrap; }
+  .vid-link svg{ display:inline; vertical-align:-2px; margin-right:2px; }
+
+  .callout{ background:#fff; border-left:4px solid var(--teal); border-radius:0 10px 10px 0; padding:20px 24px; margin:28px 0; box-shadow:0 4px 14px -8px rgba(27,42,58,0.15); }
+  .callout-label{ font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--teal-dk); margin-bottom:8px; display:block; }
+  .callout p{ margin-bottom:10px; } .callout p:last-child{ margin-bottom:0; }
+
+  .refs-block{ margin-top:8px; }
+  .refs-block h3{ font-size:1rem; color:var(--navy); margin:26px 0 10px; }
+  .refs-block p{ font-size:0.86rem; color:var(--ink-soft); margin-bottom:10px; max-width:70ch; }
+
+  .quiz-cta-box{ display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; background:var(--cream); border:1px solid var(--cream-dk); border-radius:12px; padding:22px 26px; margin:32px 0 8px; }
+  .quiz-cta-title{ font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem; color:var(--navy); margin-bottom:4px; }
+  .quiz-cta-sub{ font-size:0.85rem; color:var(--ink-soft); }
+  .btn-primary{ background:var(--terracotta); color:#fff; padding:12px 22px; border-radius:9px; font-weight:600; font-size:0.94rem; display:inline-flex; align-items:center; gap:9px; transition:background .2s ease, transform .2s ease; white-space:nowrap; flex-shrink:0; text-decoration:none; }
+  .btn-primary:hover{ background:var(--terracotta-dk); transform:translateY(-1px); }
+
+  .next-module{ margin-top:32px; padding:26px 28px; border-radius:12px; background:var(--navy); display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+  .next-module-label{ color:var(--cream); opacity:0.6; font-size:0.75rem; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px; }
+  .next-module-title{ color:#fff; font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem; }
+  .next-btn{ background:var(--terracotta); color:#fff; text-decoration:none; padding:11px 20px; border-radius:9px; font-weight:600; font-size:0.9rem; display:inline-flex; align-items:center; gap:8px; white-space:nowrap; transition:background .2s ease; }
+  .next-btn:hover{ background:var(--terracotta-dk); }
+
+  .exercise-card{ background:#fff; border:1px solid var(--cream-dk); border-radius:12px; padding:18px; margin:0 0 24px; }
+  .exercise-card img{ border-radius:8px; margin-bottom:14px; }
+  .exercise-card .ex-title{ font-family:'Fraunces', serif; color:var(--navy); font-weight:600; font-size:1.02rem; margin-bottom:6px; }
+  .exercise-card p{ margin-bottom:0; font-size:0.92rem; }
+</style>
+</head>
+<body>
+
+<div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+<header>
+  <nav class="wrap">
+    <span class="logo-word"><span class="core">Core</span> <span class="learning">Learning</span></span>
+    <div class="nav-right">
+      <a href="Module_5_Treating_and_Rehabilitating_Climbing_Injuries.pdf" class="nav-pdf" download>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 2V11M8 11L5 8M8 11L11 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 13H14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Download PDF
+      </a>
+      <a href="../module-05.html" class="nav-back">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to Module 5
+      </a>
+    </div>
+  </nav>
+</header>
+
+<div class="loading-screen" id="loadingScreen">
+  <div class="spinner-lg"></div>
+  <span>Loading lesson…</span>
+</div>
+
+<div class="page" id="pageContent">
+
+  <div class="toc-col">
+    <nav class="toc" id="toc">
+      <div class="toc-label">On this page</div>
+      <ul>
+        <li><a href="#s5-1" data-toc>5.1 Purpose of This Module</a></li>
+        <li><a href="#s5-2" data-toc>5.2 Tendon &amp; Tissue Loading</a></li>
+        <li><a href="#s5-a" data-toc>5.A Finger &amp; Hand</a></li>
+        <li><a href="#s5-b" data-toc>5.B Wrist</a></li>
+        <li><a href="#s5-c" data-toc>5.C Elbow</a></li>
+        <li><a href="#s5-d" data-toc>5.D Shoulder</a></li>
+        <li><a href="#s5-e" data-toc>5.E Knee</a></li>
+        <li><a href="#s5-f" data-toc>5.F Ankle &amp; Foot</a></li>
+        <li><a href="#s5-3" data-toc>5.3 Manual Therapy Integration</a></li>
+        <li><a href="#s5-4" data-toc>5.4 Return to the Wall</a></li>
+        <li><a href="#s5-lib" data-toc>Exercise Library</a></li>
+        <li><a href="#s5-refs" data-toc>References</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div>
+    <div class="article-head">
+      <span class="kicker">Module 5 of 6</span>
+      <h1>Treating &amp; Rehabilitating Climbing Injuries</h1>
+      <div class="article-meta">
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7V12L15.5 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> ~20 min read</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 3L21 8V16L12 21L3 16V8L12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> Climbing Injury Prevention &amp; Management</span>
+      </div>
+    </div>
+
+    <article>
+
+      <h2 id="s5-1">5.1 Purpose of This Module</h2>
+      <p>Module 4 established how to assess and differentiate the injuries most commonly seen in climbing patients. This module turns to treatment: evidence-based rehabilitation progressions for each site covered in Module 4, with particular emphasis on the tendon- and pulley-loading protocols that dominate climbing rehabilitation, climbing-specific exercise selection, and how to adapt standard physiotherapy loading principles to the specific movement patterns and demands of the sport. Module 6 then covers the final stage: grading readiness and managing the return to climbing itself.</p>
+
+      <h2 id="s5-2">5.2 General Principles of Tendon &amp; Connective Tissue Rehabilitation</h2>
+      <p>A large proportion of climbing injuries — pulley strain, flexor tenosynovitis, medial and lateral epicondylalgia, rotator cuff tendinopathy — are tendon or connective tissue conditions best understood through the tendon pathology continuum model: a spectrum from reactive tendinopathy through tendon dysrepair to degenerative tendinopathy, with treatment selected according to where the tissue sits on that spectrum rather than a single fixed protocol. This model, alongside evidence that high-load isometric contractions can reduce tendon pain without loss of muscle strength, underpins a staged loading approach that recurs throughout this module.</p>
+
+      <div class="table-wrap">
+        <table>
+          <tr><th>Stage</th><th>Loading Focus</th><th>Climbing-Specific Application</th></tr>
+          <tr><td><strong>1. Isometric</strong></td><td>Pain-modulating, low-technical-demand loading; sub-maximal holds within a tolerable pain level.</td><td>Gentle finger flexor holds or light hangs ("no-hangs") in an open-hand position, well within pain tolerance.</td></tr>
+          <tr><td><strong>2. Isotonic / Concentric-Eccentric</strong></td><td>Progressive resistance through range, building tissue capacity.</td><td>Light grip-strengthening work, controlled tendon glides, progressive forearm loading.</td></tr>
+          <tr><td><strong>3. Energy Storage / Plyometric</strong></td><td>Higher-rate loading that mimics the demands of real activity.</td><td>Controlled dynamic movement on the wall, progressing hold size and grip demand gradually.</td></tr>
+          <tr><td><strong>4. Return to Sport</strong></td><td>Full-intensity, sport-specific loading with monitoring.</td><td>Reintroducing full crimp, hangboard/campus training, and competition-level intensity last.</td></tr>
+        </table>
+      </div>
+
+      <p>A pain-monitoring approach — permitting exercise and climbing-specific loading provided pain stays within an acceptable, non-worsening range — is a useful adjunct across most of the presentations in this module, allowing rehabilitation to proceed without requiring complete symptom resolution before reloading begins.</p>
+      <p>A practical way to apply this approach is to first identify the patient's <strong>tolerable loading level</strong> — the amount of force, duration, or climbing intensity that can be performed while keeping pain at <strong>≤3/10</strong> during the activity. Mild discomfort is often acceptable and does not necessarily indicate tissue damage, provided symptoms do not progressively worsen during the session. The second criterion is the <strong>24-hour response</strong>: any increase in pain or stiffness should settle back to the individual's baseline within <strong>12–24 hours</strong>. If either threshold is exceeded — pain greater than 3/10 during loading, or symptoms that remain elevated beyond 24 hours — the exercise or climbing load has likely been too high and should be reduced, not entirely stopped, just modified to fulfil the tolerable-load criteria.</p>
+      <p>Once a tolerable loading level has been established, rehabilitation should progress gradually by increasing one variable at a time — force, duration, repetitions, hold size, or climbing difficulty — while consistently remaining within these two pain-monitoring boundaries. This strategy promotes progressive tissue adaptation, maintains patient confidence, and reduces the likelihood of repeated overload or prolonged symptom flare-ups.</p>
+
+      <h3>5.2.1 The Role of Manual Therapy in Climbing Injury Rehabilitation</h3>
+      <p>Manual therapy and soft tissue techniques can be useful adjuncts to an active rehabilitation programme in climbers. They may be used to address pain, movement restriction, local tissue sensitivity, joint stiffness, altered neural mobility, or restrictions in surrounding tissues that may be contributing to impaired movement or loading.</p>
+      <p>As always, manual technique choice, dosage and grading should rely on thorough clinical reasoning and the findings of the individual assessment. Manual therapy should not be viewed as a substitute for progressive loading, movement retraining or correction of the factors that contributed to the original injury. Its role is primarily to facilitate movement, reduce symptoms where appropriate, and allow the athlete to participate more effectively in the active rehabilitation programme.</p>
+      <p>The site-by-site techniques below are therefore not intended to represent a comprehensive manual therapy repertoire. They are a selection of techniques that may prove useful in this specific patient population and should be adapted according to the patient's presentation, irritability, stage of healing and response to treatment.</p>
+
+      <h3>5.2.2 Self-Management</h3>
+      <p>Athletes may be taught self-management techniques between sessions, including gentle self-massage of the forearm flexor musculature, mobility exercises, and carefully dosed use of tools such as massage balls or foam rollers.</p>
+      <p>Massage guns may also be used as part of an athlete's recovery routine, although evidence for their specific effectiveness in climbing-related tendon and pulley pathology remains limited — best considered an optional symptom-management strategy rather than a treatment for the underlying pathology.</p>
+
+      <h2 id="s5-a">5.A Finger &amp; Hand Rehabilitation</h2>
+
+      <h3>Pulley Injury</h3>
+      <p>Rehabilitation follows the grading established in Module 4A, with protective taping or splinting used throughout the loading progression — not as a substitute for graded reloading, but to keep the tendon approximated to the bone while capacity is rebuilt. Evidence on the biomechanical effectiveness of different taping methods has been mixed historically, with some studies questioning whether circumferential taping meaningfully reduces pulley strain and others supporting a protective effect; in practice, <a class="vid-link" href="https://youtu.be/oJWHdwxdyXU" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" style="display:inline"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M10 8.5V15.5L15 12L10 8.5Z" fill="currentColor"/></svg>H-Tape</a> is generally continued through the return-to-climbing phase regardless, alongside — not instead of — a structured loading programme. A key element of successful taping is comfort: taping over a ganglion, for instance, can aggravate an injury rather than support the healing tissue.</p>
+
+      <div class="table-wrap">
+        <table>
+          <tr><th>Grade</th><th>Protection Phase</th><th>Return-to-Climbing Timeline</th><th>Protective Taping Duration</th></tr>
+          <tr><td><strong>I–II</strong></td><td><a class="vid-link" href="https://youtu.be/oJWHdwxdyXU" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" style="display:inline"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M10 8.5V15.5L15 12L10 8.5Z" fill="currentColor"/></svg>H-Tape</a> or splint during loaded activity; early graded motion.</td><td>Approximately 6–8 weeks.</td><td>Around 3 months on return to climbing.</td></tr>
+          <tr><td><strong>III</strong></td><td>Thermoplastic ring splint; immobilisation guidance individualised to presentation.</td><td>Approximately 3 months.</td><td>Around 6 months on return to climbing. Worn 23 hrs/day for the first 6 weeks.</td></tr>
+          <tr><td><strong>IV</strong></td><td>Surgical reconstruction generally indicated before rehab progression.</td><td>Individualised, post-surgical timeline (commonly several months).</td><td>As directed post-operatively.</td></tr>
+        </table>
+      </div>
+
+      <div class="table-wrap">
+        <img src="../Assets/Images/module-05/pulley-taping-and-splints.jpg" alt="H-taping strips, a taped finger, and thermoplastic pulley ring splints on a hand" style="border-radius:10px;">
+      </div>
+
+      <div class="callout">
+        <span class="callout-label">Clinical note</span>
+        <p>Reloading after pulley injury should progress grip type deliberately: open-hand and slope-grip positions (lower pulley load) before half-crimp, and half-crimp well before any return to full crimp, since full crimp reintroduces the highest mechanical stress on the healing A2 region (Module 2, Section 2.5).</p>
+      </div>
+
+      <h3>Flexor Tenosynovitis</h3>
+      <p>Given its favourable natural history (Module 3), management centres on relative load modification — reducing training volume/intensity rather than complete cessation — alongside the same staged loading principles above. Climbers can generally continue modified training throughout recovery, with a graded return to prior volume as symptoms settle. It is, however, important to impress on the athlete that getting symptoms under control early is essential, as tenosynovitis can linger for up to a year, requiring several cortisone injections to settle.</p>
+
+      <h3>Finger Joint Capsulitis / Synovitis</h3>
+      <p>The published rehabilitation framework for this presentation follows four stages: unloading the irritated joint, restoring mobility, rebuilding strength, and correcting the movement or gripping fault that contributed to the injury. In the published case example, this progressive approach produced substantial pain and function improvement at six weeks, with continued improvement out to twelve months and a full return to prior climbing grade.</p>
+      <p>In lingering cases despite optimal load management, referral for an intra-articular cortisone injection could be required.</p>
+
+      <h3>5.A.1 Treatment Modalities: Finger &amp; Hand</h3>
+      <p>Manual therapy in finger injuries should be used carefully, particularly during the early stages of pulley injury, flexor tendon pathology and acute joint irritation. The objective is not to mechanically "break up" healing tissue, but to address relevant restrictions or symptoms while allowing progressive tissue loading to continue.</p>
+      <h4>Soft tissue techniques</h4>
+      <p>Soft tissue work may be directed towards the flexor tendons and forearm flexor musculature where increased tone, tenderness or restricted tissue excursion is identified — particularly relevant in climbers with high volumes of gripping, crimping and finger-flexor loading.</p>
+      <p>For climbers with chronic pulley or tendon-sheath symptoms, treatment may also be directed around areas of localised thickening or restriction. Where nodular or scar-like tissue is present, grade treatment according to the stage of healing and the athlete's loading programme, and avoid aggressive work directly over a healing pulley or tendon.</p>
+      <h4>Joint mobilisation</h4>
+      <p>Accessory mobilisation of the PIP and other finger joints may be useful where assessment identifies a loss of joint mobility contributing to impaired movement or loading, graded according to irritability and aimed at restoring accessory range to support normal active movement — not simply increasing passive range.</p>
+
+      <h2 id="s5-b">5.B Wrist Rehabilitation</h2>
+      <ul>
+        <li><strong>TFCC injury:</strong> activity modification to avoid loaded ulnar deviation (sidepulls, underclings), wrist bracing or taping during early return to climbing, and grip/forearm strengthening; refer for orthopaedic opinion if conservative management fails to progress, given the limited standalone accuracy of the clinical tests discussed in Module 4B. A brace called the <a class="vid-link" href="https://www.wristwidget.com/" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" style="display:inline"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M10 8.5V15.5L15 12L10 8.5Z" fill="currentColor"/></svg>Wrist Widget</a> has been suggested as a means of reducing load on the TFCC during rehabilitation, protecting it and thereby decreasing pain.</li>
+        <li><strong>Hamate hook stress/fracture:</strong> a period of stress reduction and activity modification, with conservative management reported to allow most climbers to return to their prior climbing level within roughly two to three months; hook resection is reserved for cases that fail conservative management.</li>
+        <li><strong>De Quervain's tenosynovitis:</strong> thumb spica bracing and activity modification acutely, followed by graded loading of the APL/EPB tendons, alongside technique correction — particularly reducing reliance on heavy vertical pinch grips and closed crimping with the thumb held in abduction/extension.</li>
+      </ul>
+
+      <h3>5.B.1 Treatment Modalities: Wrist</h3>
+      <p>Manual therapy for wrist injuries should be guided by the specific structure involved and the direction of movement or loading that reproduces symptoms.</p>
+      <h4>Soft tissue techniques</h4>
+      <p>For ulnar-sided wrist presentations, soft tissue techniques may be directed towards the flexor carpi ulnaris (FCU) and surrounding forearm musculature where increased tone or tenderness is identified, alongside modification of provocative positions — particularly loaded ulnar deviation, sidepulls and underclings — where these reproduce symptoms.</p>
+      <h4>Joint mobilisation</h4>
+      <p>Where restriction in forearm or wrist movement is identified, appropriately graded accessory mobilisation may be used to facilitate movement. Forearm supination mobilisation may be particularly relevant where restricted supination is contributing to altered wrist or upper-limb mechanics.</p>
+
+      <h2 id="s5-c">5.C Elbow Rehabilitation</h2>
+      <p>Both medial and lateral elbow tendinopathy in climbers respond to the same staged loading approach described in Section 5.2, typically progressing from isometric holds through eccentric or combined concentric-eccentric loading to heavier, higher-load resistance work as tolerated. Eccentric loading protocols specifically have evidence of benefit in medial epicondylalgia, though current evidence does not clearly establish eccentric loading as superior to other structured loading approaches — the more important factor is progressive, tolerated loading rather than any single exercise type.</p>
+      <p>Climbing-specific technique correction is a necessary companion to loading: reducing over-gripping, avoiding a flexed-wrist grip position, and addressing postural faults such as excessive hip sag away from the wall, all of which increase demand through the forearm flexor-pronator or extensor origin.</p>
+
+      <h3>5.C.1 Treatment Modalities: Elbow &amp; Forearm</h3>
+      <p>Manual therapy can be particularly useful as an adjunct to rehabilitation in climbers presenting with elbow and forearm pain, where high repetitive gripping and forearm loading may be accompanied by increased muscle tone, restricted joint movement or altered neural mobility.</p>
+      <h4>Soft tissue techniques</h4>
+      <p>Soft tissue treatment may be directed towards the forearm flexor-pronator group, including pronator teres, where increased tone, tenderness or restricted movement is identified. For lateral elbow presentations, treatment may also be directed towards the extensor musculature where clinically indicated.</p>
+      <h4>Elbow joint mobilisation</h4>
+      <p>An anterior-to-posterior (AP) mobilisation of the radial head may be considered where assessment identifies a clinically relevant restriction in elbow or forearm movement, used alongside active movement and loading rather than as a stand-alone intervention.</p>
+      <h4>Neural mobility</h4>
+      <p>Neural mechanosensitivity should be considered when symptoms suggest involvement of the median, radial or ulnar nerves. Neural mobilisation may be used where appropriate, performed as controlled movements rather than aggressive stretches, aiming to improve neural mobility and tolerance to movement without provoking a prolonged increase in symptoms.</p>
+      <h4>Neural interface treatment</h4>
+      <p>Where the clinical examination suggests restriction at a neural interface, soft tissue treatment may be directed towards relevant surrounding structures — pectoralis minor, biceps and supinator for median nerve-related presentations, or triceps, FCU and brachioradialis for ulnar or radial nerve-related symptoms, depending on the anatomical site and presentation. Treatment should always be based on the suspected site of neural irritation rather than a generic "nerve release" approach.</p>
+      <h4>Self-management</h4>
+      <p>Athletes may be taught forearm self-massage using their hands, massage balls or other suitable tools, with foam rollers and massage guns available as optional strategies. Counterforce braces may help some athletes during the return-to-loading phase, used alongside — not instead of — progressive loading to restore tissue capacity.</p>
+
+      <h2 id="s5-d">5.D Shoulder Rehabilitation</h2>
+      <p>Scapular control is the foundation of shoulder rehabilitation in climbers: strengthening the serratus anterior and lower/middle trapezius to restore coordinated scapular upward rotation during overhead reaching reduces subacromial crowding and is standard practice across the impingement and rotator cuff tendinopathy presentations covered in Module 4D. Climbing-specific reloading should reintroduce the "active hang" (engaging the scapula rather than hanging passively from the joint capsule), rebalance the sport's inherently pull-dominant loading with regular antagonist/push-pattern and external rotation work, and reintroduce dynamic and overhead-dominant movement only once basic strength and control are established.</p>
+
+      <h3>5.D.1 Treatment Modalities: Shoulder &amp; Thoracic Spine</h3>
+      <p>The climbing shoulder is exposed to high volumes of pulling, overhead positioning, scapular control and sustained loading. Manual therapy may therefore be directed not only at the glenohumeral joint and shoulder musculature, but also at the thoracic spine where mobility restrictions are often identified. A stiff thoracic spine, particularly reduced thoracic extension and rotation, may contribute to altered scapulothoracic mechanics and should be assessed as part of the overall shoulder examination.</p>
+      <h4>Soft tissue techniques</h4>
+      <ul>
+        <li>Pectoralis minor</li>
+        <li>Anterior deltoid</li>
+        <li>Posterior shoulder tissues</li>
+        <li>Relevant rotator cuff musculature</li>
+        <li>Other surrounding tissues identified as contributing to movement restriction</li>
+      </ul>
+      <p>Pectoralis minor treatment may be particularly useful where restriction is affecting scapular positioning or upward rotation, while posterior shoulder soft tissue techniques — including the posterior capsule region — may be considered where restricted internal rotation or posterior stiffness is present.</p>
+      <h4>Glenohumeral joint mobilisation</h4>
+      <p>AP glenohumeral mobilisations may be considered where assessment identifies a clinically relevant restriction in shoulder movement. Where internal rotation is limited, treatment should address the contribution of the posterior shoulder and thoracic spine alongside the glenohumeral joint itself.</p>
+      <h4>Thoracic mobilisation</h4>
+      <p>Thoracic mobility should be assessed in climbers presenting with shoulder dysfunction, particularly where extension or rotation appears restricted. Appropriately graded thoracic mobilisation can then be integrated with active thoracic mobility, scapular control and shoulder strengthening exercises.</p>
+      <h4>Proprioception and open-chain control</h4>
+      <p>Shoulder rehabilitation should not rely exclusively on strength — proprioceptive retraining and controlled open-chain exercises using free weights can be useful for restoring dynamic control, progressing from low-load movement to more demanding overhead and sport-specific positions as tolerance improves.</p>
+      <h4>Self-management</h4>
+      <p>Climbers may be taught self-management for the pectoral and posterior shoulder musculature, including controlled self-massage, mobility exercises and stretching where indicated, aimed at improving movement tolerance and supporting participation in the rehabilitation programme.</p>
+
+      <div class="callout">
+        <span class="callout-label">Clinical note</span>
+        <p>Functional and sport-specific outcomes after surgical rotator cuff repair in climbers have been reported as good, supporting a realistic and encouraging conversation with patients who are facing surgical management — though, as with the general population, outcomes are better when post-operative rehabilitation is structured and criteria-based rather than purely time-based.</p>
+      </div>
+
+      <h2 id="s5-e">5.E Knee Rehabilitation</h2>
+      <p>Conservative management with early functional physiotherapy produces good to excellent outcomes in the majority of technique-related knee injuries (heel hook, high step, drop knee), even where structural damage such as a partial meniscal tear is present — surgery is reserved for a minority of cases. Rehabilitation should combine standard structure-specific loading (quadriceps/hamstring strengthening, meniscal-friendly range progression, ITB-directed work where relevant) with technique-specific reintroduction: heel hook loading progressions from partial to full body weight, and drop knee/high step practice at controlled heights before returning to unrestricted movement on the wall.</p>
+      <p>Ground-fall knee injuries, being higher-energy and more frequently multi-structural, more often require surgical management and a correspondingly longer, structure-led rehabilitation pathway rather than a climbing-technique-specific one.</p>
+
+      <h3>5.E.1 Treatment Modalities: Knee</h3>
+      <p>Manual therapy should be considered where the clinical examination identifies a specific mobility restriction or soft tissue limitation contributing to impaired function — particularly relevant following periods of reduced activity or immobilisation, or where local soft tissue restriction is affecting climbing-specific positions such as high steps, drop knees or heel hooks.</p>
+      <h4>Soft tissue techniques</h4>
+      <p>Soft tissue treatment may be directed towards relevant musculature around the knee and hip where increased tone, tenderness or movement restriction is identified, remaining structure-specific and avoiding aggressive work over an acutely injured or inflamed structure.</p>
+      <h4>Joint mobilisation</h4>
+      <p>Appropriately graded knee joint mobilisation may be used where a clinically relevant restriction in range of motion is identified, combined with active range-of-motion exercises, progressive quadriceps and hamstring strengthening, proprioceptive training and climbing-specific movement retraining.</p>
+
+      <h2 id="s5-f">5.F Ankle &amp; Foot Rehabilitation</h2>
+      <ul>
+        <li><strong>Lateral ankle sprain:</strong> functional rehabilitation (early protected mobilisation and proprioceptive training) is preferred over prolonged immobilisation, in line with general sports medicine practice; footwear and technique factors (shoe fit, smearing/edging control) are worth addressing alongside standard sprain rehabilitation given their contribution to the original mechanism.</li>
+        <li><strong>Chronic shoe-related overuse</strong> (retrocalcaneal bursitis, Achilles tendinopathy, symptomatic hallux valgus): rehabilitation alongside footwear modification is central here — addressing the tissue without addressing shoe fit and sizing is unlikely to resolve a mechanically driven overuse presentation.</li>
+        <li><strong>Calcaneus/talus fracture and osteochondral talar lesions:</strong> managed via standard orthopaedic fracture guidelines, with surgical fixation common in climbers given the high activity demands of the population; return to climbing is guided by fracture healing and orthopaedic clearance rather than a climbing-specific timeline.</li>
+      </ul>
+
+      <h3>5.F.1 Treatment Modalities: Ankle &amp; Foot</h3>
+      <p>Manual therapy may be useful where restricted ankle or foot mobility contributes to altered movement mechanics during edging, smearing, high steps or other climbing-specific positions.</p>
+      <h4>Joint mobilisation</h4>
+      <p>Where appropriate, accessory mobilisation may address clinically relevant restrictions in ankle or foot movement, selected according to the specific restriction identified on assessment.</p>
+      <h4>Soft tissue techniques</h4>
+      <p>Soft tissue treatment may be directed towards the calf complex and other relevant tissues where increased tone or restriction contributes to impaired ankle mobility or movement.</p>
+      <h4>Self-management</h4>
+      <p>Athletes may be taught calf and foot self-massage, mobility exercises and progressive loading strategies, with footwear modification remaining an important component where shoe-related overuse is contributing to symptoms.</p>
+
+      <h2 id="s5-3">5.3 Clinical Integration of Manual Therapy</h2>
+      <p>Manual therapy should be integrated into the overall rehabilitation process rather than delivered as an isolated treatment block. A useful clinical sequence is:</p>
+      <ul>
+        <li>Identify the primary tissue or structure involved.</li>
+        <li>Determine whether pain, stiffness, reduced tissue mobility or neural mechanosensitivity is limiting movement or loading.</li>
+        <li>Select the most appropriate manual or soft tissue technique based on the examination findings.</li>
+        <li>Apply the technique at an appropriate grade and dosage for the patient's irritability.</li>
+        <li>Reassess the relevant movement, symptom or functional limitation.</li>
+        <li>Use any improvement to facilitate active exercise, movement retraining or progressive loading.</li>
+        <li>Monitor the patient's response over the following 24 hours.</li>
+      </ul>
+
+      <div class="callout">
+        <span class="callout-label">Clinical principle</span>
+        <p>Manual therapy is an adjunct to active rehabilitation — use it when it addresses an identifiable clinical impairment and the response can be integrated into active treatment, not simply because a technique is available or a body region is commonly treated with it.</p>
+      </div>
+
+      <p><strong>For climbers, consider assessing:</strong></p>
+      <ul>
+        <li>Local soft tissue restriction around the injured structure</li>
+        <li>Forearm flexor and extensor tone</li>
+        <li>Finger and PIP joint mobility</li>
+        <li>Elbow and radial-head mobility</li>
+        <li>Forearm pronation and supination</li>
+        <li>Glenohumeral internal rotation</li>
+        <li>Posterior shoulder and pectoralis minor restriction</li>
+        <li>Thoracic extension and rotation</li>
+        <li>Neural mobility and neural interfaces where clinically indicated</li>
+        <li>Lower-limb mobility relevant to high steps, heel hooks and drop knees</li>
+      </ul>
+      <p><strong>Remember:</strong> follow a successful manual therapy intervention with an active movement or loading intervention that reinforces the change obtained during treatment.</p>
+
+      <h3>5.3.1 Position- and Mechanism-Specific Rehabilitation</h3>
+      <p>Throughout this module, loading progressions are described in terms of structure and stage — but equally important is ensuring that both manual therapy and active rehabilitation are matched to the specific position and mechanism under which the injury actually occurred, not simply the structure involved in general. This reflects a basic training principle — specific adaptation to imposed demands (SAID) — that applies as much to climbing rehabilitation as to any other sport: tissue adapts most effectively to the load, range, and position it is actually asked to tolerate, and a generic strengthening or loading programme performed in a neutral or unrelated position may leave a genuine gap between clinic-based rehabilitation and the climbing-specific demand the tissue will eventually face.</p>
+      <p>A useful example is biceps femoris rehabilitation following a heel hook injury. A hard or aggressive heel hook loads the hamstring in a position combining hip and knee flexion, hip external rotation, tibial external rotation and active hip extension and knee flexion effort against resistance, as the climber actively pulls the hips toward the wall through the heel. Generic hamstring strengthening — standard prone or seated hamstring curls performed with the hip in a neutral position, for example — does not reproduce this combined position and loading pattern, and completing this alone before returning to climbing risks leaving the tissue under-prepared for the exact demand that caused the original injury. Rehabilitation should instead progress toward loading the hamstring specifically in hip- and knee-flexed, hip-externally-rotated and tibia-externally-rotated positions that approximate the heel hook itself — for example, single-leg positions combining hip flexion and external rotation with resisted hip extension — before progressing to controlled heel hook loading on a wall or box at increasing body-weight percentages, as already outlined in Section 5.E.</p>
+      <p>The same logic extends to manual therapy: where soft tissue treatment is directed towards a muscle that is symptomatic in a specific climbing position, treating that tissue in or near a lengthened/shortened, position-specific state — rather than a generic neutral position — may more directly address the tissue's actual functional demand, provided this is tolerated by the patient's irritability.</p>
+      <p>This principle recurs elsewhere in this module even where not explicitly restated: grip-type-specific reloading for pulley injuries (Section 5.A), progressive reintroduction of the pronated, gripped elbow position for medial epicondylalgia (Section 5.C), and graded reintroduction of the overhead, dynamic shoulder position (Section 5.D) are all applications of the same underlying idea — rehabilitation should ultimately be specific not just to the injured structure, but to the position and movement pattern that will be demanded of it on the wall.</p>
+
+      <h2 id="s5-4">5.4 Climbing-Specific Exercise Selection &amp; Reintroduction to the Wall</h2>
+      <p>Across every site in this module, a consistent principle applies when reintroducing climbing itself: volume before intensity, controlled movement before dynamic movement, and general climbing before specific training tools. In practice this means restoring general movement on easy terrain before reintroducing technique-specific loading (heel hooks, crimping, dynamic moves), and delaying structured finger training tools such as hangboards and campus boards until later in the rehabilitation process — consistent with the slower adaptation rate of tendon and pulley tissue relative to muscle established in Module 2.</p>
+      <p>This approach allows for a much sooner return to climbing than one would think in most cases. Completely "benching" someone for more than 10 days is the exception rather than the rule.</p>
+
+      <h2 id="s5-lib">Climbing Rehabilitation Exercise Library</h2>
+      <p>A working set of exercise ideas to draw on when building a rehabilitation programme for each region covered in this module — starting points to select from and progress, not a fixed prescription.</p>
+
+      <h3>Finger &amp; Hand</h3>
+      <ul>
+        <li>Flexor holds with a resistance band</li>
+        <li>No-hangs (isometric open-hand hangs)</li>
+        <li>Light grip-strength work</li>
+        <li>Tendon glides</li>
+        <li>Hangs and weighted hangs</li>
+        <li>Recruitment pulls</li>
+        <li>Dynamic campus boarding — don't neglect antagonist work alongside it</li>
+      </ul>
+
+      <h3>Shoulder</h3>
+      <p>Scapular control and pull/push balance can be built with a small set of accessible exercises. Four useful options:</p>
+
+      <div class="exercise-card">
+        <img src="../Assets/Images/module-05/shoulder-resistance-band-pull-apart.jpg" alt="Resistance band pull apart exercise, start and end position">
+        <div class="ex-title">Resistance Band Pull Apart</div>
+        <p>Hold a band at chest height with arms extended, then pull it apart by squeezing the shoulder blades together, keeping the arms straight and chest up. Targets the middle trapezius, rhomboids, rear deltoids and rotator cuff — a straightforward way to build the posterior-chain strength that balances climbing's pull-dominant loading.</p>
+      </div>
+
+      <div class="exercise-card">
+        <img src="../Assets/Images/module-05/shoulder-ring-rows.jpg" alt="Ring rows exercise sequence from start to top position">
+        <div class="ex-title">Ring Rows</div>
+        <p>A bodyweight pulling exercise: from a straight-body lean, pull up by driving the elbows down and back until the chest reaches the rings, then lower with control. Loads latissimus dorsi, rhomboids, middle trapezius and biceps, and scales easily by adjusting body angle or foot position.</p>
+      </div>
+
+      <div class="exercise-card">
+        <img src="../Assets/Images/module-05/shoulder-resistance-band-face-pull.jpg" alt="Resistance band face pull exercise, start and pull-and-squeeze position">
+        <div class="ex-title">Resistance Band Face Pull</div>
+        <p>Pull a band towards the face by leading with the elbows, keeping them high and in line with the shoulders, and squeezing the shoulder blades together at end range. A reliable way to target the rear deltoids, rotator cuff and lower/middle trapezius for posture and shoulder health.</p>
+      </div>
+
+      <div class="exercise-card">
+        <img src="../Assets/Images/module-05/turkish-get-up.jpg" alt="Turkish get up exercise sequence from lying to standing with a kettlebell overhead">
+        <div class="ex-title">Turkish Get-Up</div>
+        <p>A full-body movement that takes the athlete from lying on the floor to standing while keeping a weight locked out overhead — lie, roll to the elbow, post up to seated, kneel, half-kneel to stand, then stand tall, moving slowly and with control throughout. Builds shoulder stability, core control and proprioception under a dynamically changing load, useful later in the loading progression once basic strength and control are established.</p>
+      </div>
+
+      <h2>Summary</h2>
+      <p>Rehabilitation of climbing injuries follows familiar physiotherapy loading principles — protection, graded reloading, and a staged return to sport-specific demand — applied through a climbing-specific lens: grip type progression for the fingers, technique correction for the elbow and shoulder, and movement-specific reintroduction for the knee and ankle. With treatment established, Module 6 addresses the final stage of the pathway: grading readiness for return to sport, managing load progression by discipline, and monitoring for re-injury risk.</p>
+
+      <h2 id="s5-refs">References</h2>
+      <div class="refs-block">
+        <h3>General Tendon &amp; Loading Principles (5.2)</h3>
+        <p>Cook JL, Purdam CR. Is Tendon Pathology a Continuum? A Pathology Model to Explain the Clinical Presentation of Load-Induced Tendinopathy. Br J Sports Med. 2009;43(6):409–416.</p>
+        <p>Cook JL, Rio E, Purdam CR, Docking SI. Revisiting the Continuum Model of Tendon Pathology: What Is Its Merit in Clinical Practice and Research? Br J Sports Med. 2016;50(19):1187–1191.</p>
+        <p>Rio E, Kidgell D, Purdam C, et al. Isometric Exercise Induces Analgesia and Reduces Inhibition in Patellar Tendinopathy. Br J Sports Med. 2015;49(19):1277–1283.</p>
+
+        <h3>Fingers &amp; Hand (5.A)</h3>
+        <p>Lutter C, Tischer T, Schöffl VR, et al. To Tape or Not to Tape: Annular Ligament (Pulley) Injuries in Rock Climbers — A Systematic Review. BMC Sports Sci Med Rehabil. 2022.</p>
+        <p>Schweizer A. Biomechanical Effectiveness of Taping the A2 Pulley in Rock Climbers. J Hand Surg Br. 2000;25(1):102–107.</p>
+        <p>Warme WJ, Brooks D. The Effect of Circumferential Taping on Flexor Pulley Failure in Rock Climbers. Am J Sports Med. 2000;28(5):674–678.</p>
+        <p>Kabelitz M, Spörri J, Mauler F, et al. Nonoperative Treatment of Finger Flexor Tenosynovitis in Sport Climbers. Biology (Basel). 2022;11(6):815.</p>
+        <p>Vagy J. Clinical Management of Finger Joint Capsulitis/Synovitis in a Rock Climber. Front Sports Act Living. 2023;5:1185653.</p>
+
+        <h3>Wrist (5.B)</h3>
+        <p>Lutter C, Schweizer A, Hochholzer T, Bayer T, Schöffl V. Pulling Harder than the Hamate Tolerates: Evaluation of Hamate Injuries in Rock Climbing and Bouldering. Wilderness Environ Med. 2016;27(4):492–499.</p>
+
+        <h3>Elbow (5.C)</h3>
+        <p>Svernlöv B, Hultgren E, Adolfsson L. Medial Epicondylalgia (Golfer's Elbow) Treated by Eccentric Exercise. Shoulder Elbow. 2012;4(1):50–55.</p>
+        <p>Holtzhausen LM, Noakes TD. Elbow, Forearm, Wrist, and Hand Injuries Among Sport Rock Climbers. Clin J Sport Med. 1996;6(3):196–203.</p>
+
+        <h3>Shoulder (5.D)</h3>
+        <p>Simon M, Popp D, Lutter C, Schöffl V. Functional and Sports-Specific Outcome After Surgical Repair of Rotator Cuff Tears in Rock Climbers. Wilderness Environ Med. 2017;28(4):342–347.</p>
+        <p>Beeler S, Pastor T, Fritz B, Filli L, Schweizer A, Wieser K. Impact of 30 Years' High-Level Rock Climbing on the Shoulder: An MRI Study of 31 Climbers. J Shoulder Elbow Surg. 2021;30(9):2022–2031.</p>
+
+        <h3>Knee (5.E)</h3>
+        <p>Schöffl V, Lutter C, Popp D. The "Heel Hook" — A Climbing-Specific Technique to Injure the Leg. Wilderness Environ Med. 2016;27(2):294–301.</p>
+        <p>Lutter C, Tischer T, Cooper C, et al. Mechanisms of Acute Knee Injuries in Bouldering and Rock Climbing Athletes. Am J Sports Med. 2020;48(3):730–738.</p>
+
+        <h3>Ankle &amp; Foot (5.F)</h3>
+        <p>Schöffl V, Küpper T. Feet Injuries in Rock Climbers. World J Orthop. 2013;4(4):218–228.</p>
+      </div>
+
+      <div class="quiz-cta-box">
+        <div>
+          <div class="quiz-cta-title">Ready to test what you've learned?</div>
+          <p class="quiz-cta-sub">25 questions, 80% pass mark. Passing unlocks Module 6 automatically.</p>
+        </div>
+        <a class="btn-primary" href="https://forms.gle/8Un7AgzyyoAXHbsT8" target="_blank" rel="noopener">
+          Take the Module 5 Quiz
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="next-module">
+        <div>
+          <div class="next-module-label">Finished reading?</div>
+          <div class="next-module-title">Head back to the Module 5 hub</div>
+        </div>
+        <a href="../module-05.html" class="next-btn">
+          Back to Module 5
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+    </article>
+  </div>
+</div>
+
+<script type="module">
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyAN9BVXDo15Mav2zketm5jhKRoBjs2yYX8",
+  authDomain: "core-coaching-login.firebaseapp.com",
+  projectId: "core-coaching-login",
+  storageBucket: "core-coaching-login.firebasestorage.app",
+  messagingSenderId: "184932860937",
+  appId: "1:184932860937:web:7023e588b1068ed2a824d8",
+  measurementId: "G-M48JWEWV0D"
+};
+const COURSE_ID = "climbingphysio";
+const THIS_MODULE = 5;
+
+try {
+  const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
+  const authMod = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js");
+  const fsMod = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+
+  const app = initializeApp(FIREBASE_CONFIG);
+  const auth = authMod.getAuth(app);
+  const db = fsMod.getFirestore(app);
+
+  authMod.onAuthStateChanged(auth, async (user) => {
+    if (!user){
+      window.location.href = '../login.html';
+      return;
+    }
+
+    let profile = {};
+    try {
+      const snap = await fsMod.getDoc(fsMod.doc(db, 'users', user.uid));
+      if (snap.exists()) profile = snap.data();
+    } catch (err){
+      console.error('Error loading profile:', err);
+    }
+
+    const courseData = (profile.courses && profile.courses[COURSE_ID]) || { paid: false, unlockedModules: [] };
+    if (!courseData.paid){
+      window.location.href = '../dashboard.html';
+      return;
+    }
+    const unlockedModules = courseData.unlockedModules && courseData.unlockedModules.length ? courseData.unlockedModules : [1];
+    if (!unlockedModules.includes(THIS_MODULE)){
+      window.location.href = '../dashboard.html';
+      return;
+    }
+
+    document.getElementById('loadingScreen').style.display = 'none';
+    document.getElementById('pageContent').classList.add('ready');
+    initPageBehavior();
+  });
+} catch (err){
+  console.error('Firebase failed to load:', err);
+  document.getElementById('loadingScreen').innerHTML =
+    '<span style="color:#c0432f;">Something went wrong loading this lesson. Please refresh, or check your connection.</span>';
+}
+
+function initPageBehavior(){
+  function updateProgress(){
+    const article = document.querySelector('article');
+    const scrolled = window.scrollY;
+    const articleTop = article.offsetTop;
+    const articleHeight = article.offsetHeight;
+    const winHeight = window.innerHeight;
+    const total = articleTop + articleHeight - winHeight;
+    const pct = Math.min(100, Math.max(0, ((scrolled - (articleTop - winHeight * 0.3)) / (total - (articleTop - winHeight * 0.3))) * 100));
+    document.getElementById('progressFill').style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress);
+  updateProgress();
+
+  const tocLinks = document.querySelectorAll('[data-toc]');
+  const sections = Array.from(tocLinks).map(link => document.querySelector(link.getAttribute('href')));
+  function updateTOC(){
+    let current = sections[0];
+    for (const sec of sections){
+      if (sec && sec.getBoundingClientRect().top < 120) current = sec;
+    }
+    tocLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current.id);
+    });
+  }
+  window.addEventListener('scroll', updateTOC);
+  updateTOC();
+}
+</script>
+
+</body>
+</html>
