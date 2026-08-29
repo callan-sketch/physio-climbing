@@ -115,9 +115,6 @@
   .lesson-btn .btn-text{ display:flex; flex-direction:column; }
   .lesson-btn .btn-title{ font-weight:600; font-size:0.95rem; color:var(--navy); }
   .lesson-btn .btn-sub{ font-size:0.78rem; color:var(--ink-soft); }
-  .lesson-btn.placeholder{ opacity:0.55; }
-  .lesson-btn.placeholder:hover{ transform:none; border-color:var(--cream-dk); background:var(--cream); }
-  .todo-flag{ font-size:0.68rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--terracotta-dk); }
 
   /* QUIZ CTA */
   .quiz-cta-box{
@@ -133,8 +130,6 @@
     transition:background .2s ease, transform .2s ease; white-space:nowrap; flex-shrink:0;
   }
   .btn-primary:hover{ background:var(--terracotta-dk); transform:translateY(-1px); }
-  .btn-primary.placeholder{ background:var(--ink-soft); }
-  .btn-primary.placeholder:hover{ background:var(--ink-soft); transform:none; }
 
   footer{ text-align:center; padding:28px 20px; color:var(--ink-soft); font-size:0.8rem; border-top:1px solid var(--cream-dk); }
   .footer-word .core{ color:var(--navy); font-weight:700; }
@@ -193,13 +188,13 @@
             </span>
           </a>
 
-          <a class="lesson-btn podcast placeholder" href="#" onclick="return false;">
+          <a class="lesson-btn podcast" href="https://open.spotify.com/episode/2osXKUz7R6SVo5cic6Uco8" target="_blank" rel="noopener">
             <span class="icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M10 9.5V14.5L14.5 12L10 9.5Z" fill="currentColor"/></svg>
             </span>
             <span class="btn-text">
               <span class="btn-title">Listen to the podcast</span>
-              <span class="btn-sub todo-flag">Link needed — see note below</span>
+              <span class="btn-sub">Audio summary · ~23 min</span>
             </span>
           </a>
 
@@ -219,12 +214,11 @@
             <div class="quiz-cta-title">Ready to complete the course?</div>
             <p class="quiz-cta-sub">25 questions, 80% pass mark. Passing completes the course and issues your certificate.</p>
           </div>
-          <a class="btn-primary placeholder" href="#" onclick="return false;">
+          <a class="btn-primary" href="https://forms.gle/3kbyMKjcfRoDLEiy9" target="_blank" rel="noopener">
             Take the Module 6 Quiz
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
-        <p class="todo-flag" style="display:block; margin-top:10px;">Quiz link needed — see note below</p>
       </div>
     </div>
   </section>
