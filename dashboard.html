@@ -128,6 +128,9 @@
 
   .module-row h3{ font-size:1.05rem; margin-bottom:4px; }
   .module-row p{ color:var(--ink-soft); font-size:0.87rem; }
+  .module-row .course-complete-note{
+    color:var(--teal-dk); font-weight:600; font-size:0.87rem; margin-top:6px;
+  }
 
   .module-status{
     display:flex; align-items:center; gap:8px; font-size:0.85rem; font-weight:600;
@@ -238,7 +241,7 @@
 </main>
 
 <footer>
-  &copy; <span id="year"></span> <span class="footer-word"><span class="core">Core</span> <span class="learning">Learning</span></span> · <a href="mailto:callan@wam.co.za" style="text-decoration:underline;">callan@wam.co.za</a>
+  &copy; <span id="year"></span> <span class="footer-word"><span class="core">Core</span> <span class="learning">Learning</span></span> · <a href="mailto:info@corelearning.co.za" style="text-decoration:underline;">info@corelearning.co.za</a>
 </footer>
 
 <script type="module">
@@ -265,6 +268,7 @@ const MODULES = [
   { n: 5, title: "Treating & Rehabilitating Climbing Injuries", desc: "Evidence-based loading progressions and exercise selection." },
   { n: 6, title: "Return to Sport", desc: "Readiness grading, load progression, and re-injury monitoring." }
 ];
+const LAST_MODULE_N = MODULES[MODULES.length - 1].n;
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -342,7 +346,8 @@ function renderModules(courseData){
   else if (completedCount === MODULES.length) headline.textContent = 'Course complete!';
   else headline.textContent = `${completedCount} of ${MODULES.length} done`;
 
-  if (completedCount === MODULES.length){
+  const courseComplete = completedCount === MODULES.length;
+  if (courseComplete){
     document.getElementById('certBanner').style.display = 'flex';
   }
 
@@ -358,6 +363,14 @@ function renderModules(courseData){
       locked: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="currentColor" stroke-width="1.6"/></svg> Locked`
     }[state];
 
+    // Module 6 gets an extra congratulatory line under its description
+    // once its quiz has actually been passed (isComplete), on top of the
+    // normal "Completed" status pill everyone else also gets.
+    const isFinaleComplete = isComplete && m.n === LAST_MODULE_N;
+    const finaleNote = isFinaleComplete
+      ? `<p class="course-complete-note">🎉 Course completed — congratulations!</p>`
+      : '';
+
     const rowTag = state === 'locked' ? 'div' : 'a';
     const hrefAttr = state === 'locked' ? '' : `href="module-0${m.n}.html"`;
     const thumbNum = String(m.n).padStart(2, '0');
@@ -369,6 +382,7 @@ function renderModules(courseData){
         <div>
           <h3>${m.title}</h3>
           <p>${m.desc}</p>
+          ${finaleNote}
         </div>
         <div class="module-status ${state}">${statusHtml}</div>
       </${rowTag}>
