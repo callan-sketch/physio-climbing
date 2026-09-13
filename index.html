@@ -66,6 +66,23 @@
   .hero h1{ color:#fff; font-size:clamp(2rem, 4.2vw, 3.1rem); margin-bottom:20px; }
   .hero h1 em{ font-style:italic; color:var(--terracotta); font-weight:500; }
   .hero p.sub{ color:var(--cream); opacity:0.75; font-size:1.05rem; max-width:520px; margin-bottom:32px; }
+
+  /* CEU accreditation badge — used twice on the page (hero + price card) */
+  .ceu-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(58,138,140,0.16); color:#bfe3e3;
+    padding:8px 16px; border-radius:20px;
+    font-size:0.82rem; font-weight:600;
+    border:1px solid rgba(58,138,140,0.4);
+    margin-bottom:24px;
+  }
+  .ceu-badge svg{ flex-shrink:0; }
+  .price-card .ceu-badge{
+    background:rgba(58,138,140,0.1); color:var(--teal);
+    border:1px solid rgba(58,138,140,0.3);
+    margin-bottom:18px; margin-top:0;
+  }
+
   .hero-ctas{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
   .btn-primary{
     background:var(--terracotta); color:#fff; padding:14px 26px; border-radius:9px;
@@ -186,6 +203,10 @@
       <span class="eyebrow hero-eyebrow">CORE LEARNING</span>
       <h1>Climbing Injury Prevention &amp; Management</h1>
       <p class="sub">A six-module course on climbing-specific anatomy, injury mechanisms, assessment, rehabilitation, and return to sport — built for physiotherapists who already have strong clinical skills but no climbing background.</p>
+      <div class="ceu-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2L14.5 8.5L21 9L16 13.5L17.5 20L12 16.5L6.5 20L8 13.5L3 9L9.5 8.5L12 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        CEU Points awarded: 12 General (CEUs), Level 1
+      </div>
       <div class="hero-ctas">
         <a href="login.html" class="btn-primary">
           Enroll now
@@ -333,6 +354,10 @@
         <span class="eyebrow">ONE-TIME ENROLLMENT</span>
         <div class="amount">R800</div>
         <div class="amount-note">Once-off payment · secure checkout via Yoco</div>
+        <div class="ceu-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2L14.5 8.5L21 9L16 13.5L17.5 20L12 16.5L6.5 20L8 13.5L3 9L9.5 8.5L12 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          CEU Points awarded: 12 General (CEUs), Level 1
+        </div>
         <a href="login.html" class="btn-primary">
           Enroll in the course
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -352,7 +377,7 @@
     </div>
     <div class="footer-meta">
       <span>&copy; <span id="year"></span> Core Learning</span>
-      <a href="mailto:callan@wam.co.za">callan@wam.co.za</a>
+      <a href="mailto:info@corelearning.co.za">info@corelearning.co.za</a>
     </div>
   </div>
 </footer>
