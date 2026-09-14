@@ -72,8 +72,9 @@
   th{ background:var(--navy); color:#fff; text-align:left; font-weight:600; padding:10px 13px; font-size:0.76rem; white-space:nowrap; }
   td{ padding:11px 13px; border-top:1px solid var(--cream-dk); vertical-align:top; color:var(--ink); }
   tr:first-child td{ border-top:none; }
-  .vid-link{ color:var(--teal-dk); text-decoration:underline; font-weight:600; white-space:nowrap; }
-  .vid-link svg{ display:inline; vertical-align:-2px; margin-right:2px; }
+
+  .anchor-link{ color:var(--terracotta-dk); text-decoration:underline; font-weight:600; white-space:nowrap; }
+  .anchor-link:hover{ color:var(--terracotta); }
 
   .callout{ background:#fff; border-left:4px solid var(--teal); border-radius:0 10px 10px 0; padding:20px 24px; margin:28px 0; box-shadow:0 4px 14px -8px rgba(27,42,58,0.15); }
   .callout-label{ font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--teal-dk); margin-bottom:8px; display:block; }
@@ -82,6 +83,33 @@
   .refs-block{ margin-top:8px; }
   .refs-block h3{ font-size:1rem; color:var(--navy); margin:26px 0 10px; }
   .refs-block p{ font-size:0.86rem; color:var(--ink-soft); margin-bottom:10px; max-width:70ch; }
+
+  /* Appendix: assessment techniques */
+  .appendix-intro{ font-size:0.92rem; color:var(--ink-soft); margin-bottom:28px; max-width:70ch; }
+  .test-card{
+    background:#fff; border:1px solid var(--cream-dk); border-radius:14px;
+    padding:28px 30px; margin-bottom:22px; scroll-margin-top:90px;
+  }
+  .test-card h3{ margin:0 0 16px; scroll-margin-top:90px; }
+  .test-card ul{ margin-bottom:0; }
+  .test-card ul:not(:last-child){ margin-bottom:18px; }
+  .test-subhead{ font-size:0.82rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-soft); margin:18px 0 8px; }
+  .test-note{ font-size:0.86rem; color:var(--ink-soft); font-style:italic; margin-top:14px; margin-bottom:0; }
+
+  .video-embed-wrap{
+    position:relative; width:100%; padding-top:56.25%; border-radius:10px;
+    overflow:hidden; background:#000; margin:18px 0;
+  }
+  .video-embed-wrap iframe{
+    position:absolute; top:0; left:0; width:100%; height:100%; border:0;
+  }
+  .media-placeholder{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:8px; background:var(--cream); border:1px dashed var(--cream-dk); border-radius:10px;
+    padding:32px 20px; margin:18px 0; text-align:center;
+  }
+  .media-placeholder svg{ color:var(--ink-soft); opacity:0.5; }
+  .media-placeholder span{ font-size:0.85rem; color:var(--ink-soft); font-style:italic; }
 
   .quiz-cta-box{ display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; background:var(--cream); border:1px solid var(--cream-dk); border-radius:12px; padding:22px 26px; margin:32px 0 8px; }
   .quiz-cta-title{ font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem; color:var(--navy); margin-bottom:4px; }
@@ -135,6 +163,7 @@
         <li><a href="#s4-e" data-toc>4.E Knee</a></li>
         <li><a href="#s4-f" data-toc>4.F Ankle &amp; Foot</a></li>
         <li><a href="#s4-refs" data-toc>References</a></li>
+        <li><a href="#s4-appendix" data-toc>Appendix: Assessment Techniques</a></li>
       </ul>
     </nav>
   </div>
@@ -164,13 +193,13 @@
           <tr><td><strong>Onset</strong></td><td>Acute — often a single "pop" during a crimped or dynamic move.</td><td>Gradual — builds with increased training volume/intensity.</td><td>Gradual — often linked to asymmetric loading or faulty gripping mechanics.</td><td>Side-loading of a finger, twisting while crimping or catching a hold, esp. pockets.</td><td>Sudden hyperextension of the PIP joint.</td></tr>
           <tr><td><strong>Pain location</strong></td><td>Focal, volar, at A2/A4 level.</td><td>Diffuse volar swelling along the tendon sheath. Tender on palpation around A2 pulley.</td><td>Localised to the PIP or DIP joint line / capsule distribution.</td><td>Pain on one side of a finger joint, swelling, instability.</td><td>Pain on the palmar aspect of the PIP joint with swelling.</td></tr>
           <tr><td><strong>Provocation</strong></td><td>Pain and possible bowstringing on resisted flexion.</td><td>Pain with gripping/loading; may ease then return with rest.</td><td>Often eases with warm-up and mid-range movement.</td><td>Tenderness over collateral ligament.</td><td>Pain during passive extension and gripping.</td></tr>
-          <tr><td><strong>Key exam sign</strong></td><td>Bowstringing test: resisted flexion with PIP ~20° / DIP ~40° counter-flexion. Palpation in crimp position (85° PIP flexion; 5° DIP extension).</td><td>Diffuse tenderness with generalised mild oedema along the sheath without focal bowstringing.</td><td>Joint-line tenderness; may have subtle or pronounced effusion.</td><td>Pain with valgus or varus stress; compare laxity with the opposite hand; test in 0° extension and 30° flexion.</td><td>Swelling and bruising around the PIP joint; possible extension lag or flexion deformity in more severe injuries.</td></tr>
+          <tr><td><strong>Key exam sign</strong></td><td><a class="anchor-link" href="#test-bowstringing">Bowstringing test</a>: resisted flexion with PIP ~20° / DIP ~40° counter-flexion. Palpation in crimp position (85° PIP flexion; 5° DIP extension).</td><td>Diffuse tenderness with generalised mild oedema along the sheath without focal bowstringing.</td><td>Joint-line tenderness; may have subtle or pronounced effusion.</td><td>Pain with <a class="anchor-link" href="#test-collateral-ligament">valgus or varus stress</a>; compare laxity with the opposite hand; test in 0° extension and 30° flexion.</td><td>Swelling and bruising around the PIP joint; possible extension lag or flexion deformity in more severe injuries.</td></tr>
           <tr><td><strong>First-line imaging</strong></td><td>Dynamic ultrasound (gold standard); MRI if inconclusive.</td><td>Ultrasound can show sheath thickening/effusion ("halo phenomenon" in transverse view); often clinical diagnosis.</td><td>Usually clinical; imaging reserved for atypical or persistent cases.</td><td>Plain radiographs (AP, lateral, oblique) to exclude avulsion fractures or associated joint injury. Ultrasound can demonstrate ligament disruption dynamically. MRI reserved for equivocal cases, high-level athletes, or suspected complete tears requiring surgical planning.</td><td>Plain radiographs (AP, lateral, oblique) to exclude an avulsion fracture or PIP subluxation/dislocation. Ultrasound or MRI if diagnosis is uncertain, persistent pain, or associated soft-tissue injury is suspected.</td></tr>
         </table>
       </div>
 
       <h3>Pulley Injury: Grading and Assessment in Detail</h3>
-      <p>The bowstringing test remains the most widely cited clinical sign of pulley rupture, performed with the finger's PIP joint at approximately 20° and DIP at approximately 40° of flexion while the examiner applies resistance against the fingertip (the "counter-flexion" technique) — increasing resistance increases any bowstring effect, making it easier to detect. It is worth noting, however, that systematic review evidence has not established formal sensitivity or specificity values for this test in isolation, so clinical findings should be interpreted alongside imaging rather than used to rule pulley injury in or out on their own.</p>
+      <p>The <a class="anchor-link" href="#test-bowstringing">bowstringing test</a> remains the most widely cited clinical sign of pulley rupture, performed with the finger's PIP joint at approximately 20° and DIP at approximately 40° of flexion while the examiner applies resistance against the fingertip (the "counter-flexion" technique) — increasing resistance increases any bowstring effect, making it easier to detect. It is worth noting, however, that systematic review evidence has not established formal sensitivity or specificity values for this test in isolation, so clinical findings should be interpreted alongside imaging rather than used to rule pulley injury in or out on their own.</p>
 
       <div class="table-wrap">
         <table>
@@ -201,7 +230,7 @@
       <p>Several examination findings help distinguish a lumbrical injury from pulley or flexor tendon pathology.</p>
       <ul>
         <li>Pain is located deep within the palm rather than over the finger.</li>
-        <li>Symptoms increase when one finger is passively extended while adjacent fingers remain flexed.</li>
+        <li>Symptoms increase when one finger is passively extended while adjacent fingers remain flexed — see the <a class="anchor-link" href="#test-lumbrical">lumbrical assessment</a>.</li>
         <li>Pocket climbing is significantly more painful than open-hand gripping.</li>
         <li>Direct palpation between the flexor tendons reproduces symptoms.</li>
         <li>Commonly associated with FDP strains and co-existing forearm pain on palpation and contraction.</li>
@@ -226,7 +255,7 @@
           <tr><th>Feature</th><th>TFCC Injury</th><th>Hamate Hook Stress/Fracture</th><th>De Quervain's Tenosynovitis</th><th>FCU Tendinopathy</th><th>Ulnar Nerve Entrapment</th></tr>
           <tr><td><strong>Typical mechanism</strong></td><td>Ulnar-deviated loading — sidepulls, underclings, big open-hand slopers.</td><td>Repetitive ulnar-side crimping load transmitted through flexor tendons to the hook / repetitive intense underclings.</td><td>Vertical pinches and closed crimping loading the thumb into abduction/extension.</td><td>Repetitive forceful wrist flexion and ulnar deviation during overhang climbing, lock-offs, underclings, gastons, and campus board training.</td><td>Prolonged or repetitive elbow flexion (cubital tunnel) or sustained pressure through the hypothenar eminence during climbing (Guyon's canal). May also result from repetitive gripping, dynamic moves, or direct trauma to the medial elbow or palm, or from increased tone of the FCU.</td></tr>
           <tr><td><strong>Pain location</strong></td><td>Ulnar-sided wrist pain, may click.</td><td>Diffuse, deep palmar/ulnar wrist pain over the hook of hamate.</td><td>Radial-sided wrist pain over the first dorsal compartment.</td><td>Localised pain over the FCU tendon at the pisiform and/or medial aspect of the distal forearm.</td><td>Medial elbow (cubital tunnel) or hypothenar region of the hand (Guyon's canal), often accompanied by numbness or tingling in the little finger and ulnar half of the ring finger. Symptoms may radiate into the forearm.</td></tr>
-          <tr><td><strong>Key provocation tests</strong></td><td><a class="vid-link" href="https://youtu.be/HnzhKMrmdVE" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" style="display:inline"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M10 8.5V15.5L15 12L10 8.5Z" fill="currentColor"/></svg>TFCC compression test</a>, <a class="vid-link" href="https://youtu.be/BU4h2M5eSus" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" style="display:inline"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M10 8.5V15.5L15 12L10 8.5Z" fill="currentColor"/></svg>supination lift test</a>, ulnar impingement test.</td><td>Pain with resisted flexion of ring/little fingers in ulnar-deviated wrist.</td><td><a class="vid-link" href="https://youtu.be/8WBVXBx34W0" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" style="display:inline"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M10 8.5V15.5L15 12L10 8.5Z" fill="currentColor"/></svg>Finkelstein's test</a>.</td><td>Pain reproduced with resisted wrist flexion and ulnar deviation; pain on passive wrist extension; tenderness on palpation of the FCU tendon near the pisiform or along its course.</td><td>Positive Tinel's sign over the cubital tunnel or Guyon's canal; sustained pressure over Guyon's canal; sensory testing of the ulnar digits; weakness of finger abduction/adduction. Positive ULTT2.</td></tr>
+          <tr><td><strong>Key provocation tests</strong></td><td><a class="anchor-link" href="#test-tfcc-compression">TFCC compression test</a>, <a class="anchor-link" href="#test-supination-lift">supination lift test</a>, <a class="anchor-link" href="#test-ulnar-impingement">ulnar impingement test</a>.</td><td>Pain with resisted flexion of ring/little fingers in ulnar-deviated wrist.</td><td><a class="anchor-link" href="#test-finkelsteins">Finkelstein's test</a>.</td><td>Pain reproduced with resisted wrist flexion and ulnar deviation; pain on passive wrist extension; tenderness on palpation of the FCU tendon near the pisiform or along its course.</td><td>Positive <a class="anchor-link" href="#test-tinels">Tinel's sign</a> over the cubital tunnel or Guyon's canal; sustained pressure over Guyon's canal; sensory testing of the ulnar digits; weakness of finger abduction/adduction. Positive <a class="anchor-link" href="#test-ultt2">ULTT2</a>.</td></tr>
           <tr><td><strong>Imaging note</strong></td><td>Provocative tests have limited sensitivity/specificity alone; correlate with MRI or arthroscopy if suspicion is high.</td><td>Plain radiograph first; CT or MRI if radiograph unclear — diffuse presentation is easy to miss.</td><td>Usually a clinical diagnosis; imaging rarely required.</td><td>Ultrasound is useful for demonstrating tendon thickening, hypoechogenicity, and Doppler evidence of neovascularisation. MRI may be indicated if tendon tear or alternative pathology is suspected.</td><td>Diagnosis is primarily clinical. Nerve conduction studies and electromyography help confirm and localise the lesion. Ultrasound can demonstrate nerve enlargement or compression, while MRI is reserved for suspected space-occupying lesions or atypical presentations.</td></tr>
         </table>
       </div>
@@ -246,7 +275,7 @@
           <tr><th>Feature</th><th>Medial Epicondylalgia</th><th>Lateral Epicondylalgia</th><th>Radial Tunnel / PIN Entrapment</th></tr>
           <tr><td><strong>Structure involved</strong></td><td>Common flexor-pronator origin (flexor carpi radialis, pronator teres).</td><td>Common extensor origin (extensor carpi radialis brevis).</td><td>Posterior interosseous nerve as it passes through the supinator.</td></tr>
           <tr><td><strong>Mechanism in climbers</strong></td><td>Sustained gripping combined with the pronated pulling position on the wall.</td><td>Less common; associated with heavy lock-off and pressing movements.</td><td>Can mimic lateral epicondylalgia; often overlooked.</td></tr>
-          <tr><td><strong>Key exam finding</strong></td><td>Tenderness at the medial epicondyle; pain with resisted wrist flexion/pronation.</td><td>Tenderness at the lateral epicondyle; pain with resisted wrist extension (Cozen's test).</td><td>Tenderness more distal, over the supinator; pain with resisted supination; deeper, achier quality.</td></tr>
+          <tr><td><strong>Key exam finding</strong></td><td>Tenderness at the medial epicondyle; pain with resisted wrist flexion/pronation.</td><td>Tenderness at the lateral epicondyle; pain with resisted wrist extension (<a class="anchor-link" href="#test-cozens">Cozen's test</a>).</td><td>Tenderness more distal, over the supinator; pain with resisted supination; deeper, achier quality.</td></tr>
           <tr><td><strong>Distinguishing clue</strong></td><td>Most frequent elbow presentation in climbers; overuse pattern, gradual onset.</td><td>Less frequent in climbers than medial-sided pain.</td><td>Absence of focal epicondylar tenderness despite "lateral elbow pain" history; consider if epicondylalgia treatment fails.</td></tr>
         </table>
       </div>
@@ -337,6 +366,166 @@
 
         <h3>Ankle &amp; Foot (4.F)</h3>
         <p>Schöffl V, Küpper T. Feet Injuries in Rock Climbers. World J Orthop. 2013;4(4):218–228.</p>
+      </div>
+
+      <h2 id="s4-appendix">Appendix: Assessment Techniques</h2>
+      <p class="appendix-intro">Full technique descriptions for every provocation and special test referenced throughout this module, in the order they're first mentioned above. Video demonstrations are included where available; the remaining techniques will have video added in a future update.</p>
+
+      <div class="test-card" id="test-bowstringing">
+        <h3>Bowstringing Test</h3>
+        <ul>
+          <li>Position the finger with the PIP ~20° flexed and DIP ~40° flexed.</li>
+          <li>Apply resistance against flexion at the fingertip.</li>
+          <li>Observe/palpate the volar aspect of the finger for abnormal flexor tendon bowstringing and reproduction of pain.</li>
+          <li>Increased tendon-to-bone distance suggests pulley injury; confirm with imaging where indicated.</li>
+        </ul>
+        <div class="video-embed-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/GBKUU8G9uwg" title="Bowstringing test demonstration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <div class="test-card" id="test-collateral-ligament">
+        <h3>Collateral Ligament Stress Tests</h3>
+        <ul>
+          <li>Stabilise the affected finger at the proximal phalanx.</li>
+          <li>Apply valgus stress to assess the radial collateral ligament and varus stress to assess the ulnar collateral ligament.</li>
+          <li>Test with the joint in full extension and approximately 30° flexion.</li>
+          <li>Compare pain and laxity with the opposite hand.</li>
+        </ul>
+        <div class="video-embed-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/ewyk6mC912g" title="Collateral ligament stress test demonstration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <div class="test-card" id="test-lumbrical">
+        <h3>Lumbrical Assessment</h3>
+        <ul>
+          <li>Passively extend the symptomatic finger while keeping the adjacent fingers flexed.</li>
+          <li>Reproduction of deep pain in the palm, particularly around the base of the ring finger, supports lumbrical involvement.</li>
+          <li>Palpate between the flexor tendons for local tenderness.</li>
+          <li>Compare with the same manoeuvre on the opposite hand.</li>
+        </ul>
+        <div class="media-placeholder">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Video demonstration coming soon</span>
+        </div>
+      </div>
+
+      <div class="test-card" id="test-tfcc-compression">
+        <h3>TFCC Compression Test</h3>
+        <ul>
+          <li>Place the patient's forearm in pronation and apply an axial load through the wrist while the wrist is positioned in ulnar deviation.</li>
+          <li>Compress/load the ulnar side of the wrist.</li>
+          <li>Reproduction of the patient's familiar ulnar-sided wrist pain or clicking is considered positive.</li>
+          <li>Interpret alongside other findings because diagnostic accuracy is limited in isolation.</li>
+        </ul>
+        <div class="video-embed-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/HnzhKMrmdVE" title="TFCC compression test demonstration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <div class="test-card" id="test-supination-lift">
+        <h3>Supination Lift Test</h3>
+        <ul>
+          <li>Patient places the forearm in supination, with the palm underneath a surface such as a table.</li>
+          <li>Ask them to lift the surface/table using the palm, creating an axial load through the wrist.</li>
+          <li>Reproduction of familiar ulnar-sided wrist pain suggests possible TFCC pathology.</li>
+        </ul>
+        <div class="video-embed-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/BU4h2M5eSus" title="Supination lift test demonstration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <div class="test-card" id="test-ulnar-impingement">
+        <h3>Ulnar Impingement Test</h3>
+        <ul>
+          <li>Position the wrist in ulnar deviation, generally with the forearm pronated.</li>
+          <li>Apply axial loading/compression through the wrist while maintaining ulnar deviation.</li>
+          <li>Pain over the ulnar wrist suggests possible ulnar impaction/impingement.</li>
+          <li>Compare with the opposite side.</li>
+        </ul>
+        <div class="media-placeholder">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Video demonstration coming soon</span>
+        </div>
+      </div>
+
+      <div class="test-card" id="test-finkelsteins">
+        <h3>Finkelstein's Test</h3>
+        <ul>
+          <li>Patient places the thumb across the palm and closes the fingers over it.</li>
+          <li>Stabilise the forearm and gently move the wrist into ulnar deviation.</li>
+          <li>Reproduction of sharp pain over the radial styloid/first dorsal compartment suggests De Quervain's tenosynovitis.</li>
+          <li>Avoid excessive force; a gentler Eichhoff/Finkelstein-type manoeuvre is preferable clinically.</li>
+        </ul>
+        <div class="video-embed-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/8WBVXBx34W0" title="Finkelstein's test demonstration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <div class="test-card" id="test-tinels">
+        <h3>Tinel's Test — Cubital Tunnel / Guyon's Canal</h3>
+        <p class="test-subhead">Cubital tunnel</p>
+        <ul>
+          <li>Locate the ulnar nerve behind the medial epicondyle.</li>
+          <li>Gently tap over the nerve.</li>
+          <li>Tingling/electric sensations radiating into the little finger and ulnar half of the ring finger may indicate ulnar nerve irritation.</li>
+        </ul>
+        <p class="test-subhead">Guyon's canal</p>
+        <ul>
+          <li>Tap over the ulnar/palmar wrist at Guyon's canal.</li>
+          <li>Reproduction of paraesthesia in the ulnar digits suggests possible distal ulnar nerve involvement.</li>
+        </ul>
+        <div class="media-placeholder">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Video demonstration coming soon</span>
+        </div>
+      </div>
+
+      <div class="test-card" id="test-ultt2">
+        <h3>ULTT2</h3>
+        <ul>
+          <li>Patient supine.</li>
+          <li>Depress the shoulder girdle and position the arm with shoulder abduction, elbow extension, forearm supination and wrist/finger extension.</li>
+          <li>Add shoulder external rotation as appropriate.</li>
+          <li>Introduce the components progressively and assess symptom reproduction.</li>
+          <li>A positive test requires reproduction of the patient's familiar neural symptoms, with appropriate change when a sensitising movement is added or released.</li>
+        </ul>
+        <p class="test-note">ULTT2 has variations depending on whether you're testing the median or radial nerve, so your course should specify which version you intend to teach.</p>
+        <div class="media-placeholder">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Video demonstration coming soon</span>
+        </div>
+      </div>
+
+      <div class="test-card" id="test-cozens">
+        <h3>Cozen's Test</h3>
+        <ul>
+          <li>Patient's elbow is flexed, forearm pronated, and wrist positioned in extension and radial deviation.</li>
+          <li>Stabilise the elbow.</li>
+          <li>Ask the patient to maintain wrist extension/radial deviation against resistance.</li>
+          <li>Reproduction of familiar pain at the lateral epicondyle/common extensor origin suggests lateral epicondylalgia.</li>
+        </ul>
+        <div class="media-placeholder">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Video demonstration coming soon</span>
+        </div>
+      </div>
+
+      <div class="test-card" id="test-ultt1">
+        <h3>ULTT1</h3>
+        <ul>
+          <li>Patient supine.</li>
+          <li>Depress the shoulder girdle.</li>
+          <li>Position the arm in approximately 90° shoulder abduction, with the forearm supinated.</li>
+          <li>Extend the wrist and fingers, then gradually extend the elbow.</li>
+          <li>Cervical side-flexion away from/toward the tested side can be used as a sensitising manoeuvre.</li>
+          <li>Reproduction of the patient's familiar neural symptoms, altered by sensitising movements, supports neural mechanosensitivity.</li>
+        </ul>
+        <div class="media-placeholder">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Video demonstration coming soon</span>
+        </div>
       </div>
 
       <div class="quiz-cta-box">
