@@ -210,6 +210,7 @@
     }
 
     const payload = {
+      moduleNumber: 1,
       email: document.getElementById('email').value.trim(),
       name: document.getElementById('name').value.trim(),
       surname: document.getElementById('surname').value.trim(),
@@ -250,7 +251,7 @@
         : 'Review the module content and give it another go when you\'re ready — you\'ve got this. A summary email is on its way to you too.';
 
     } catch (err) {
-      submitStatus.textContent = 'Submission failed — please check your connection and try again.';
+      submitStatus.textContent = 'Submission failed: ' + err.message;
       submitStatus.classList.add('error');
       submitBtn.disabled = false;
       submitBtn.textContent = 'Submit Quiz';
