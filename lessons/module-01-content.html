@@ -790,83 +790,6 @@
 </head>
 
 <body>
-  <div id="authGateOverlay" style="position:fixed; inset:0; z-index:99999; background:#f7f5f1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; font-family:'Inter', sans-serif;">
-    <svg width="28" height="28" viewBox="0 0 16 16" fill="none" style="animation:authGateSpin .8s linear infinite;">
-      <circle cx="8" cy="8" r="6" stroke="#e9e4da" stroke-width="2" />
-      <path d="M14 8a6 6 0 0 0-6-6" stroke="#d9764a" stroke-width="2" stroke-linecap="round" />
-    </svg>
-    <span style="color:#5a5f5c; font-size:0.9rem;">Checking your access…</span>
-  </div>
-  <style>
-    @keyframes authGateSpin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-  </style>
-  <script type="module">
-    // ═══════════════════════════════════════════════════════════════
-    // AUTH GATE — must be a logged-in, paid-up student to see this
-    // page. Fails CLOSED: any missing session, missing profile, unpaid
-    // status, or error while checking sends the visitor to enroll.html
-    // rather than ever showing the real content underneath the overlay
-    // above. Same Firebase project/config as enroll.html.
-    // ═══════════════════════════════════════════════════════════════
-    const FIREBASE_CONFIG = {
-      apiKey: "AIzaSyAN9BVXDo15Mav2zketm5jhKRoBjs2yYX8",
-      authDomain: "core-coaching-login.firebaseapp.com",
-      projectId: "core-coaching-login",
-      storageBucket: "core-coaching-login.firebasestorage.app",
-      messagingSenderId: "184932860937",
-      appId: "1:184932860937:web:7023e588b1068ed2a824d8",
-      measurementId: "G-M48JWEWV0D"
-    };
-    const COURSE_ID = "climbingphysio";
-    const ENROLL_URL = "https://physio.corelearning.co.za/login.html";
-
-    function denyAccess() {
-      window.location.replace(ENROLL_URL);
-    }
-    try {
-      const {
-        initializeApp
-      } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
-      const {
-        getAuth,
-        onAuthStateChanged
-      } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js");
-      const {
-        getFirestore,
-        doc,
-        getDoc
-      } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
-      const app = initializeApp(FIREBASE_CONFIG);
-      const auth = getAuth(app);
-      const db = getFirestore(app);
-      onAuthStateChanged(auth, async (user) => {
-        if (!user) {
-          denyAccess();
-          return;
-        }
-        try {
-          const snap = await getDoc(doc(db, 'users', user.uid));
-          const paid = snap.exists() && snap.data()?.courses?.[COURSE_ID]?.paid === true;
-          if (!paid) {
-            denyAccess();
-            return;
-          }
-          // Access confirmed — reveal the real page.
-          document.getElementById('authGateOverlay').remove();
-        } catch (err) {
-          console.error('Auth gate: profile check failed', err);
-          denyAccess();
-        }
-      });
-    } catch (err) {
-      console.error('Auth gate: Firebase failed to load', err);
-      denyAccess();
-    }
-  </script>
   <div class="progress-track">
     <div class="progress-fill" id="progressFill"></div>
   </div>
@@ -1118,7 +1041,7 @@
           <li>Asymmetrical, often single-limb loading through the shoulder and wrist during dynamic and reaching movements differs from the more symmetrical loading patterns physiotherapists may be used to assessing.</li>
           <li>Climbers frequently continue to train through minor symptoms due to the sport's strong training culture and grade-focused progression, which can mask early-stage overuse injury until it becomes more significant. Climbing has been shown to have an anti-depressive effect and is often used as a mental health coping strategy by athletes, this adds to an athletes reluctance to stay away from the gym / crag.</li>
         </ul>
-        <p>These factors are explored in full in Module 3 (Common Climbing Injuries &amp; Mechanics), and the finger and hand anatomy underlying much of this is covered in detail in Module 2. This module's purpose is simply to ensure the sport-specific context — the disciplines, the vocabulary, and the competitive landscape — is in place before that clinical detail is introduced.</p>
+        <p>These factors are explored in full in Module 3 (Common Climbing Injuries &amp; Mechanisms), and the finger and hand anatomy underlying much of this is covered in detail in Module 2. This module's purpose is simply to ensure the sport-specific context — the disciplines, the vocabulary, and the competitive landscape — is in place before that clinical detail is introduced.</p>
         <div class="callout"> <span class="callout-label">Clinical note</span>
           <p>Climbers rarely train or get injured within a single discipline in isolation. A 2024 international survey of over 1,500 climbers found that most respondents regularly trained in more than one climbing discipline, and it is equally common for climbers to supplement wall time with dedicated strength and mobility work — fingerboarding, campus boarding, general resistance training — outside of climbing sessions altogether.</p>
           <p>This has a direct assessment implication: a patient presenting after what looks like a single boulder-move injury may in fact have been accumulating load across an outdoor lead session, a strength-training block, and general mobility work earlier that same week.</p>
