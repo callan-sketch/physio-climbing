@@ -118,6 +118,7 @@
       <div class="field">
         <label for="email">Email *</label>
         <input type="email" id="email" name="email" required>
+        <p class="field-hint">Please use the exact same email you signed up to the course with — a different email here will stop the next module from unlocking.</p>
       </div>
     </div>
 
@@ -244,14 +245,17 @@
       resultScreen.classList.add('show');
 
       const passed = result.passed;
+      const isFinalModule = false;
       document.getElementById('resultIcon').textContent = passed ? '🎉' : '📋';
       document.getElementById('resultTitle').textContent = passed
-        ? 'Nice work — you passed!'
+        ? (isFinalModule ? 'Congratulations — course complete!' : 'Nice work — you passed!')
         : 'Not quite there yet';
       document.getElementById('resultScore').textContent =
         `You scored ${result.score}/${result.total} (${result.percentage}%). Pass mark is 80%.`;
       document.getElementById('resultNote').innerHTML = passed
-        ? 'A confirmation email is on its way, and the next module has been unlocked automatically — log back in to continue whenever you\'re ready.'
+        ? (isFinalModule
+            ? 'You\'ve completed every module and passed every quiz — well done! Your certificate is being generated now and will be emailed to you shortly.'
+            : 'A confirmation email is on its way, and the next module has been unlocked automatically — log back in to continue whenever you\'re ready.')
         : 'Review the module content and give it another go when you\'re ready — you\'ve got this. A summary email is on its way to you too.';
 
     } catch (err) {
