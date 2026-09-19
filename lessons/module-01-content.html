@@ -790,6 +790,83 @@
 </head>
 
 <body>
+  <div id="authGateOverlay" style="position:fixed; inset:0; z-index:99999; background:#f7f5f1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; font-family:'Inter', sans-serif;">
+    <svg width="28" height="28" viewBox="0 0 16 16" fill="none" style="animation:authGateSpin .8s linear infinite;">
+      <circle cx="8" cy="8" r="6" stroke="#e9e4da" stroke-width="2" />
+      <path d="M14 8a6 6 0 0 0-6-6" stroke="#d9764a" stroke-width="2" stroke-linecap="round" />
+    </svg>
+    <span style="color:#5a5f5c; font-size:0.9rem;">Checking your access…</span>
+  </div>
+  <style>
+    @keyframes authGateSpin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <script type="module">
+    // ═══════════════════════════════════════════════════════════════
+    // AUTH GATE — must be a logged-in, paid-up student to see this
+    // page. Fails CLOSED: any missing session, missing profile, unpaid
+    // status, or error while checking sends the visitor to enroll.html
+    // rather than ever showing the real content underneath the overlay
+    // above. Same Firebase project/config as enroll.html.
+    // ═══════════════════════════════════════════════════════════════
+    const FIREBASE_CONFIG = {
+      apiKey: "AIzaSyAN9BVXDo15Mav2zketm5jhKRoBjs2yYX8",
+      authDomain: "core-coaching-login.firebaseapp.com",
+      projectId: "core-coaching-login",
+      storageBucket: "core-coaching-login.firebasestorage.app",
+      messagingSenderId: "184932860937",
+      appId: "1:184932860937:web:7023e588b1068ed2a824d8",
+      measurementId: "G-M48JWEWV0D"
+    };
+    const COURSE_ID = "climbingphysio";
+    const ENROLL_URL = "https://physio.corelearning.co.za/enroll.html";
+
+    function denyAccess() {
+      window.location.replace(ENROLL_URL);
+    }
+    try {
+      const {
+        initializeApp
+      } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
+      const {
+        getAuth,
+        onAuthStateChanged
+      } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js");
+      const {
+        getFirestore,
+        doc,
+        getDoc
+      } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+      const app = initializeApp(FIREBASE_CONFIG);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+      onAuthStateChanged(auth, async (user) => {
+        if (!user) {
+          denyAccess();
+          return;
+        }
+        try {
+          const snap = await getDoc(doc(db, 'users', user.uid));
+          const paid = snap.exists() && snap.data()?.courses?.[COURSE_ID]?.paid === true;
+          if (!paid) {
+            denyAccess();
+            return;
+          }
+          // Access confirmed — reveal the real page.
+          document.getElementById('authGateOverlay').remove();
+        } catch (err) {
+          console.error('Auth gate: profile check failed', err);
+          denyAccess();
+        }
+      });
+    } catch (err) {
+      console.error('Auth gate: Firebase failed to load', err);
+      denyAccess();
+    }
+  </script>
   <div class="progress-track">
     <div class="progress-fill" id="progressFill"></div>
   </div>
