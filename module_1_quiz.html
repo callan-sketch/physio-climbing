@@ -118,6 +118,7 @@
       <div class="field">
         <label for="email">Email *</label>
         <input type="email" id="email" name="email" required>
+        <p class="field-hint">Please use the exact same email you signed up to the course with — a different email here will stop the next module from unlocking.</p>
       </div>
     </div>
 
@@ -132,6 +133,7 @@
         <label for="surname">Surname *</label>
         <input type="text" id="surname" name="surname" required>
       </div>
+      
     </div>
 
     <div class="section-card" style="padding-bottom:10px;">
@@ -162,7 +164,8 @@
   const QUIZ_ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbzIR5FsYuI_-5o4BLzXITs5MzLTqE7MtDsRnJnPuRrkP4vwcsw8AdNjcaaf_BOwspDt/exec";
 
   const TOTAL_QUESTIONS = 25;
-  const TOTAL_REQUIRED_FIELDS = 3 + TOTAL_QUESTIONS; // email, name, surname + 25 questions
+  const EXTRA_REQUIRED_FIELDS = 0;
+  const TOTAL_REQUIRED_FIELDS = 3 + EXTRA_REQUIRED_FIELDS + TOTAL_QUESTIONS; // email, name, surname (+ extra) + 25 questions
 
   const form = document.getElementById('quizForm');
   const progressFill = document.getElementById('progressFill');
@@ -176,6 +179,7 @@
     if (document.getElementById('email').value.trim()) filled++;
     if (document.getElementById('name').value.trim()) filled++;
     if (document.getElementById('surname').value.trim()) filled++;
+    
     for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
       if (form.querySelector(`input[name="q${i}"]:checked`)) filled++;
     }
@@ -214,6 +218,7 @@
       email: document.getElementById('email').value.trim(),
       name: document.getElementById('name').value.trim(),
       surname: document.getElementById('surname').value.trim(),
+      
       answers: answers
     };
 
@@ -240,14 +245,17 @@
       resultScreen.classList.add('show');
 
       const passed = result.passed;
+      const isFinalModule = false;
       document.getElementById('resultIcon').textContent = passed ? '🎉' : '📋';
       document.getElementById('resultTitle').textContent = passed
-        ? 'Nice work — you passed!'
+        ? (isFinalModule ? 'Congratulations — course complete!' : 'Nice work — you passed!')
         : 'Not quite there yet';
       document.getElementById('resultScore').textContent =
         `You scored ${result.score}/${result.total} (${result.percentage}%). Pass mark is 80%.`;
       document.getElementById('resultNote').innerHTML = passed
-        ? 'A confirmation email is on its way, and the next module has been unlocked automatically — log back in to continue whenever you\'re ready.'
+        ? (isFinalModule
+            ? 'You\'ve completed every module and passed every quiz — well done! Your certificate is being generated now and will be emailed to you shortly.'
+            : 'A confirmation email is on its way, and the next module has been unlocked automatically — log back in to continue whenever you\'re ready.')
         : 'Review the module content and give it another go when you\'re ready — you\'ve got this. A summary email is on its way to you too.';
 
     } catch (err) {
