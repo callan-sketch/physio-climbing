@@ -127,6 +127,22 @@
   .field-hint{ font-size:0.78rem; color:var(--ink-soft); margin-top:6px; }
   .field-row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
 
+  .checkbox-field{ margin:20px 0 4px; }
+  .checkbox-label{
+    display:flex; align-items:flex-start; gap:10px; cursor:pointer;
+    font-size:0.86rem; color:var(--ink); line-height:1.5;
+  }
+  .checkbox-label input[type="checkbox"]{
+    width:18px; height:18px; margin-top:1px; flex-shrink:0;
+    accent-color:var(--teal); cursor:pointer;
+  }
+  .checkbox-label a{ color:var(--teal); font-weight:600; text-decoration:none; }
+  .checkbox-label a:hover{ text-decoration:underline; }
+  .checkbox-field .field-error{
+    display:none; font-size:0.8rem; color:#c0432f; margin-top:6px;
+  }
+  .checkbox-field .field-error.visible{ display:block; }
+
   .btn-primary{
     width:100%; background:var(--terracotta); color:#fff; border:none;
     padding:13px 20px; border-radius:9px; font-size:0.98rem; font-weight:600;
@@ -330,6 +346,13 @@
               <option value="yes-occasionally">Occasionally</option>
               <option value="not-yet">Not yet</option>
             </select>
+          </div>
+          <div class="checkbox-field" id="termsField">
+            <label class="checkbox-label">
+              <input type="checkbox" id="obTerms" onchange="document.getElementById('termsError').classList.remove('visible')">
+              <span>I agree to the <a href="terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a> and <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a> set out by Core Learning.</span>
+            </label>
+            <p class="field-error" id="termsError">Please accept the Terms &amp; Conditions and Privacy Policy to continue.</p>
           </div>
           <button type="submit" class="btn-primary" id="onboardSubmitBtn">
             <span class="btn-text">Continue to payment</span>
@@ -569,13 +592,20 @@ document.getElementById('onboardForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   hideError('onboardError');
 
+  if (!document.getElementById('obTerms').checked){
+    document.getElementById('termsError').classList.add('visible');
+    return;
+  }
+
   const profile = {
     name: document.getElementById('fullName').value.trim(),
     email: currentUser ? currentUser.email : document.getElementById('onboardEmail').value,
     profession: document.getElementById('profession').value,
     yearsQualified: document.getElementById('yearsQualified').value || null,
     country: document.getElementById('country').value.trim(),
-    treatsClimbers: document.getElementById('treatsClimbers').value || null
+    treatsClimbers: document.getElementById('treatsClimbers').value || null,
+    termsAccepted: true,
+    termsAcceptedAt: new Date().toISOString()
   };
 
   if (!FIREBASE_READY){
