@@ -480,7 +480,17 @@
             denyAccess();
             return;
           }
-          // Access confirmed — reveal the real page.
+          // Access confirmed — reveal the real page. Capture the verified
+          // sign-in email and lock it into the Email field, so the value
+          // submitted is always the account's real email, not a typed one.
+          window.__signedInEmail = user.email || '';
+          const emailField = document.getElementById('email');
+          if (emailField) {
+            emailField.value = window.__signedInEmail;
+            emailField.readOnly = true;
+            emailField.style.background = 'var(--cream-dk)';
+            emailField.style.cursor = 'not-allowed';
+          }
           document.getElementById('authGateOverlay').remove();
         } catch (err) {
           console.error('Auth gate: profile check failed', err);
@@ -517,9 +527,8 @@
         <div class="section-label">Section 1</div>
         <div class="section-title">Email</div>
         <div class="field">
-          <label for="email">Email *</label>
-          <input type="email" id="email" name="email" required>
-          <p class="field-hint">Please use the exact same email you signed up to the course with — a different email here will stop the next module from unlocking.</p>
+          <label for="email">Signed in as</label>
+          <input type="email" id="email" name="email" readonly required>
         </div>
       </div>
       <div class="section-card">
@@ -723,7 +732,7 @@
       }
       const payload = {
         moduleNumber: 1,
-        email: document.getElementById('email').value.trim(),
+        email: window.__signedInEmail,
         name: document.getElementById('name').value.trim(),
         surname: document.getElementById('surname').value.trim(),
         answers: answers
