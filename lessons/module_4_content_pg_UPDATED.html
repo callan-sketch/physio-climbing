@@ -536,7 +536,7 @@
     }
 
     .stage-carousel {
-      margin: 18px 0;
+      margin: 14px 0;
       border: 1px solid var(--cream-dk);
       border-radius: 12px;
       overflow: hidden;
@@ -545,25 +545,31 @@
 
     .stage-carousel-viewport {
       position: relative;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 8 / 3;
       background: var(--cream);
       overflow: hidden;
     }
 
+    .stage-track {
+      display: flex;
+      height: 100%;
+      width: 400%;
+      transition: transform .3s ease;
+    }
+
     .stage-slide {
-      position: absolute;
-      inset: 0;
+      position: relative;
+      width: 12.5%;
+      flex-shrink: 0;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity .25s ease;
+      border-right: 1px solid var(--cream-dk);
     }
 
-    .stage-slide.active {
-      opacity: 1;
-      visibility: visible;
+    .stage-slide:last-child {
+      border-right: none;
     }
 
     .stage-slide img {
@@ -577,6 +583,22 @@
       margin: 0;
       border: none;
       background: none;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+    }
+
+    .stage-badge {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(27, 42, 58, 0.7);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+      pointer-events: none;
     }
 
     .stage-nav-btn {
@@ -595,11 +617,17 @@
       cursor: pointer;
       font-size: 1.2rem;
       line-height: 1;
-      transition: background .2s ease;
+      transition: background .2s ease, opacity .2s ease;
+      z-index: 2;
     }
 
     .stage-nav-btn:hover {
       background: rgba(27, 42, 58, 0.8);
+    }
+
+    .stage-nav-btn:disabled {
+      opacity: 0.35;
+      cursor: default;
     }
 
     .stage-nav-btn.prev {
@@ -613,36 +641,9 @@
     .stage-footer {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 12px 16px;
+      justify-content: flex-end;
+      padding: 8px 14px;
       border-top: 1px solid var(--cream-dk);
-      flex-wrap: wrap;
-    }
-
-    .stage-caption {
-      font-size: 0.86rem;
-      color: var(--navy);
-      font-weight: 600;
-    }
-
-    .stage-dots {
-      display: flex;
-      gap: 6px;
-    }
-
-    .stage-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      border: none;
-      background: var(--cream-dk);
-      cursor: pointer;
-      padding: 0;
-    }
-
-    .stage-dot.active {
-      background: var(--terracotta);
     }
 
     .stage-counter {
@@ -659,7 +660,7 @@
       }
 
       .stage-footer {
-        padding: 10px 12px;
+        padding: 8px 12px;
       }
     }
 
@@ -1274,10 +1275,200 @@
                 <td>Contralateral cervical lateral flexion to increase loading; ipsilateral cervical lateral flexion or release of wrist extension to reduce loading</td>
               </tr>
               <tr>
+                <td colspan="4">
+                  <div class="stage-carousel" id="ulttCarousel_ulnt1">
+                    <div class="stage-carousel-viewport">
+                      <div class="stage-track">
+                        <div class="stage-slide" data-slide="1">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT1 &middot; 1</span>
+                        </div>
+                        <div class="stage-slide" data-slide="2">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT1 &middot; 2</span>
+                        </div>
+                        <div class="stage-slide" data-slide="3">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT1 &middot; 3</span>
+                        </div>
+                        <div class="stage-slide" data-slide="4">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT1 &middot; 4</span>
+                        </div>
+                        <div class="stage-slide" data-slide="5">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT1 &middot; 5</span>
+                        </div>
+                        <div class="stage-slide" data-slide="6">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT1 &middot; 6</span>
+                        </div>
+                        <div class="stage-slide" data-slide="7">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT1 &middot; 7</span>
+                        </div>
+                        <div class="stage-slide" data-slide="8">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT1 &middot; 8</span>
+                        </div>
+                      </div>
+                      <button class="stage-nav-btn prev" type="button" aria-label="Previous ULNT1 stage" disabled>&#8249;</button>
+                      <button class="stage-nav-btn next" type="button" aria-label="Next ULNT1 stage">&#8250;</button>
+                    </div>
+                    <div class="stage-footer">
+                      <span class="stage-counter" id="ulttCarousel_ulnt1_count">Stages 1&ndash;2 of 8</span>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
                 <td><strong>ULNT2a</strong></td>
                 <td>Median nerve</td>
                 <td>Shoulder girdle depression &rarr; elbow extension &rarr; shoulder external rotation &rarr; forearm supination &rarr; wrist &amp; finger extension &rarr; shoulder abduction</td>
                 <td>Contralateral cervical lateral flexion to increase loading; release of shoulder girdle depression or wrist extension to reduce loading</td>
+              </tr>
+              <tr>
+                <td colspan="4">
+                  <div class="stage-carousel" id="ulttCarousel_ulnt2a">
+                    <div class="stage-carousel-viewport">
+                      <div class="stage-track">
+                        <div class="stage-slide" data-slide="1">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT2a &middot; 1</span>
+                        </div>
+                        <div class="stage-slide" data-slide="2">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT2a &middot; 2</span>
+                        </div>
+                        <div class="stage-slide" data-slide="3">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT2a &middot; 3</span>
+                        </div>
+                        <div class="stage-slide" data-slide="4">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT2a &middot; 4</span>
+                        </div>
+                        <div class="stage-slide" data-slide="5">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT2a &middot; 5</span>
+                        </div>
+                        <div class="stage-slide" data-slide="6">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT2a &middot; 6</span>
+                        </div>
+                        <div class="stage-slide" data-slide="7">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT2a &middot; 7</span>
+                        </div>
+                        <div class="stage-slide" data-slide="8">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT2a &middot; 8</span>
+                        </div>
+                      </div>
+                      <button class="stage-nav-btn prev" type="button" aria-label="Previous ULNT2a stage" disabled>&#8249;</button>
+                      <button class="stage-nav-btn next" type="button" aria-label="Next ULNT2a stage">&#8250;</button>
+                    </div>
+                    <div class="stage-footer">
+                      <span class="stage-counter" id="ulttCarousel_ulnt2a_count">Stages 1&ndash;2 of 8</span>
+                    </div>
+                  </div>
+                </td>
               </tr>
               <tr>
                 <td><strong>ULNT2b</strong></td>
@@ -1286,380 +1477,233 @@
                 <td>Contralateral cervical lateral flexion to increase loading; release of shoulder girdle depression or wrist flexion to reduce loading</td>
               </tr>
               <tr>
+                <td colspan="4">
+                  <div class="stage-carousel" id="ulttCarousel_ulnt2b">
+                    <div class="stage-carousel-viewport">
+                      <div class="stage-track">
+                        <div class="stage-slide" data-slide="1">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT2b &middot; 1</span>
+                        </div>
+                        <div class="stage-slide" data-slide="2">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT2b &middot; 2</span>
+                        </div>
+                        <div class="stage-slide" data-slide="3">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT2b &middot; 3</span>
+                        </div>
+                        <div class="stage-slide" data-slide="4">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT2b &middot; 4</span>
+                        </div>
+                        <div class="stage-slide" data-slide="5">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT2b &middot; 5</span>
+                        </div>
+                        <div class="stage-slide" data-slide="6">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT2b &middot; 6</span>
+                        </div>
+                        <div class="stage-slide" data-slide="7">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT2b &middot; 7</span>
+                        </div>
+                        <div class="stage-slide" data-slide="8">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT2b &middot; 8</span>
+                        </div>
+                      </div>
+                      <button class="stage-nav-btn prev" type="button" aria-label="Previous ULNT2b stage" disabled>&#8249;</button>
+                      <button class="stage-nav-btn next" type="button" aria-label="Next ULNT2b stage">&#8250;</button>
+                    </div>
+                    <div class="stage-footer">
+                      <span class="stage-counter" id="ulttCarousel_ulnt2b_count">Stages 1&ndash;2 of 8</span>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
                 <td><strong>ULNT3</strong></td>
                 <td>Ulnar nerve</td>
                 <td>Wrist &amp; finger extension &rarr; forearm pronation &rarr; elbow flexion &rarr; shoulder external rotation &rarr; shoulder girdle depression &rarr; shoulder abduction</td>
                 <td>Contralateral cervical lateral flexion to increase loading; release of shoulder girdle depression or wrist extension to reduce loading</td>
               </tr>
+              <tr>
+                <td colspan="4">
+                  <div class="stage-carousel" id="ulttCarousel_ulnt3">
+                    <div class="stage-carousel-viewport">
+                      <div class="stage-track">
+                        <div class="stage-slide" data-slide="1">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT3 &middot; 1</span>
+                        </div>
+                        <div class="stage-slide" data-slide="2">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT3 &middot; 2</span>
+                        </div>
+                        <div class="stage-slide" data-slide="3">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT3 &middot; 3</span>
+                        </div>
+                        <div class="stage-slide" data-slide="4">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT3 &middot; 4</span>
+                        </div>
+                        <div class="stage-slide" data-slide="5">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT3 &middot; 5</span>
+                        </div>
+                        <div class="stage-slide" data-slide="6">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT3 &middot; 6</span>
+                        </div>
+                        <div class="stage-slide" data-slide="7">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT3 &middot; 7</span>
+                        </div>
+                        <div class="stage-slide" data-slide="8">
+                          <div class="media-placeholder">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
+                              <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Image coming soon</span>
+                          </div>
+                          <span class="stage-badge">ULNT3 &middot; 8</span>
+                        </div>
+                      </div>
+                      <button class="stage-nav-btn prev" type="button" aria-label="Previous ULNT3 stage" disabled>&#8249;</button>
+                      <button class="stage-nav-btn next" type="button" aria-label="Next ULNT3 stage">&#8250;</button>
+                    </div>
+                    <div class="stage-footer">
+                      <span class="stage-counter" id="ulttCarousel_ulnt3_count">Stages 1&ndash;2 of 8</span>
+                    </div>
+                  </div>
+                </td>
+              </tr>
             </table>
           </div>
-          <p class="test-subhead">ULNT1</p>
-          <div class="stage-carousel" id="ulttCarousel_ulnt1">
-            <div class="stage-carousel-viewport">
-              <div class="stage-slide active" data-slide="1">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="2">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="3">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="4">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="5">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="6">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="7">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="8">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <button class="stage-nav-btn prev" type="button" aria-label="Previous stage">&#8249;</button>
-              <button class="stage-nav-btn next" type="button" aria-label="Next stage">&#8250;</button>
-            </div>
-            <div class="stage-footer">
-              <span class="stage-caption" id="ulttCarousel_ulnt1_caption">ULNT1 &mdash; Stage 1 of 8</span>
-              <div class="stage-dots"><button class="stage-dot active" type="button" data-goto="1" aria-label="Go to ULNT1 stage 1"></button><button class="stage-dot" type="button" data-goto="2" aria-label="Go to ULNT1 stage 2"></button><button class="stage-dot" type="button" data-goto="3" aria-label="Go to ULNT1 stage 3"></button><button class="stage-dot" type="button" data-goto="4" aria-label="Go to ULNT1 stage 4"></button><button class="stage-dot" type="button" data-goto="5" aria-label="Go to ULNT1 stage 5"></button><button class="stage-dot" type="button" data-goto="6" aria-label="Go to ULNT1 stage 6"></button><button class="stage-dot" type="button" data-goto="7" aria-label="Go to ULNT1 stage 7"></button><button class="stage-dot" type="button" data-goto="8" aria-label="Go to ULNT1 stage 8"></button></div>
-              <span class="stage-counter"><span id="ulttCarousel_ulnt1_count">1</span> / 8</span>
-            </div>
-          </div>
-          <p class="test-subhead">ULNT2a</p>
-          <div class="stage-carousel" id="ulttCarousel_ulnt2a">
-            <div class="stage-carousel-viewport">
-              <div class="stage-slide active" data-slide="1">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="2">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="3">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="4">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="5">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="6">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="7">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="8">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <button class="stage-nav-btn prev" type="button" aria-label="Previous stage">&#8249;</button>
-              <button class="stage-nav-btn next" type="button" aria-label="Next stage">&#8250;</button>
-            </div>
-            <div class="stage-footer">
-              <span class="stage-caption" id="ulttCarousel_ulnt2a_caption">ULNT2a &mdash; Stage 1 of 8</span>
-              <div class="stage-dots"><button class="stage-dot active" type="button" data-goto="1" aria-label="Go to ULNT2a stage 1"></button><button class="stage-dot" type="button" data-goto="2" aria-label="Go to ULNT2a stage 2"></button><button class="stage-dot" type="button" data-goto="3" aria-label="Go to ULNT2a stage 3"></button><button class="stage-dot" type="button" data-goto="4" aria-label="Go to ULNT2a stage 4"></button><button class="stage-dot" type="button" data-goto="5" aria-label="Go to ULNT2a stage 5"></button><button class="stage-dot" type="button" data-goto="6" aria-label="Go to ULNT2a stage 6"></button><button class="stage-dot" type="button" data-goto="7" aria-label="Go to ULNT2a stage 7"></button><button class="stage-dot" type="button" data-goto="8" aria-label="Go to ULNT2a stage 8"></button></div>
-              <span class="stage-counter"><span id="ulttCarousel_ulnt2a_count">1</span> / 8</span>
-            </div>
-          </div>
-          <p class="test-subhead">ULNT2b</p>
-          <div class="stage-carousel" id="ulttCarousel_ulnt2b">
-            <div class="stage-carousel-viewport">
-              <div class="stage-slide active" data-slide="1">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="2">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="3">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="4">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="5">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="6">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="7">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="8">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <button class="stage-nav-btn prev" type="button" aria-label="Previous stage">&#8249;</button>
-              <button class="stage-nav-btn next" type="button" aria-label="Next stage">&#8250;</button>
-            </div>
-            <div class="stage-footer">
-              <span class="stage-caption" id="ulttCarousel_ulnt2b_caption">ULNT2b &mdash; Stage 1 of 8</span>
-              <div class="stage-dots"><button class="stage-dot active" type="button" data-goto="1" aria-label="Go to ULNT2b stage 1"></button><button class="stage-dot" type="button" data-goto="2" aria-label="Go to ULNT2b stage 2"></button><button class="stage-dot" type="button" data-goto="3" aria-label="Go to ULNT2b stage 3"></button><button class="stage-dot" type="button" data-goto="4" aria-label="Go to ULNT2b stage 4"></button><button class="stage-dot" type="button" data-goto="5" aria-label="Go to ULNT2b stage 5"></button><button class="stage-dot" type="button" data-goto="6" aria-label="Go to ULNT2b stage 6"></button><button class="stage-dot" type="button" data-goto="7" aria-label="Go to ULNT2b stage 7"></button><button class="stage-dot" type="button" data-goto="8" aria-label="Go to ULNT2b stage 8"></button></div>
-              <span class="stage-counter"><span id="ulttCarousel_ulnt2b_count">1</span> / 8</span>
-            </div>
-          </div>
-          <p class="test-subhead">ULNT3</p>
-          <div class="stage-carousel" id="ulttCarousel_ulnt3">
-            <div class="stage-carousel-viewport">
-              <div class="stage-slide active" data-slide="1">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="2">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="3">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="4">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="5">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="6">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="7">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <div class="stage-slide" data-slide="8">
-                <div class="media-placeholder">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" />
-                    <path d="M8 10L11 13L16 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <span>Image coming soon</span>
-                </div>
-              </div>
-              <button class="stage-nav-btn prev" type="button" aria-label="Previous stage">&#8249;</button>
-              <button class="stage-nav-btn next" type="button" aria-label="Next stage">&#8250;</button>
-            </div>
-            <div class="stage-footer">
-              <span class="stage-caption" id="ulttCarousel_ulnt3_caption">ULNT3 &mdash; Stage 1 of 8</span>
-              <div class="stage-dots"><button class="stage-dot active" type="button" data-goto="1" aria-label="Go to ULNT3 stage 1"></button><button class="stage-dot" type="button" data-goto="2" aria-label="Go to ULNT3 stage 2"></button><button class="stage-dot" type="button" data-goto="3" aria-label="Go to ULNT3 stage 3"></button><button class="stage-dot" type="button" data-goto="4" aria-label="Go to ULNT3 stage 4"></button><button class="stage-dot" type="button" data-goto="5" aria-label="Go to ULNT3 stage 5"></button><button class="stage-dot" type="button" data-goto="6" aria-label="Go to ULNT3 stage 6"></button><button class="stage-dot" type="button" data-goto="7" aria-label="Go to ULNT3 stage 7"></button><button class="stage-dot" type="button" data-goto="8" aria-label="Go to ULNT3 stage 8"></button></div>
-              <span class="stage-counter"><span id="ulttCarousel_ulnt3_count">1</span> / 8</span>
-            </div>
-          </div>
           <script>
-            function initStageCarousel(rootId, label) {
+            function initStageCarousel(rootId) {
               var root = document.getElementById(rootId);
               if (!root) return;
+              var track = root.querySelector('.stage-track');
               var slides = Array.prototype.slice.call(root.querySelectorAll('.stage-slide'));
-              var dots = Array.prototype.slice.call(root.querySelectorAll('.stage-dot'));
-              var captionEl = document.getElementById(rootId + '_caption');
+              var prevBtn = root.querySelector('.stage-nav-btn.prev');
+              var nextBtn = root.querySelector('.stage-nav-btn.next');
               var countEl = document.getElementById(rootId + '_count');
+              var total = slides.length;
+              var maxIndex = total - 2; // last valid left-hand position, showing 2 at a time
               var current = 0;
 
-              function show(index) {
-                current = (index + slides.length) % slides.length;
-                slides.forEach(function(s, i) {
-                  s.classList.toggle('active', i === current);
-                });
-                dots.forEach(function(d, i) {
-                  d.classList.toggle('active', i === current);
-                });
-                if (captionEl) captionEl.textContent = label + ' \u2014 Stage ' + (current + 1) + ' of ' + slides.length;
-                if (countEl) countEl.textContent = current + 1;
+              function render() {
+                track.style.transform = 'translateX(-' + (current * (100 / total)) + '%)';
+                if (countEl) countEl.textContent = 'Stages ' + (current + 1) + '\u2013' + (current + 2) + ' of ' + total;
+                prevBtn.disabled = current === 0;
+                nextBtn.disabled = current === maxIndex;
               }
-              root.querySelector('.stage-nav-btn.prev').addEventListener('click', function() {
-                show(current - 1);
+              prevBtn.addEventListener('click', function() {
+                if (current > 0) {
+                  current -= 1;
+                  render();
+                }
               });
-              root.querySelector('.stage-nav-btn.next').addEventListener('click', function() {
-                show(current + 1);
-              });
-              dots.forEach(function(d, i) {
-                d.addEventListener('click', function() {
-                  show(i);
-                });
+              nextBtn.addEventListener('click', function() {
+                if (current < maxIndex) {
+                  current += 1;
+                  render();
+                }
               });
               var touchStartX = null;
               var viewport = root.querySelector('.stage-carousel-viewport');
@@ -1671,18 +1715,26 @@
               viewport.addEventListener('touchend', function(e) {
                 if (touchStartX === null) return;
                 var dx = e.changedTouches[0].clientX - touchStartX;
-                if (Math.abs(dx) > 40) show(current + (dx < 0 ? 1 : -1));
+                if (Math.abs(dx) > 40) {
+                  if (dx < 0 && current < maxIndex) {
+                    current += 1;
+                    render();
+                  } else if (dx > 0 && current > 0) {
+                    current -= 1;
+                    render();
+                  }
+                }
                 touchStartX = null;
               }, {
                 passive: true
               });
-              show(0);
+              render();
             }
             (function() {
-              initStageCarousel('ulttCarousel_ulnt1', 'ULNT1');
-              initStageCarousel('ulttCarousel_ulnt2a', 'ULNT2a');
-              initStageCarousel('ulttCarousel_ulnt2b', 'ULNT2b');
-              initStageCarousel('ulttCarousel_ulnt3', 'ULNT3');
+              initStageCarousel('ulttCarousel_ulnt1');
+              initStageCarousel('ulttCarousel_ulnt2a');
+              initStageCarousel('ulttCarousel_ulnt2b');
+              initStageCarousel('ulttCarousel_ulnt3');
             })();
           </script>
         </div>
